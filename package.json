@@ -1,0 +1,20 @@
+{
+  "name": "new-project",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "prod": "node ./esbuild/esbuild.prod.js",
+    "build": "node ./esbuild/esbuild.build.js",
+    "watch": "node ./esbuild/esbuild.watch.js",
+    "rebuild" : "rm -rf ./node_modules && rm -rf package-lock.json && npm install && npm run build "
+  },
+  "dependencies": {
+    "esbuild": "^0.19.11"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss-import": "^16.0.0",
+    "esbuild-style-plugin": "^1.6.3"
+  }
+}
