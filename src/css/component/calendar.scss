@@ -1,0 +1,50 @@
+#calendar {
+  @apply w-[500px] m-auto relative top-1/2 -translate-y-[300px];
+  .headerCalendar {
+    @apply bg-transparent font-bold text-center mb-5;
+    h1 {
+      @apply pt-5 pb-5 select-none;
+    }
+    .controls {
+      div:nth-child(1) {
+        @apply inline-block text-gray-600 absolute left-5 top-5;
+        svg {
+          @apply w-5 h-5;
+        }
+      }
+      div:nth-child(2) {
+        @apply inline-block text-gray-600 absolute right-5 top-5;
+        svg {
+          @apply w-5 h-5;
+        }
+      }
+    }
+  }
+  .mainCalendar {
+    @apply bg-transparent;
+    .days {
+      @apply grid grid-cols-7;
+      .day {
+        @apply text-center select-none;
+      }
+      .dayCard:has(.dayNumber) {
+        @apply pt-5 pb-5 m-1 text-center border select-none transition-all duration-300;
+        background: rgba( 255, 255, 255, 0.4 );
+        /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
+        backdrop-filter: blur( 5px );
+        -webkit-backdrop-filter: blur( 5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        &:hover {
+          background: rgba( 255, 255, 255, 0.8 );
+          scale: 1.05;
+          /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
+          backdrop-filter: blur( 5px );
+          -webkit-backdrop-filter: blur( 5px );
+          border-radius: 10px;
+          border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+      }
+    }
+  }
+}

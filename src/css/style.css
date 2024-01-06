@@ -5,6 +5,7 @@
 
 /* import des feuilles de style */
 @import './base.scss'; 
-@import './calendar.scss'; 
-@import './toolbar.scss'; 
+@import './component/calendar.scss'; 
+@import './component/toolbar.scss'; 
+@import './component/aside.scss'; 
 

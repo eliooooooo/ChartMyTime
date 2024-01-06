@@ -118,6 +118,22 @@ export function displayCalendar(month, year) {
   }
 }
 
+// Gérer le formulaire de saisie de la date
+document.querySelector('.formNewDate').addEventListener('submit', function(event) {
+  event.preventDefault();
+  let month = document.querySelector('#month').value;
+  let year = document.querySelector('#year').value;
+  let inputMonthYear = document.querySelector('.inputMonthYear');
+  inputMonthYear.classList.remove('active');
+  // console.log('Month: ' + month);
+  // console.log('Year: ' + year);
+
+  currentMonth = month;
+  currentYear = year;
+  displayCalendar(month, year);
+  selectDayTag(month, year);
+});
+
 displayCalendar(currentMonth, currentYear);
 selectDayTag(currentMonth, currentYear);
 // console.log(currentDate);

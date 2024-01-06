@@ -2,6 +2,10 @@
 
 let colorCircle = ['radial-gradient(circle, rgba(232,178,202,1) 0%, rgba(208,110,166,1) 100%)', 'radial-gradient(circle, rgba(178,232,230,1) 0%, rgba(55,190,236,1) 86%, rgba(110,181,208,1) 100%)', 'radial-gradient(circle, rgba(137,233,119,1) 0%, rgba(28,120,66,1) 100%)'];
 
+let heightCalendar = document.querySelector('#calendar').clientHeight;
+let circleContainer = document.querySelector('.circleContainer');
+circleContainer.style.height = heightCalendar + 'px';
+
 let clientWidth = document.querySelector('.circleContainer').clientWidth;
 let clientHeight = document.querySelector('.circleContainer').clientHeight;
 
@@ -9,17 +13,18 @@ window.onresize = function() {
     clientWidth = document.querySelector('.circleContainer').clientWidth;
     clientHeight = document.querySelector('.circleContainer').clientHeight;
     // console.log(clientWidth);
-    // console.log(clientHeight);
+    console.log(clientHeight);
 }
 
-let heightCalendar = document.querySelector('#calendar').clientHeight;
-let circleContainer = document.querySelector('.circleContainer');
-circleContainer.style.height = heightCalendar + 'px';
 
 nbCircle = 3;
 maxWidth = clientWidth * 0.5;
 
 function createCircle(i, width, left, top) {
+    minwidth = 0.3 * clientWidth;
+    if (width < minwidth) {
+        width = minwidth;
+    }
     let circle = document.createElement('div');
     circle.classList.add('circle');
     circle.setAttribute('id', 'circle' + (i+1));
@@ -37,6 +42,9 @@ function createCircle(i, width, left, top) {
 for (let i = 0; i < nbCircle; i++) {
     let tmp_width = Math.floor(Math.random() * maxWidth);
     let width = tmp_width > 0 ? tmp_width : tmp_width * -1;
+    if (width < 0.3 * clientWidth) {
+        width = 0.3 * clientWidth;
+    }
     tmp_left = Math.floor(Math.random() * (clientWidth - width));
     let left = tmp_left > 0 ? tmp_left : tmp_left * -1;
     tmp_top = Math.floor(Math.random() * (clientHeight - width));
