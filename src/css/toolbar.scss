@@ -1,5 +1,5 @@
 .floatingToolbar {
-    @apply flex flex-col-reverse gap-5 text-black absolute right-16 bottom-16 rounded-full items-end;
+    @apply flex flex-col-reverse gap-5 text-black absolute right-5 bottom-5 lg:right-16 lg:bottom-16 rounded-full items-end;
     div.button {
         @apply h-12 w-12 rounded-full flex shadow-lg;
         background: rgba( 255, 255, 255, 0.4 );

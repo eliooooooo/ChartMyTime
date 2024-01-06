@@ -28,7 +28,7 @@ let dp_year = document.querySelector('.year');
 dp_year.innerHTML = currentYear;
 
 // Affichage du jour de la semaine actuel
-function selectDayTag(month, year) {
+export function selectDayTag(month, year) {
   let dp_days = document.querySelector('.days div:nth-child(' + (currentDayOfWeek) + ')');
   let dp_number = document.querySelector('.days div:nth-child(' + (currentDay + 7) + ')');
   dp_days.classList.add('currentDay');
@@ -86,7 +86,10 @@ let btn_currentMonth = document.querySelector('.backToCurrentMonth');
 btn_currentMonth.addEventListener('click', setCurrentMonth);
 
 // Fonction pour afficher le calendrier
-function displayCalendar(month, year) {
+export function displayCalendar(month, year) {
+  dp_month.innerHTML = months[month];
+  dp_year.innerHTML = year;
+
   // Suppression des anciens jours
   let oldDays = document.querySelectorAll('.dayCard');
   if (oldDays) {
