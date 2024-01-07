@@ -1,5 +1,5 @@
 #calendar {
-  @apply w-[500px] m-auto relative top-1/2 -translate-y-[300px];
+  @apply w-[100vw] sm:w-[500px] m-auto relative top-1/2 -translate-y-[300px];
   .headerCalendar {
     @apply bg-transparent font-bold text-center mb-5;
     h1 {
@@ -16,7 +16,7 @@
         @apply inline-block text-gray-600 absolute right-5 top-5;
         svg {
           @apply w-5 h-5;
-        }
+        } 
       }
     }
   }
