@@ -29,6 +29,13 @@ dp_year.innerHTML = currentYear;
 
 // Affichage du jour de la semaine actuel
 export function selectDayTag(month, year) {
+  let currentDate = new Date();
+  let currentDay = currentDate.getDate();
+  let currentDayOfWeek = currentDate.getDay();
+  if (currentDayOfWeek == 0) {
+    currentDayOfWeek = 7;
+  }
+  console.log(currentDayOfWeek);
   let dp_days = document.querySelector('.days div:nth-child(' + (currentDayOfWeek) + ')');
   let dp_number = document.querySelector('.days div:nth-child(' + (currentDay + 7) + ')');
   dp_days.classList.add('currentDay');
