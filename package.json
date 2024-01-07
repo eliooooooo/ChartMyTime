@@ -6,15 +6,16 @@
     "prod": "node ./esbuild/esbuild.prod.js",
     "build": "node ./esbuild/esbuild.build.js",
     "watch": "node ./esbuild/esbuild.watch.js",
-    "rebuild" : "rm -rf ./node_modules && rm -rf package-lock.json && npm install && npm run build "
+    "rebuild": "rm -rf ./node_modules && rm -rf package-lock.json && npm install && npm run build "
   },
   "dependencies": {
+    "alpinejs": "^3.13.3",
     "esbuild": "^0.19.11"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0",
     "autoprefixer": "^10.4.16",
+    "esbuild-style-plugin": "^1.6.3",
     "postcss-import": "^16.0.0",
-    "esbuild-style-plugin": "^1.6.3"
+    "tailwindcss": "^3.4.0"
   }
 }

@@ -13,7 +13,7 @@ window.onresize = function() {
     clientWidth = document.querySelector('.circleContainer').clientWidth;
     clientHeight = document.querySelector('.circleContainer').clientHeight;
     // console.log(clientWidth);
-    console.log(clientHeight);
+    // console.log(clientHeight);
 }
 
 
