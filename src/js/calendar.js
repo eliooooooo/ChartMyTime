@@ -100,8 +100,7 @@ export function displayCalendar(month, year) {
   let oldDays = document.querySelectorAll('.dayCard');
   if (oldDays) {
   oldDays.forEach(element => {
-    element.style.opacity = '0';
-    element.remove();
+      element.remove();
   })};
   
 

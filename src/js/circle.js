@@ -32,11 +32,18 @@ function createCircle(i, width, left, top) {
     circle.style.height = width + 'px';
     circle.style.borderRadius = 50 + '%';
     circle.style.background = colorCircle[i];
+    circle.style.opacity = 0;
+    circle.style.transition = 'all 1s ease-in-out';
+    circle.style.transform = 'scale(0)';
     circle.style.position = 'absolute';
     circle.style.top = top + 'px';
     circle.style.left = left + 'px';
     circle.style.zIndex = '-1';
     document.querySelector('.circleContainer').appendChild(circle);
+    setTimeout(function() {
+        circle.style.opacity = 1;
+        circle.style.transform = 'scale(1)';
+    }, 100);
 }
 
 for (let i = 0; i < nbCircle; i++) {

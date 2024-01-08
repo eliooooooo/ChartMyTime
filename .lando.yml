@@ -1,0 +1,8 @@
+name: time-manager
+recipe: lamp
+config:
+  php: '7.4'
+  webroot: '/'
+proxy:
+  appserver:
+    - time-manager.lndo.site
