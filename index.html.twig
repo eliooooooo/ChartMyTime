@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez où passe votre temps !">
+    <link rel="stylesheet" href="./dist/main.css">
+    <title>Time manager</title>
+</head>
+<body class="h-[100vh] w-[100vw] flex items-center justify-center" x-data="{isOpen: false}">
+  <aside>
+    <ul class="m-auto flex flex-col gap-4 mt-20">
+      <li>Mon premier lien</li>
+      <li>Mon second</li>
+      <li>Settings</li>
+    </ul>
+  </aside>
+  <div class="mobileMenu flex xl:hidden w-full bg-white h-20 absolute top-0">
+    <div class="toggleMenu flex items-center absolute h-full right-5 z-20" x-on:click="isOpen = !isOpen">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" x-show="!isOpen">
+        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16" x-show="isOpen">
+        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+      </svg>
+    </div>
+    <div class="bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-show="isOpen" x-transition>
+      <ul class="m-auto flex flex-col mt-4 text-center text-2xl gap-4">
+        <li>Mon premier lien</li>
+        <li>Mon second</li>
+        <li>Settings</li>
+      </ul>
+    </div>
+  </div>
+  <main class="h-[100vh]">
+    <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
+    <div id="calendar">
+      <div class="headerCalendar">
+        <h1><span class="month"> </span> <span  class="year"> </span></h1>
+        <div class="controls">
+          <div class="previousMonth">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+            </svg>
+          </div>
+          <div class="nextMonth">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right nextMonth" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="mainCalendar">
+        <!-- Days names -->
+        <div class="days"></div>
+      </div>
+    </div>
+    <div class="floatingToolbar">
+      <div class="backToCurrentMonth button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+          <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+        </svg>
+      </div>
+      <div class="inputMonthYear button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-month togglesvg" viewBox="0 0 16 16">
+          <path d="M2.56 11.332 3.1 9.73h1.984l.54 1.602h.718L4.444 6h-.696L1.85 11.332zm1.544-4.527L4.9 9.18H3.284l.8-2.375zm5.746.422h-.676V9.77c0 .652-.414 1.023-1.004 1.023-.539 0-.98-.246-.98-1.012V7.227h-.676v2.746c0 .941.606 1.425 1.453 1.425.656 0 1.043-.28 1.188-.605h.027v.539h.668zm2.258 5.046c-.563 0-.91-.304-.985-.636h-.687c.094.683.625 1.199 1.668 1.199.93 0 1.746-.527 1.746-1.578V7.227h-.649v.578h-.019c-.191-.348-.637-.64-1.195-.64-.965 0-1.64.679-1.64 1.886v.34c0 1.23.683 1.902 1.64 1.902.558 0 1.008-.293 1.172-.648h.02v.605c0 .645-.423 1.023-1.071 1.023m.008-4.53c.648 0 1.062.527 1.062 1.359v.253c0 .848-.39 1.364-1.062 1.364-.692 0-1.098-.512-1.098-1.364v-.253c0-.868.406-1.36 1.098-1.36z"/>
+          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+        </svg>
+        <form method="POST" action="index.html" class="formNewDate">
+          <select name="month" id="month">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+          </select>
+          <input type="number" name="year" id="year" placeholder="Year">
+          <input type="submit" value="Go">
+        </form>
+        <div class="closeFormMonthYear">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg ml-4" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="fixed bottom-2 left-2 bg-gray-800 text-white text-center font-semibold rounded-full py-2 w-20" style="z-index:10000;">
+    <span class="block sm:hidden">xs
+      <br/>0</span>
+    <span class="hidden sm:block md:hidden">sm
+      <br/>480</span>
+    <span class="hidden md:block lg:hidden">md
+      <br/>768</span>
+    <span class="hidden lg:block xl:hidden">lg
+      <br/>1024</span>
+    <span class="hidden xl:block 2xl:hidden">xl 
+      <br/>1280</span>
+    <span class="hidden 2xl:block">2xl et + 
+      <br/>1536</span>
+  </div>
+  <script src="./dist/main.js"></script>
+</body>
+</html>
