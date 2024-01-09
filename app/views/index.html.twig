@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez où passe votre temps !">
+    <link rel="stylesheet" href="./dist/main.css">
+    <title>Time manager</title>
+</head>
+<body class="h-[100vh] w-[100vw] flex items-center justify-center" x-data="{isOpen: false}">
+  {% include "./includes/menu.html.twig" %}
+  <main class="h-[100vh]">
+    <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
+    <div id="calendar">
+      <div class="headerCalendar">
+        <h1><span class="month"> </span> <span  class="year"> </span></h1>
+        <div class="controls">
+          <div class="previousMonth">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+            </svg>
+          </div>
+          <div class="nextMonth">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right nextMonth" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="mainCalendar">
+        <!-- Days names -->
+        <div class="days"></div>
+      </div>
+    </div>
+    {% include "./includes/toolbar.html.twig" %}
+  </main>
+  <div class="fixed bottom-2 left-2 bg-gray-800 text-white text-center font-semibold rounded-full py-2 w-20" style="z-index:10000;">
+    <span class="block sm:hidden">xs
+      <br/>0</span>
+    <span class="hidden sm:block md:hidden">sm
+      <br/>480</span>
+    <span class="hidden md:block lg:hidden">md
+      <br/>768</span>
+    <span class="hidden lg:block xl:hidden">lg
+      <br/>1024</span>
+    <span class="hidden xl:block 2xl:hidden">xl 
+      <br/>1280</span>
+    <span class="hidden 2xl:block">2xl et + 
+      <br/>1536</span>
+  </div>
+  <script src="./dist/main.js"></script>
+</body>
+</html>

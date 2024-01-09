@@ -5,7 +5,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 function init_twig()
 {
     // Indique le répertoire ou sont placés les modèles (templates)
-    $loader = new \Twig\Loader\FilesystemLoader('/');
+    $loader = new \Twig\Loader\FilesystemLoader('./app/views');
 
     // Crée un nouveau moteur Twig
     $twig = new \Twig\Environment($loader, ['debug' => true]);

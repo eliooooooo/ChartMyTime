@@ -3,9 +3,9 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf ./dist",
-    "prod": "node ./esbuild/esbuild.prod.js",
-    "build": "node ./esbuild/esbuild.build.js",
-    "watch": "node ./esbuild/esbuild.watch.js",
+    "prod": "node ./scripts/esbuild.prod.js",
+    "build": "node ./scripts/esbuild.build.js",
+    "watch": "node ./scripts/esbuild.watch.js",
     "rebuild": "rm -rf ./node_modules && rm -rf package-lock.json && npm install && npm run build "
   },
   "dependencies": {
