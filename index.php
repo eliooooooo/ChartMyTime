@@ -9,7 +9,7 @@ require_once __DIR__ . '/utils/twig.php';
 // Appel du contrôleur base
 require_once __DIR__ . '/app/controller/ControllerBase.php';
 
-echo $twig->render('index.html.twig',  [
+echo $twig->render('components/calendar.html.twig',  [
     'title' => 'Home',
     'content' => 'Hello World!'
 ]);

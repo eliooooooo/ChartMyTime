@@ -1,0 +1,29 @@
+{% extends "page.html.twig" %}
+
+{% block main %}
+<!-- From calendar.html.twig -->
+    <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
+    <div id="calendar">
+        <div class="headerCalendar">
+        <h1><span class="month"> </span> <span  class="year"> </span></h1>
+        <div class="controls">
+            <div class="previousMonth">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+            </svg>
+            </div>
+            <div class="nextMonth">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right nextMonth" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+            </svg>
+            </div>
+        </div>
+        </div>
+        <div class="mainCalendar">
+        <!-- Days names -->
+        <div class="days"></div>
+        </div>
+    </div>
+    {% include "includes/toolbar.html.twig" %}
+<!-- End calendar.html.twig -->
+{% endblock %}
