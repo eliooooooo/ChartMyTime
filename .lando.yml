@@ -3,6 +3,15 @@ recipe: lamp
 config:
   php: '7.4'
   webroot: '/'
+  database: mysql
+services:
+  pma:
+    type: phpmyadmin
+    hosts:
+      - database
 proxy:
+  pma:
+    - pma.time-manager.lndo.site
   appserver:
     - time-manager.lndo.site
+  

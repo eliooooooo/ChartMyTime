@@ -8,7 +8,7 @@ function init_twig()
     $loader = new \Twig\Loader\FilesystemLoader('./app/views');
 
     // Crée un nouveau moteur Twig
-    $twig = new \Twig\Environment($loader, ['debug' => true]);
+    $twig = new \Twig\Environment($loader, ['debug' => true, 'cache' => false]);
     $twig->addExtension(new \Twig\Extension\DebugExtension());
 
     // Renvoie le moteur

@@ -3,7 +3,7 @@ const postCssPlugin = require("esbuild-style-plugin");
 
 esbuild.build({
   logLevel: "debug",
-  entryPoints: ["./src/js/main.js"],
+  entryPoints: ["./public/src/js/main.js"],
   outdir: "dist",
   bundle: true,
   minify: false, 
