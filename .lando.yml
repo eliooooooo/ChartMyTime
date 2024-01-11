@@ -6,7 +6,8 @@ config:
   database: mysql
 services:
   pma:
-    type: phpmyadmin
+    type: mssql
+    portforward: true
     hosts:
       - database
 proxy:
