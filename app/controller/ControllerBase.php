@@ -6,12 +6,12 @@ Class ControllerBase {
 
     public function __construct() {
         // Connexion à la base de données
-        require_once __DIR__ . '/../utils/connexion.php';
-        
+        require_once __DIR__ . '/../../utils/connexion.php';     
+
         // Initialisation de Twig
-        require_once __DIR__ . '/../utils/twig.php';
+        require_once __DIR__ . '/../../utils/twig.php';
         
-        $this->twig = $twig;
+        $this->twig = init_twig();
     }
 
     public function render($view, $params = []) {
