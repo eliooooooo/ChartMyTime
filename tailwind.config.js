@@ -1,5 +1,9 @@
 module.exports = {
-    content: ["./*.{html.twig,js}"],
+    content: [
+        "./app/views/*.{html.twig,js}",
+        "./app/views/**/*.{html.twig,js}",
+        "./app/views/**/**/*.{html.twig,js}",
+    ],
     theme: {
         extend: {},
     },
