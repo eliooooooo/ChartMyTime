@@ -1,22 +1,27 @@
 name: time-manager
-recipe: lamp
+recipe: lamp # Type de projet
 config:
   php: '7.4'
   webroot: '/'
   database: mysql
 services:
-  database:
+  database: 
     type: mysql
-    creds:
+    creds: # de la base de données
       password: root
       database: elioooftime
   phpmyadmin:
-    portforward: true
     type: phpmyadmin
     hosts:
       - database
 proxy:
   appserver:
-    - time-manager.lndo.site
-
-# lando db import
+    - time-manager.lndo.site # nom de domaine
+tooling: # Commandes
+  db-import: # Import de la base
+    service: appserver # Service à utiliser
+    description: Import database from a file into the database service.
+    cmd: mysql -h database -u lamp -proot -e "DROP DATABASE IF EXISTS elioooftime; CREATE DATABASE elioooftime;" && mysql -h database -u lamp -proot elioooftime < /app/elioooftime.sql
+events:
+  post-start: # permet de lancer la commande avant le lancement du projet
+    - appserver: sleep 3 && mysql -h database -u lamp -proot -e "DROP DATABASE IF EXISTS elioooftime; CREATE DATABASE elioooftime;" && mysql -h database -u lamp -proot elioooftime < /app/elioooftime.sql
