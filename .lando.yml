@@ -5,14 +5,18 @@ config:
   webroot: '/'
   database: mysql
 services:
-  pma:
-    type: mssql
+  database:
+    type: mysql
+    creds:
+      password: root
+      database: elioooftime
+  phpmyadmin:
     portforward: true
+    type: phpmyadmin
     hosts:
       - database
 proxy:
-  pma:
-    - pma.time-manager.lndo.site
   appserver:
     - time-manager.lndo.site
-  
+
+# lando db import
