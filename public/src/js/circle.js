@@ -2,7 +2,11 @@
 
 let colorCircle = ['radial-gradient(circle, rgba(232,178,202,1) 0%, rgba(208,110,166,1) 100%)', 'radial-gradient(circle, rgba(178,232,230,1) 0%, rgba(55,190,236,1) 86%, rgba(110,181,208,1) 100%)', 'radial-gradient(circle, rgba(137,233,119,1) 0%, rgba(28,120,66,1) 100%)'];
 
-let heightCalendar = document.querySelector('#calendar').clientHeight;
+if (document.querySelector('#calendar')) {
+    var heightCalendar = document.querySelector('#calendar').clientHeight;
+} else if (document.querySelector('.containerError')) {
+    var heightCalendar = document.querySelector('.containerError').clientHeight + 300;
+}
 let circleContainer = document.querySelector('.circleContainer');
 circleContainer.style.height = heightCalendar + 'px';
 
