@@ -80,14 +80,14 @@ if (empty($request_uri) || $request_uri == '/') {
             $controller->$action();
         } catch (Exception $e) {
             // Décommenter pour afficher les erreurs
-            echo $e->getMessage();
-            var_dump($e->getTrace());
+            // echo $e->getMessage();
+            // var_dump($e->getTrace());
             $errorController = new ErrorController();
             $errorController->notFound();
         } catch (Error $e) {
             // Décommenter pour afficher les erreurs
-            echo $e->getMessage();
-            var_dump($e->getTrace());
+            // echo $e->getMessage();
+            // var_dump($e->getTrace());
             $errorController = new ErrorController();
             $errorController->notFound();
         }
