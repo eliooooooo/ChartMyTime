@@ -2,6 +2,7 @@
 
 // Affichage du jour de la semaine actuel
 export function selectDayTag(month, year) {
+  // définition de la date
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
   let currentDate = new Date();
   let currentDay = currentDate.getDate();
@@ -9,14 +10,18 @@ export function selectDayTag(month, year) {
   if (currentDayOfWeek == 0) {
     currentDayOfWeek = 7;
   }
-  let dp_days = document.querySelector('.days div:nth-child(' + (currentDayOfWeek) + ')');
-  let dp_number = document.querySelector('.days div:nth-child(' + (currentDay + 7) + ')');
-  dp_days.classList.add('currentDay');
-  dp_number.classList.add('currentNumber');
   let currentMonth = currentDate.getMonth();
   let currentYear = currentDate.getFullYear();
+
+  // définition des affichages
+  let dp_days = document.querySelector('.days div:nth-child(' + (currentDayOfWeek) + ')');
+  dp_days.classList.add('currentDay');
+  let dp_number = document.querySelector('.days div:nth-child(' + (currentDay + 7) + ')');
+  dp_number.classList.add('currentNumber');
   let dp_month = document.querySelector('.month');
   let dp_year = document.querySelector('.year');
+ 
+  // style du jour actuel
   if (dp_month.innerHTML == months[currentMonth] && dp_year.innerHTML == currentYear){
     dp_days.style.textDecoration = 'underline';
     dp_number.style.textDecoration = 'underline';
@@ -63,19 +68,19 @@ function setCurrentMonth() {
 export function displayCalendar(month, year) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
 
+  // Suppression des anciens jours
+  let oldDays = document.querySelectorAll('.dayCard');
+  if (oldDays) {
+    oldDays.forEach(element => {
+      element.remove();
+  })};
+
+  // définition des affichages
   let dp_month = document.querySelector('.month');
   let dp_year = document.querySelector('.year');
   dp_month.innerHTML = months[month];
   dp_year.innerHTML = year;
-
-  // Suppression des anciens jours
-  let oldDays = document.querySelectorAll('.dayCard');
-  if (oldDays) {
-  oldDays.forEach(element => {
-      element.remove();
-  })};
   
-
   let nbDays = new Date(year, month, 0).getDate();
   let firstDay = new Date(year, month, 0).getDay();
   // Affichage des jours du mois (le bon jour de la semaine)
