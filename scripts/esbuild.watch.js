@@ -52,7 +52,7 @@ const build = () => {
         entryPoints: [entryPoint],
         outdir: "dist",
         bundle: true,
-        minify: true, 
+        minify: false, 
         loader: {
           // ".svg": "file",
           // ".otf": "file",
