@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "alpinejs": "^3.13.3",
-    "esbuild": "^0.19.11"
+    "chokidar": "^3.5.3",
+    "esbuild": "^0.19.11",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
