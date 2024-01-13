@@ -1,4 +1,4 @@
-// console.log('input.js');
+// console.log('floatingToolbar.js');
 
 // InputMonthYear
 if (document.querySelectorAll(".inputMonthYear")) {
