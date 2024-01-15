@@ -1,7 +1,9 @@
 // console.log('calendar.js');
 
+import { dayModal } from "./daymodal";
+
 // Affichage du jour de la semaine actuel
-export function selectDayTag(month, year) {
+function selectDayTag(month, year) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
   let currentDate = new Date();
   let currentDay = currentDate.getDate();
@@ -75,24 +77,25 @@ export function displayCalendar(month, year) {
       element.remove();
   })};
 
-let nbDays = new Date(year, month, 0).getDate();
-let firstDay = new Date(year, month, 0).getDay();
-// Affichage des jours du mois (le bon jour de la semaine)
-for (let j = 0; j < firstDay; j++) {
-  let dayCard = document.createElement('div');
-  dayCard.classList.add('dayCard');
-  document.querySelector('.mainCalendar > div').appendChild(dayCard);
-}
-for (let i = 1; i <= nbDays; i++) {
-  let dayNumber = document.createElement('div');
-  dayNumber.classList.add('dayNumber');
-  dayNumber.innerHTML = i;
-  let dayCard = document.createElement('div');
-  dayCard.classList.add('dayCard');
-  dayCard.dataset.day = i;
-  dayCard.appendChild(dayNumber);
-  document.querySelector('.mainCalendar > div').appendChild(dayCard);
-}
+  let nbDays = new Date(year, month, 0).getDate();
+  let firstDay = new Date(year, month, 0).getDay();
+  // Affichage des jours du mois (le bon jour de la semaine)
+  for (let j = 0; j < firstDay; j++) {
+    let dayCard = document.createElement('div');
+    dayCard.classList.add('dayCard');
+    document.querySelector('.mainCalendar > div').appendChild(dayCard);
+  }
+  for (let i = 1; i <= nbDays; i++) {
+    let dayNumber = document.createElement('div');
+    dayNumber.classList.add('dayNumber');
+    dayNumber.innerHTML = i;
+    let dayCard = document.createElement('div');
+    dayCard.classList.add('dayCard');
+    dayCard.dataset.day = i;
+    dayCard.appendChild(dayNumber);
+    document.querySelector('.mainCalendar > div').appendChild(dayCard);
+  }
+  dayModal();
 }
 
 // Définition des possibilitées
