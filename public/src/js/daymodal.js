@@ -4,7 +4,7 @@ let dayCards = document.querySelectorAll('.dayCard');
 
 dayCards.forEach(function(dayCard) {
     dayCard.addEventListener('click' , function() {
-        dayNumber = dayCard.dataset.day;
-        console.log(dayNumber);
+        let dayNumber = dayCard.dataset.day;
+        console.log('clicked day ' + dayNumber);
     });
-}); QUOI
+});

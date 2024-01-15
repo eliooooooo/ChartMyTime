@@ -1,7 +1,7 @@
 .floatingToolbar {
     @apply flex flex-col-reverse gap-5 text-black absolute right-5 bottom-5 md:bottom-10 md:right-10 lg:right-16 lg:bottom-16 xl:bottom-[80px] xl:right-[80px] rounded-full items-end;
     div.button {
-        @apply h-12 w-12 rounded-full flex shadow-lg;
+        @apply h-12 w-12 rounded-full flex shadow-lg hover:cursor-pointer transition-all duration-300 ease-in-out;
         background: rgba( 255, 255, 255, 0.4 );
         /* box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 ); */
         backdrop-filter: blur( 5px );
@@ -34,7 +34,7 @@
                     }
                 }
                 .closeFormMonthYear {
-                    @apply flex ml-4;
+                    @apply flex ml-4 hover:cursor-pointer;
                 }
                 form {
                     @apply mr-1 block flex flex-row items-center gap-5;
@@ -43,7 +43,7 @@
                         @apply w-20 bg-transparent;
                     }
                     input[type="submit"] {
-                        @apply w-10 h-10 rounded-full bg-black text-[#f5f1f1];
+                        @apply w-10 h-10 rounded-full bg-black text-[#f5f1f1] hover:cursor-pointer;
                     }
                 }
                 &:hover {

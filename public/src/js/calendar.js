@@ -89,6 +89,7 @@ for (let i = 1; i <= nbDays; i++) {
   dayNumber.innerHTML = i;
   let dayCard = document.createElement('div');
   dayCard.classList.add('dayCard');
+  dayCard.dataset.day = i;
   dayCard.appendChild(dayNumber);
   document.querySelector('.mainCalendar > div').appendChild(dayCard);
 }
