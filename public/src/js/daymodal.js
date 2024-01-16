@@ -1,6 +1,7 @@
 console.log('daymodal.js');
 
 export function dayModal(){
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
     let dayCards = document.querySelectorAll('.dayCard');
     let dayModal = document.querySelector('.dayModal');
     let dayModalClose = document.querySelector('.dayModalClose');
@@ -14,7 +15,9 @@ export function dayModal(){
             let dayNumber = dayCard.dataset.day;
             console.log('clicked day ' + dayNumber);
             dayModal.classList.remove('hidden');
-            modalDate.innerHTML = dayNumber + ' ' + activeMonth.innerHTML + ' ' + activeYear.innerHTML;
+            activeMonth = months[activeMonth.dataset.month];
+            activeYear = activeYear.dataset.year;
+            modalDate.innerHTML = dayNumber + ' ' + activeMonth + ' ' + activeYear;
         });
     });
 

@@ -2,73 +2,145 @@
 
 import { dayModal } from "./daymodal";
 
-// Affichage du jour de la semaine actuel
-function selectDayTag(month, year) {
+/*
+  Fonction pour définir les constantes
+  Renvoie un objet avec les propriétés suivantes:
+    months: les mois de l'année
+    days: les jours de la semaine
+    dp_days: display du jour de la semaine actuel
+    dp_number: display du numéro du jour actuel
+    dp_month: display du mois actuel
+    dp_year: display de l'année actuelle
+*/
+export function setConstants() {
+  const currentDate = getCurrentDate();
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
-  let currentDate = new Date();
-  let currentDay = currentDate.getDate();
-  let currentDayOfWeek = currentDate.getDay();
-  if (currentDayOfWeek == 0) {
-    currentDayOfWeek = 7;
-  }
-  let dp_days = document.querySelector('.days div:nth-child(' + (currentDayOfWeek) + ')');
-  let dp_number = document.querySelector('.days div:nth-child(' + (currentDay + 7) + ')');
-  dp_days.classList.add('currentDay');
-  dp_number.classList.add('currentNumber');
-  let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  let dp_days = document.querySelector('.days div:nth-child(' + (currentDate.currentDayOfWeek) + ')');
+  let dp_number = document.querySelector('.days div:nth-child(' + (currentDate.currentNumber + 7) + ')');
   let dp_month = document.querySelector('.month');
   let dp_year = document.querySelector('.year');
-  if (dp_month.innerHTML == months[currentMonth] && dp_year.innerHTML == currentYear){
-    dp_days.style.textDecoration = 'underline';
-    dp_number.style.textDecoration = 'underline';
+
+  return { months: months, days: days, dp_days: dp_days, dp_number: dp_number, dp_month: dp_month, dp_year: dp_year };
+}
+
+/*
+  Fonction pour récupérer la date actuelle
+  Renvoie un objet avec les propriétés suivantes:
+    currentNumber: le numéro du jour actuel
+    currentMonth: le numéro du mois actuel
+    currentYear: l'année actuelle
+    currentDayOfWeek: le numéro du jour de la semaine actuel
+*/
+export function getCurrentDate() {
+  let currentDate = new Date();
+  return currentDate = { currentNumber: currentDate.getDate(), currentMonth: currentDate.getMonth(), currentYear: currentDate.getFullYear(), currentDayOfWeek: currentDate.getDay() == 0 ? 7 : currentDate.getDay() };
+}
+
+/*
+  Fonction pour définir le jour actuel et lui applique son style
+  Ne renvoie rien
+*/
+export function setCurrentDay(month, year) {
+  const constants = setConstants();
+  const currentDate = getCurrentDate();
+  // console.log(currentDate);
+
+  if (constants.dp_month.innerHTML == months[currentDate.currentMonth] && constants.dp_year.innerHTML == currentDate.currentYear){
+    constants.dp_days.classList.add('currentDay');
+    constants.dp_number.classList.add('currentNumber');
+    constants.dp_days.style.textDecoration = 'underline';
+    constants.dp_number.style.textDecoration = 'underline';
   } else {
-    dp_days.style.textDecoration = 'none';
+    constants.dp_days.classList.remove('currentDay');
+    constants.dp_number.classList.remove('currentNumber');
+    constants.dp_days.style.textDecoration = 'none';
+    constants.dp_number.style.textDecoration = 'none';
   }
 }
 
-// Fonction et click pour afficher le mois suivant/précédent
+/* 
+  Fonction pour sélectionner le jour actuel
+  Ne renvoie rien
+*/
+export function selectDayTag(month, year) {
+  const constants = setConstants();
+  // console.log(constants);
+
+  const currentDate = getCurrentDate();
+  // console.log(currentDate);
+
+  setCurrentDay(month, year);
+}
+
+/*
+  Fonction pour afficher le mois et l'année
+  Ne renvoie rien
+*/
+export function setMonthYear(month, year) {
+  const constants = setConstants();
+
+  constants.dp_month.innerHTML = constants.months[month];
+  constants.dp_month.dataset.month = month;
+  constants.dp_year.innerHTML = year;
+  constants.dp_year.dataset.year = year;
+}
+
+/*
+  Fonction pour afficher le mois suivant
+  Ne renvoie rien
+*/
 function nextMonth() {
-  currentMonth++;
-  if (currentMonth > 11) {
-    currentMonth = 0;
-    currentYear++;
-  }
-  dp_month.innerHTML = months[currentMonth];
-  dp_year.innerHTML = currentYear;
-  displayCalendar(currentMonth, currentYear);
-  selectDayTag(currentMonth, currentYear)
-}
-function previousMonth() {
-  currentMonth--;
-  if (currentMonth < 0) {
-    currentMonth = 11;
-    currentYear--;
-  }
-  dp_month.innerHTML = months[currentMonth];
-  dp_year.innerHTML = currentYear;
+  const constants = setConstants();
+
+  let currentMonth = constants.dp_month.dataset.month;
+  let currentYear = constants.dp_year.dataset.year;
+  currentMonth == 11 ? currentYear++ : currentYear;
+  currentMonth++ == 11 ? currentMonth = 0 : currentMonth;
+
+  setMonthYear(currentMonth, currentYear);
   displayCalendar(currentMonth, currentYear);
   selectDayTag(currentMonth, currentYear)
 }
 
-// Fonction et click retour au mois actuel
-function setCurrentMonth() {
-  let currentMonth = currentDate.getMonth();
-  let currentYear = currentDate.getFullYear();
-  dp_month.innerHTML = months[currentMonth];
-  dp_year.innerHTML = currentYear;
+/*
+  Fonction pour afficher le mois précédent
+  Ne renvoie rien
+*/
+function previousMonth() {
+  const constants = setConstants();
+
+  let currentMonth = constants.dp_month.dataset.month;
+  let currentYear = constants.dp_year.dataset.year;
+
+  currentMonth == 0 ? currentYear-- : currentYear;
+  currentMonth-- == 0 ? currentMonth = 11 : currentMonth;
+
+  setMonthYear(currentMonth, currentYear);
   displayCalendar(currentMonth, currentYear);
   selectDayTag(currentMonth, currentYear)
+}
+
+/*
+  Fonction pour afficher le mois actuel
+  Ne renvoie rien
+*/
+function setCurrentMonth() {
+  const constants = setConstants();
+  const currentDate = getCurrentDate();
+
+  setMonthYear(currentDate.currentMonth, currentDate.currentYear);
+  displayCalendar(currentDate.currentMonth, currentDate.currentYear);
+  selectDayTag(currentDate.currentMonth, currentDate.currentYear)
 }
 
 // Fonction pour afficher le calendrier
 export function displayCalendar(month, year) {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
+  const constants = setConstants();
+  const currentDate = getCurrentDate();
 
-  let dp_month = document.querySelector('.month');
-  let dp_year = document.querySelector('.year');
-  dp_month.innerHTML = months[month];
-  dp_year.innerHTML = year;
+  setMonthYear(month, year);
 
   // Suppression des anciens jours
   let oldDays = document.querySelectorAll('.dayCard');
