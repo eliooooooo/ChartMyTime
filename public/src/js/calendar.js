@@ -169,6 +169,47 @@ class Calendar {
   }
 
   /*
+    Fonction pour définir les constantes pour le modal
+    Renvoie un objet avec les propriétés suivantes:
+      dayCards: les jours du mois
+      dayModal: le modal
+      modalDate: la date du modal
+      modalMonth: le mois du modal
+  */
+  setModalDisplays() {
+    let dayCards = document.querySelectorAll('.dayCard');
+    let dayModal = document.querySelector('.dayModal');
+    let modalDate = document.querySelector('.modalDate');
+    let dayModalClose = document.querySelector('.dayModalClose');
+
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose };
+  }
+
+  /*
+    Fonction pour afficher le modal
+    Ne renvoie rien
+  */
+  displayModal() {
+    const constants = setConstants();
+
+    const modalDisplays = setModalDisplays();
+    
+    modalDisplays.dayCards.forEach(function(dayCard) {
+        dayCard.addEventListener('click' , function() {
+            let dayNumber = dayCard.dataset.day;
+            modalDisplays.dayModal.classList.remove('hidden');
+            let activeMonth = constants.months[constants.dp_month.dataset.month];
+            let activeYear = constants.dp_year.dataset.year;
+            modalDisplays.modalDate.innerHTML = dayNumber + ' ' + activeMonth + ' ' + activeYear;
+        });
+    });
+
+    modalDisplays.dayModalClose.addEventListener('click', function() {
+        modalDisplays.dayModal.classList.add('hidden');
+    });
+  }
+
+  /*
     Fonction pour afficher le calendrier
     Ne renvoie rien
   */
@@ -185,6 +226,7 @@ class Calendar {
 
     displayDays(nbDays, firstDay);
     setCurrentDay(month, year);
+    displayModal();
   }
 }
 
@@ -203,6 +245,8 @@ const setCurrentMonth = calendar.setCurrentMonth.bind(calendar);
 const deleteOldDays = calendar.deleteOldDays.bind(calendar);
 const displayDays = calendar.displayDays.bind(calendar);
 const displayCalendar = calendar.displayCalendar.bind(calendar);
+const setModalDisplays = calendar.setModalDisplays.bind(calendar);
+const displayModal = calendar.displayModal.bind(calendar);
 
 // Définition des constantes
 const constants = calendar.setConstants();

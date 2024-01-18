@@ -65,7 +65,6 @@ function getSizes(){
 
 nbCircle = 3;
 sizes = getSizes();
-console.log(sizes);
 
 for (let i = 0; i < nbCircle; i++) {
     let tmp_width = Math.floor(Math.random() * sizes.maxWidth);

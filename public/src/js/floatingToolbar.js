@@ -1,6 +1,5 @@
 // console.log('floatingToolbar.js');
 
-// InputMonthYear
 if (document.querySelectorAll(".inputMonthYear")) {
     let inputMonthYear = document.querySelector(".inputMonthYear");
     let toggle = document.querySelector(".togglesvg");
