@@ -98,6 +98,7 @@ class Calendar {
 
     let currentMonth = constants.dp_month.dataset.month;
     let currentYear = constants.dp_year.dataset.year;
+
     currentMonth == 11 ? currentYear++ : currentYear;
     currentMonth++ == 11 ? currentMonth = 0 : currentMonth;
 
@@ -177,10 +178,14 @@ class Calendar {
 
     setMonthYear(month, year);
 
+    console.log('month: ' + month);
+
     deleteOldDays();
 
-    let nbDays = new Date(year, month, 0).getDate();
+    let nbDays = new Date(year, month + 1, 0).getDate();
     let firstDay = new Date(year, month, 0).getDay();
+
+    console.log('nbDays: ' + nbDays);
 
     displayDays(nbDays, firstDay);
     setCurrentDay(month, year);
@@ -234,13 +239,9 @@ document.querySelector('.formNewDate').addEventListener('submit', function(event
   let year = document.querySelector('#year').value;
   let inputMonthYear = document.querySelector('.inputMonthYear');
   inputMonthYear.classList.remove('active');
-  // console.log('Month: ' + month);
-  // console.log('Year: ' + year);
 
   currentMonth = month;
   currentYear = year;
-  displayCalendar(month, year);
-  selectDayTag(month, year);
+
+  displayCalendar(currentMonth, currentYear);
 });
-
-
