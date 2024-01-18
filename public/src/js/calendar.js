@@ -154,6 +154,7 @@ class Calendar {
     for (let j = 0; j < firstDay; j++) {
       let dayCard = document.createElement('div');
       dayCard.classList.add('dayCard');
+      dayCard.classList.add('empty');
       document.querySelector('.mainCalendar > div').appendChild(dayCard);
     }
     for (let i = 1; i <= nbDays; i++) {
@@ -177,7 +178,7 @@ class Calendar {
       modalMonth: le mois du modal
   */
   setModalDisplays() {
-    let dayCards = document.querySelectorAll('.dayCard');
+    let dayCards = document.querySelectorAll('.dayCard:not(.empty)');
     let dayModal = document.querySelector('.dayModal');
     let modalDate = document.querySelector('.modalDate');
     let dayModalClose = document.querySelector('.dayModalClose');
