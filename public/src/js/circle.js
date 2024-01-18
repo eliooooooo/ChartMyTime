@@ -1,64 +1,85 @@
 // console.log("circle.js");
 
-let colorCircle = ['radial-gradient(circle, rgba(232,178,202,1) 0%, rgba(208,110,166,1) 100%)', 'radial-gradient(circle, rgba(178,232,230,1) 0%, rgba(55,190,236,1) 86%, rgba(110,181,208,1) 100%)', 'radial-gradient(circle, rgba(137,233,119,1) 0%, rgba(28,120,66,1) 100%)'];
+class Circle {
+    constructor(width, left, top) {
+        this.width = width;
+        this.left = left;
+        this.top = top;
+        this.colorCircle = this.getColor();
+    }
 
-if (document.querySelector('#calendar')) {
-    var heightCalendar = document.querySelector('#calendar').clientHeight;
-} else if (document.querySelector('.containerError')) {
-    var heightCalendar = document.querySelector('.containerError').clientHeight + 300;
+    /*
+        Fonction pour avoir les fiddérentes couleurs des cercles
+        Renvoie un tableau de couleurs        
+    */
+    getColor() {
+        let colorCircle = ['radial-gradient(circle, rgba(232,178,202,1) 0%, rgba(208,110,166,1) 100%)', 'radial-gradient(circle, rgba(178,232,230,1) 0%, rgba(55,190,236,1) 86%, rgba(110,181,208,1) 100%)', 'radial-gradient(circle, rgba(137,233,119,1) 0%, rgba(28,120,66,1) 100%)'];
+        return colorCircle;
+    }
+
+    /*
+        Fonction pour créer les cercles
+        Ne renvoie rien
+    */
+    createCircle(i) {
+        let colorCircle = this.getColor();
+        let circle = document.createElement('div');
+        circle.classList.add('circle');
+        circle.style.width = this.width + 'px';
+        circle.style.height = this.width + 'px';
+        circle.style.background = colorCircle[i];
+        circle.style.top = this.top + 'px';
+        circle.style.left = this.left + 'px';
+        circle.style.transform = 'scale(0)';
+        document.querySelector('.circleContainer').appendChild(circle);
+        setTimeout(function() {
+            circle.style.opacity = 1;
+            circle.style.transform = 'scale(1)';
+        }, 100);
+    }
 }
-let circleContainer = document.querySelector('.circleContainer');
-circleContainer.style.height = heightCalendar + 'px';
 
-let clientWidth = document.querySelector('.circleContainer').clientWidth;
-let clientHeight = document.querySelector('.circleContainer').clientHeight;
+/*
+    Fonction pour avoir la taille du calendrier
+    Renvoie un objet avec la largeur et la hauteur du calendrier
+*/
+function getSizes(){
+    if (document.querySelector('#calendar')) {
+        var heightCalendar = document.querySelector('#calendar').clientHeight;
+    } else if (document.querySelector('.containerError')) {
+        var heightCalendar = document.querySelector('.containerError').clientHeight + 300;
+    }
+    let circleContainer = document.querySelector('.circleContainer');
+    circleContainer.style.height = heightCalendar + 'px';
+    
+    let clientWidth = document.querySelector('.circleContainer').clientWidth;
+    let clientHeight = document.querySelector('.circleContainer').clientHeight;
+    
+    window.onresize = function() {
+        clientWidth = document.querySelector('.circleContainer').clientWidth;
+        clientHeight = document.querySelector('.circleContainer').clientHeight;
+    }
 
-window.onresize = function() {
-    clientWidth = document.querySelector('.circleContainer').clientWidth;
-    clientHeight = document.querySelector('.circleContainer').clientHeight;
-    // console.log(clientWidth);
-    // console.log(clientHeight);
+    return { maxWidth : clientWidth * 0.5, clientWidth : clientWidth, clientHeight : clientHeight };
 }
-
 
 nbCircle = 3;
-maxWidth = clientWidth * 0.5;
-
-function createCircle(i, width, left, top) {
-    minwidth = 0.3 * clientWidth;
-    if (width < minwidth) {
-        width = minwidth;
-    }
-    let circle = document.createElement('div');
-    circle.classList.add('circle');
-    circle.setAttribute('id', 'circle' + (i+1));
-    circle.style.width = width + 'px';
-    circle.style.height = width + 'px';
-    circle.style.borderRadius = 50 + '%';
-    circle.style.background = colorCircle[i];
-    circle.style.opacity = 0;
-    circle.style.transition = 'all 1s ease-in-out';
-    circle.style.transform = 'scale(0)';
-    circle.style.position = 'absolute';
-    circle.style.top = top + 'px';
-    circle.style.left = left + 'px';
-    circle.style.zIndex = '-1';
-    document.querySelector('.circleContainer').appendChild(circle);
-    setTimeout(function() {
-        circle.style.opacity = 1;
-        circle.style.transform = 'scale(1)';
-    }, 100);
-}
+sizes = getSizes();
+console.log(sizes);
 
 for (let i = 0; i < nbCircle; i++) {
-    let tmp_width = Math.floor(Math.random() * maxWidth);
+    let tmp_width = Math.floor(Math.random() * sizes.maxWidth);
     let width = tmp_width > 0 ? tmp_width : tmp_width * -1;
-    if (width < 0.3 * clientWidth) {
-        width = 0.3 * clientWidth;
-    }
-    tmp_left = Math.floor(Math.random() * (clientWidth - width));
+    width = width > 0.3 * sizes.clientWidth ? width : 0.3 * sizes.clientWidth;
+
+    tmp_left = Math.floor(Math.random() * (sizes.clientWidth - width));
     let left = tmp_left > 0 ? tmp_left : tmp_left * -1;
-    tmp_top = Math.floor(Math.random() * (clientHeight - width));
+    tmp_top = Math.floor(Math.random() * (sizes.clientHeight - width));
     let top = tmp_top > 0 ? tmp_top : tmp_top * -1;
-    createCircle(i, width, left, top);
+
+    let circle = new Circle(width, left, top); 
+    const getColor = circle.getColor.bind(circle);
+    const createCircle = circle.createCircle.bind(circle);
+
+    circle.createCircle(i);
 }

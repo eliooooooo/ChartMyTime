@@ -178,14 +178,10 @@ class Calendar {
 
     setMonthYear(month, year);
 
-    console.log('month: ' + month);
-
     deleteOldDays();
 
     let nbDays = new Date(year, month + 1, 0).getDate();
     let firstDay = new Date(year, month, 0).getDay();
-
-    console.log('nbDays: ' + nbDays);
 
     displayDays(nbDays, firstDay);
     setCurrentDay(month, year);

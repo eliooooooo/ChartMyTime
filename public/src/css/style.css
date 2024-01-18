@@ -6,6 +6,7 @@
 /* import des feuilles de style */
 @import './base.scss'; 
 @import './component/calendar.scss'; 
+@import './component/circle.scss'; 
 @import './component/toolbar.scss'; 
 @import './component/aside.scss'; 
 @import './page/404.scss';
