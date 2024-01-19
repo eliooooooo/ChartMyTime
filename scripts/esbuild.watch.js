@@ -57,3 +57,9 @@ chokidar.watch('./public/src/css/**/*.scss').on('change', (path) => {
   console.log(`File ${path} has been changed`);
   build();
 });
+
+// Then watch for file changes in twig files
+chokidar.watch('./app/views/**/*.html.twig').on('change', (path) => {
+  console.log(`File ${path} has been changed`);
+  build();
+});
