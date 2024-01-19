@@ -27,7 +27,7 @@ class Circle {
         circle.classList.add('circle');
         circle.style.width = this.width + 'px';
         circle.style.height = this.width + 'px';
-        circle.style.background = colorCircle[i];
+        circle.style.background = colorCircle[i % colorCircle.length];        
         circle.style.top = this.top + 'px';
         circle.style.left = this.left + 'px';
         circle.style.transform = 'scale(0)';
@@ -63,7 +63,7 @@ function getSizes(){
     return { maxWidth : clientWidth * 0.5, clientWidth : clientWidth, clientHeight : clientHeight };
 }
 
-nbCircle = 3;
+let nbCircle = 3;
 sizes = getSizes();
 
 for (let i = 0; i < nbCircle; i++) {

@@ -260,11 +260,6 @@ document.querySelector('.formNewDate').addEventListener('submit', function(event
   event.preventDefault();
   let month = document.querySelector('#month').value;
   let year = document.querySelector('#year').value;
-  let inputMonthYear = document.querySelector('.inputMonthYear');
-  inputMonthYear.classList.remove('active');
 
-  currentMonth = month;
-  currentYear = year;
-
-  displayCalendar(currentMonth, currentYear);
+  displayCalendar(month, year);
 });
