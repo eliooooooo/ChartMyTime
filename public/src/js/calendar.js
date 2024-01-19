@@ -45,8 +45,8 @@ class Calendar {
     Ne renvoie rien
   */
   setCurrentDay(month, year) {
-    const constants = setConstants();
-    const currentDate = getCurrentDate();
+    const constants = this.setConstants();
+    const currentDate = this.getCurrentDate();
     // console.log(currentDate);
 
     if (constants.dp_month.innerHTML == constants.months[currentDate.currentMonth] && constants.dp_year.innerHTML == currentDate.currentYear){
@@ -62,26 +62,12 @@ class Calendar {
     }
   }
 
-  /* 
-    Fonction pour sélectionner le jour actuel
-    Ne renvoie rien
-  */
-  selectDayTag(month, year) {
-    const constants = setConstants();
-    // console.log(constants);
-
-    const currentDate = getCurrentDate();
-    // console.log(currentDate);
-
-    setCurrentDay(month, year);
-  }
-
   /*
     Fonction pour afficher le mois et l'année
     Ne renvoie rien
   */
   setMonthYear(month, year) {
-    const constants = setConstants();
+    const constants = this.setConstants();
 
     constants.dp_month.innerHTML = constants.months[month];
     constants.dp_month.dataset.month = month;
@@ -94,7 +80,7 @@ class Calendar {
     Ne renvoie rien
   */
   nextMonth() {
-    const constants = setConstants();
+    const constants = this.setConstants();
 
     let currentMonth = constants.dp_month.dataset.month;
     let currentYear = constants.dp_year.dataset.year;
@@ -102,7 +88,7 @@ class Calendar {
     currentMonth == 11 ? currentYear++ : currentYear;
     currentMonth++ == 11 ? currentMonth = 0 : currentMonth;
 
-    displayCalendar(currentMonth, currentYear);
+    this.displayCalendar(currentMonth, currentYear);
   }
 
   /*
@@ -110,7 +96,7 @@ class Calendar {
     Ne renvoie rien
   */
   previousMonth() {
-    const constants = setConstants();
+    const constants = this.setConstants();
 
     let currentMonth = constants.dp_month.dataset.month;
     let currentYear = constants.dp_year.dataset.year;
@@ -118,7 +104,7 @@ class Calendar {
     currentMonth == 0 ? currentYear-- : currentYear;
     currentMonth-- == 0 ? currentMonth = 11 : currentMonth;
 
-    displayCalendar(currentMonth, currentYear);
+    this.displayCalendar(currentMonth, currentYear);
   }
 
   /*
@@ -126,8 +112,7 @@ class Calendar {
     Ne renvoie rien
   */
   setCurrentMonth() {
-    const constants = setConstants();
-    const currentDate = getCurrentDate();
+    const currentDate = this.getCurrentDate();
 
     displayCalendar(currentDate.currentMonth, currentDate.currentYear);
   }
@@ -191,9 +176,9 @@ class Calendar {
     Ne renvoie rien
   */
   displayModal() {
-    const constants = setConstants();
+    const constants = this.setConstants();
 
-    const modalDisplays = setModalDisplays();
+    const modalDisplays = this.setModalDisplays();
     
     modalDisplays.dayCards.forEach(function(dayCard) {
         dayCard.addEventListener('click' , function() {
@@ -215,19 +200,17 @@ class Calendar {
     Ne renvoie rien
   */
   displayCalendar(month, year) {
-    const constants = setConstants();
-    const currentDate = getCurrentDate();
 
-    setMonthYear(month, year);
+    this.setMonthYear(month, year);
 
-    deleteOldDays();
+    this.deleteOldDays();
 
     let nbDays = new Date(year, month + 1, 0).getDate();
     let firstDay = new Date(year, month, 0).getDay();
 
-    displayDays(nbDays, firstDay);
-    setCurrentDay(month, year);
-    displayModal();
+    this.displayDays(nbDays, firstDay);
+    this.setCurrentDay(month, year);
+    this.displayModal();
   }
 }
 
@@ -238,7 +221,6 @@ const calendar = new Calendar();
 const setConstants = calendar.setConstants.bind(calendar);
 const getCurrentDate = calendar.getCurrentDate.bind(calendar);
 const setCurrentDay = calendar.setCurrentDay.bind(calendar);
-const selectDayTag = calendar.selectDayTag.bind(calendar);
 const setMonthYear = calendar.setMonthYear.bind(calendar);
 const nextMonth = calendar.nextMonth.bind(calendar);
 const previousMonth = calendar.previousMonth.bind(calendar);
