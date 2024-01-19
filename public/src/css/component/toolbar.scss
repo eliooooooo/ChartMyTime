@@ -10,45 +10,27 @@
         &:hover {
             background: rgba( 255, 255, 255, 0.8 );
             scale: 1.05;
-            /*box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            */backdrop-filter: blur( 5px );
-            -webkit-backdrop-filter: blur( 5px );
-            border: 1px solid rgba( 255, 255, 255, 0.18 );  
         }
         svg {
             @apply m-auto w-5 h-5;
         }
-        .closeFormMonthYear {
-            @apply hidden;
-        }
         &.inputMonthYear {
-            form {
-                @apply hidden;
+            @apply min-w-12 w-auto;
+            .closeFormMonthYear {
+                @apply flex ml-4 hover:cursor-pointer;
             }
-            &.active {
-                @apply flex-row-reverse gap-5 w-auto;
-                svg{
-                    @apply block;
-                    &.togglesvg {
-                        @apply hidden;
-                    }
+            form {
+                @apply mr-1 flex flex-row items-center gap-5;
+                input,
+                select {
+                    @apply w-20 bg-transparent;
                 }
-                .closeFormMonthYear {
-                    @apply flex ml-4 hover:cursor-pointer;
+                input[type="submit"] {
+                    @apply w-10 h-10 rounded-full bg-black text-[#f5f1f1] hover:cursor-pointer;
                 }
-                form {
-                    @apply mr-1 block flex flex-row items-center gap-5;
-                    input,
-                    select {
-                        @apply w-20 bg-transparent;
-                    }
-                    input[type="submit"] {
-                        @apply w-10 h-10 rounded-full bg-black text-[#f5f1f1] hover:cursor-pointer;
-                    }
-                }
-                &:hover {
-                    scale: 1;
-                }
+            }
+            &:hover {
+                scale: 1;
             }
         }
     }
