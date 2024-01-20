@@ -12,7 +12,8 @@
     "alpinejs": "^3.13.3",
     "chokidar": "^3.5.3",
     "esbuild": "^0.19.11",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",

@@ -3,13 +3,24 @@
 {% block main %}
 <!-- From calendar.html.twig -->
     <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
-    <div class="dayModal z-20 p-3 rounded-xl hidden w-full h-full lg:w-1/2 lg:h-[75%] absolute bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div class="dayModalClose absolute top-3 right-3 z-20">
+    <div class="dayModal z-20 p-3 xl:p-5 rounded-xl hidden w-full h-full lg:w-1/2 lg:h-[75%] absolute bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div class="dayModalClose absolute top-3 xl:top-5 right-3 xl:right-5 z-20 hover:cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
             </svg>
         </div>
         <h2 class="relative top-5 lg:top-0 modalDate text-2xl text-center"></h2>
+        <div class="modalContent relative top-10 lg:top-0 h-[80%] overflow-y-auto lg:mt-4">
+            <div class="modalCardTime relative w-full xl:w-[30%] h-24 xl:h-36 rounded-xl">
+                <div class="bg-white border-[1px] border-gray-400 w-full h-full rounded-xl"></div>
+                <div data-tippy-content="Ici apparaitra la system de calcul">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-info-circle-fill absolute ml-3 mt-3 top-0 hover:cursor-pointer" style="mix-blend-mode: exclusion;" viewBox="0 0 16 16">
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
     </div>
     <div id="calendar">
         <div class="headerCalendar">
@@ -36,6 +47,9 @@
 <!-- End calendar.html.twig -->
 {% endblock %}
 {% block scripts %}
+    <!-- Gère les infobulles -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="/dist/calendar.js"></script>
     <script src="/dist/circle.js"></script>
 {% endblock %}
