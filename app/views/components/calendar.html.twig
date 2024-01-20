@@ -13,12 +13,24 @@
         <div class="modalContent relative top-10 lg:top-0 h-[80%] overflow-y-auto lg:mt-4">
             <div class="modalCardTime relative w-full xl:w-[30%] h-24 xl:h-36 rounded-xl">
                 <div class="bg-white border-[1px] border-gray-400 w-full h-full rounded-xl"></div>
-                <div data-tippy-content="Ici apparaitra la system de calcul">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-info-circle-fill absolute ml-3 mt-3 top-0 hover:cursor-pointer" style="mix-blend-mode: exclusion;" viewBox="0 0 16 16">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-info-circle-fill absolute ml-3 mt-3 top-0 hover:cursor-pointer" style="mix-blend-mode: exclusion;" viewBox="0 0 16 16" data-tippy-placement="right" data-tippy-content="Ici apparaitra la system de calcul">
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
                     </svg>
                 </div>
-
+                <div x-data="{ detailsTimeOpen: false }">
+                    <div class="titleDetails flex flex-row gap-5 mt-2 mb-1" @click="detailsTimeOpen = !detailsTimeOpen"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!detailsTimeOpen">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up relative top-[6px]" viewBox="0 0 16 16" x-show="detailsTimeOpen">
+                            <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                        </svg>
+                        Temps renseignés 
+                    </div>
+                    <div class="timeDetails pt-2 border-t-[1px] border-t-gray-400" x-show="detailsTimeOpen" x-transition>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
