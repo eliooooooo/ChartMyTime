@@ -1,7 +1,7 @@
 <!-- From menu.html.twig -->
 <aside>
     <ul class="mx-8 w-full flex flex-col gap-4 mt-20 select-none" x-data="{ dropdownOpen: false }">
-        <li><a href="#">Mon premier lien</a></li>
+        <li><a href="#">Home</a></li>
         <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-[#63CDE9] w-1 rounded-md h-full" ></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between">Worskspaces
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
@@ -38,8 +38,14 @@
     </div>
     <div class="bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition>
         <ul class="m-auto flex flex-col mt-4 text-center text-2xl gap-4">
-            <li><a href="#">Mon premier lien</a></li>
-            <li @click="dropdownOpen = !dropdownOpen" class="hover:cursor-pointer">Worskspaces
+            <li><a href="#">Home</a></li>
+            <li @click="dropdownOpen = !dropdownOpen" class="hover:cursor-pointer"><span class="flex flex-row justify-center gap-5" >Worskspaces
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-up relative top-[6px]" viewBox="0 0 16 16" x-show="dropdownOpen">
+                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                </svg></span>
                 <ul x-show="dropdownOpen" class="flex flex-col gap-4 mt-4">
                     <li><a href="#">Worskspace 1</a></li>
                     <li><a href="#">Worskspace 2</a></li>
