@@ -1,8 +1,8 @@
 <!-- From menu.html.twig -->
 <!-- Desktop menu -->
-<aside>
-    <ul class="mx-8 w-full flex flex-col gap-4 mt-20 select-none" x-data="{ dropdownOpen: false }">
-        <li><a href="#">Home</a></li>
+<aside class="xl:flex flex-col hidden ">
+    <ul class="mx-8 flex flex-col gap-4 mt-20 select-none" x-data="{ dropdownOpen: false }">
+        <li><a href="/">Home</a></li>
         <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-[#63CDE9] w-1 rounded-md h-full" ></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between">Worskspaces
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
                 <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
@@ -26,6 +26,21 @@
             </ul>
         </li>
         <li><a href="#">Settings</a></li>
+    </ul>
+    <ul class="absolute bottom-0 flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
+        <li>
+            <a href="user">
+                <div class="w-10 h-10 rounded-full bg-black"></div>
+            </a>
+        </li>
+        <li class="flex">
+            <a href="user?action=logout" class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                </svg>
+            </a>
+        </li>
     </ul>
 </aside>
 <!-- Mobile menu -->
@@ -54,6 +69,21 @@
                 </ul>
             </li>
             <li><a href="#">Settings</a></li>
+        </ul>
+        <ul class="absolute bottom-0 flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
+            <li>
+                <a href="user">
+                    <div class="w-10 h-10 rounded-full bg-black"></div>
+                </a>
+            </li>
+            <li>
+                <a href="user?action=logout" class="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                    </svg>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
