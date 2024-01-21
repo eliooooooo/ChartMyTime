@@ -1,0 +1,54 @@
+<!-- Start Modal.html.twig  -->
+<div class="dayModal z-20 p-3 xl:p-5 rounded-xl hidden w-full h-full lg:w-1/2 lg:h-[75%] absolute bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+    <div class="dayModalClose absolute top-3 xl:top-5 right-3 xl:right-5 z-20 hover:cursor-pointer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+        </svg>
+    </div>
+    <h2 class="relative top-5 lg:top-0 modalDate text-2xl text-center"></h2>
+    <div class="modalContentTime relative flex flex-col xl:flex-row top-10 lg:top-0 overflow-y-auto lg:mt-4">
+        <div class="modalCardTime relative w-full xl:w-[30%] h-24 xl:h-36 rounded-xl">
+            <div class="bg-white border-[1px] border-gray-400 w-full h-full rounded-xl"></div>
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-info-circle-fill absolute ml-3 mt-3 top-0 hover:cursor-pointer" style="mix-blend-mode: exclusion;" viewBox="0 0 16 16" data-tippy-placement="right" data-tippy-content="Ici apparaitra la system de calcul">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                </svg>
+            </div>
+        </div>
+        <div class="w-full xl:ml-4" x-data="{ detailsTimeOpen: true }">
+            <div class="titleDetails flex flex-row gap-5 mt-2 mb-1" @click="detailsTimeOpen = !detailsTimeOpen"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!detailsTimeOpen">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-up relative top-[6px]" viewBox="0 0 16 16" x-show="detailsTimeOpen">
+                    <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                </svg>
+                Temp renseigné 
+            </div>
+            <div class="timeDetails pt-2 border-t-[1px] border-t-gray-400" x-show="detailsTimeOpen" x-transition>
+                <div class="flex flex-row justify-between">
+                    <p class="DetailsTimeTime font-bold text-xl" >2h30 <span class="text-gray-400 font-normal text-base ml-2">Le 20/01/24 à 23h55<span></p>
+                    <a href="#" class="deleteDetailTime p-2 bg-black rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill text-white" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                        </svg>
+                    </a>
+                </div>
+                <p class="line-clamp-3">Ajouter une textarea avec le commentaire, puis le form et les buttons, des étiquettes en fonction des résultats ? des attentes définies par l'utilisateur ?</p>
+            </div>
+        </div>
+    </div>
+    <div class="relative flex flex-col mt-3">
+        <form method="POST" class="flex flex-col">
+            <div>
+                <input type="hidden" name="date">
+                <input type="text" name="time" placeholder="Temps passé">
+            </div>
+            <div class="mt-2 flex flex-row justify-between h-20">
+                <textarea name="comment" class="resize-none w-[85%]" placeholder="Commentaire"></textarea>
+                <button type="submit" class="bg-black text-white rounded-md p-2 h-[fit-content]">Ajouter</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End Modal.html.twig  -->
