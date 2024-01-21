@@ -148,7 +148,8 @@ class Calendar {
       dayNumber.innerHTML = i;
       let dayCard = document.createElement('div');
       dayCard.classList.add('dayCard');
-      dayCard.dataset.day = i;
+      dayCard.dataset.day = i; 
+      dayCard.setAttribute('x-on:click', 'dayModalOpen = true');
       dayCard.appendChild(dayNumber);
       document.querySelector('.mainCalendar > div').appendChild(dayCard);
     }
@@ -188,10 +189,6 @@ class Calendar {
             let activeYear = constants.dp_year.dataset.year;
             modalDisplays.modalDate.innerHTML = dayNumber + ' ' + activeMonth + ' ' + activeYear;
         });
-    });
-
-    modalDisplays.dayModalClose.addEventListener('click', function() {
-        modalDisplays.dayModal.classList.add('hidden');
     });
   }
 
