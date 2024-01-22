@@ -2,9 +2,50 @@
 
 {% block main %}
 
-    <div class="flex flex-col absolute w-full h-full -z-10">
-        <div class="relative bg-white w-full h-full sm:w-[80%] xl:w-1/2 sm:h-2/3 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:rounded-xl">
-
+    <div class="flex flex-col absolute w-full h-full z-10">
+        <div class="relative bg-white p-3 w-full h-full sm:w-[80%] xl:w-1/2 sm:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:rounded-xl">
+            <h2 class="text-2xl text-center border-b-[1px] border-gray-400 pb-2">User infos</h2>
+            <div class="flex flex-col md:flex-row ">
+                <div class="flex flex-col gap-3 pt-2 m-auto">
+                    <div class="bg-black m-3 w-32 h-32 rounded-full"></div>
+                    <div class="w-32 mx-3"><p class="text-center">Pseudo</p></div>
+                </div>
+                <div class="w-full mx-2 sm:mx-0 mt-4 flex flex-col gap-2" x-data="{ passwordOpen: false }">
+                    <p class="sm:ml-10"><b>E-mail :</b> blabla.blabla@gmail.com</p>
+                    <div class="relative flex flex-row">
+                        <p class="sm:ml-10"><b>Mot de passe :</b> <span x-show="!passwordOpen"> *****</span></p>
+                        <div href="#" class="absolute right-2 sm:right-10 text-gray-400 hover:text-black hover:cursor-pointer underline" @click="passwordOpen = !passwordOpen">
+                            <span x-show="!passwordOpen">Modifier</span>
+                            <span x-show="passwordOpen">Fermer</span>
+                        </div>
+                    </div>
+                    <form class="sm:ml-10 mr-2 pl-3 border-l-[1px] border-gray-400" x-show="passwordOpen" x-transition>
+                        <label><b>Mot de passe actuel :</b></label>
+                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Mot de passe actuel">
+                        <label><b>Nouveau mot de passe :</b></label>
+                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Nouveau mot de passe">
+                        <label><b>Confirmer le nouveau mot de passe :</b></label>
+                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Confirmer le nouveau mot de passe">
+                        <button type="submit" class="bg-black text-white rounded-lg p-2 mt-2">Modifier</button>
+                    </form>
+                    <div class="sm:ml-10">
+                        <p><b>Préférences de notifications :</b></p>
+                        <form class="pl-3 border-l-[1px] border-gray-400">
+                            <div class="flex flex-row gap-2">
+                                <input type="checkbox" id="notif1" name="notif1" value="notif1">
+                                <label for="notif1">Rappel journalier</label>
+                            </div>
+                            <div class="flex flex-row gap-2">
+                                <input type="checkbox" id="notif2" name="notif2" value="notif2">
+                                <label for="notif2">Compte rendu de la semaine</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="sm:ml-10">
+                        <p><b>Date de création du compte :</b> 01/01/2021</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
