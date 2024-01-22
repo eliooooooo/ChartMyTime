@@ -53,7 +53,7 @@
         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
         </svg>
     </div>
-    <div class="bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition>
+    <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition>
         <ul class="m-auto flex flex-col mt-4 text-center text-2xl gap-4">
             <li><a href="#">Home</a></li>
             <li @click="dropdownOpen = !dropdownOpen" class="hover:cursor-pointer"><span class="flex flex-row justify-center gap-5" >Worskspaces
@@ -70,7 +70,7 @@
             </li>
             <li><a href="#">Settings</a></li>
         </ul>
-        <ul class="absolute bottom-0 flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
+        <ul class="flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
             <li>
                 <a href="user">
                     <div class="w-10 h-10 rounded-full bg-black"></div>
