@@ -13,36 +13,36 @@
                 <div class="w-full mx-2 sm:mx-0 mt-4 flex flex-col gap-2" x-data="{ passwordOpen: false }">
                     <p class="sm:ml-10"><b>E-mail :</b> blabla.blabla@gmail.com</p>
                     <div class="relative flex flex-row">
-                        <p class="sm:ml-10"><b>Mot de passe :</b> <span x-show="!passwordOpen"> *****</span></p>
+                        <p class="sm:ml-10"><b>Password :</b> <span x-show="!passwordOpen"> *****</span></p>
                         <div href="#" class="absolute right-2 sm:right-10 text-gray-400 hover:text-black hover:cursor-pointer underline" @click="passwordOpen = !passwordOpen">
-                            <span x-show="!passwordOpen">Modifier</span>
-                            <span x-show="passwordOpen">Fermer</span>
+                            <span x-show="!passwordOpen">Edit</span>
+                            <span x-show="passwordOpen">Close</span>
                         </div>
                     </div>
                     <form class="sm:ml-10 mr-2 pl-3 border-l-[1px] border-gray-400" x-show="passwordOpen" x-transition>
-                        <label><b>Mot de passe actuel :</b></label>
-                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Mot de passe actuel">
-                        <label><b>Nouveau mot de passe :</b></label>
-                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Nouveau mot de passe">
-                        <label><b>Confirmer le nouveau mot de passe :</b></label>
-                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Confirmer le nouveau mot de passe">
-                        <button type="submit" class="bg-black text-white rounded-lg p-2 mt-2">Modifier</button>
+                        <label><b>Current password :</b></label>
+                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Current password">
+                        <label><b>New password :</b></label>
+                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="New password">
+                        <label><b>Confirm new password :</b></label>
+                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Confirm new password">
+                        <button type="submit" class="bg-black text-white rounded-lg p-2 mt-2">Edit</button>
                     </form>
                     <div class="sm:ml-10">
-                        <p><b>Préférences de notifications :</b></p>
+                        <p><b>Notification preferences :</b></p>
                         <form class="pl-3 border-l-[1px] border-gray-400">
                             <div class="flex flex-row gap-2">
                                 <input type="checkbox" id="notif1" name="notif1" value="notif1">
-                                <label for="notif1">Rappel journalier</label>
+                                <label for="notif1">Daily reminder</label>
                             </div>
                             <div class="flex flex-row gap-2">
                                 <input type="checkbox" id="notif2" name="notif2" value="notif2">
-                                <label for="notif2">Compte rendu de la semaine</label>
+                                <label for="notif2">Weekly report</label>
                             </div>
                         </form>
                     </div>
                     <div class="sm:ml-10">
-                        <p><b>Date de création du compte :</b> 01/01/2021</p>
+                        <p><b>Account creation date :</b> 01/01/2021</p>
                     </div>
                 </div>
             </div>
