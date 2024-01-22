@@ -2,5 +2,7 @@
 
 Class UserController extends ControllerBase {
 
-    function read(){}
+    function read(){
+        $this->render('/page/user.html.twig');
+    }
 }
