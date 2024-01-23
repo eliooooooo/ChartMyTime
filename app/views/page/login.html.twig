@@ -6,7 +6,19 @@
         <div class="relative bg-white p-3 w-full h-full sm:w-[80%] xl:w-1/2 sm:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:rounded-xl">
             <h2 class="text-2xl text-center border-b-[1px] border-gray-400 pb-2">Login</h2>
             <div class="flex flex-col md:flex-row ">
-
+                <div class="flex flex-col w-full md:w-1/2">
+                    <form action="#" method="post" class="flex flex-col">
+                        <label for="username" class="text-sm">Username</label>
+                        <input type="text" name="username" id="username" class="border-[1px] border-gray-400 rounded-md p-1 mb-2" required>
+                        <label for="password" class="text-sm">Password</label>
+                        <input type="password" name="password" id="password" class="border-[1px] border-gray-400 rounded-md p-1 mb-2" required>
+                        <input type="submit" value="Login" class="bg-blue-500 text-white rounded-md p-1 cursor-pointer hover:bg-blue-600">
+                    </form>
+                </div>
+                <div class="flex flex-col w-full md:w-1/2">
+                    <h3 class="text-center text-xl mb-2">Pas encore inscrit ?</h3>
+                    <a href="#" class="bg-blue-500 text-white rounded-md p-1 cursor-pointer hover:bg-blue-600 text-center">S'inscrire</a>
+                </div>
             </div>
         </div>
     </div>

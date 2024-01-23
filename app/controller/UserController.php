@@ -6,10 +6,6 @@ Class UserController extends ControllerBase {
         $this->render('/page/user.html.twig');
     }
 
-    function create(){
-        $this->render('/page/user.html.twig');
-    }
-
     function update(){
         $this->render('/page/user.html.twig');
     }
@@ -23,6 +19,10 @@ Class UserController extends ControllerBase {
     }
 
     function logout(){
-        $this->render('/page/login.html.twig');
+        $this->render('/page/logout.html.twig');
+    }
+
+    function register(){
+        $this->render('/page/register.html.twig');
     }
 }

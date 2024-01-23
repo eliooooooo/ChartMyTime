@@ -38,18 +38,15 @@ $action = 'read';
 
 // Si il y a une partie après le ?
 if (isset($request_uri[1])) {
-    // Si il y a plusieurs paramètres
-    if (explode('&', $request_uri[1])) {
-        // Découper les paramètres
-        $route = explode('&', $request_uri[1]);
-        // var_dump($route);
-        // Pour chaque paramètre, on récupère la route et on la découpe en paramètres (page, action, id) avec chacun leur valeur
-        foreach ($route as $key) {
-            $tmp_route = explode('=', $key);
-            if ($tmp_route[0] == 'action') {
-                $action = $tmp_route[1];
-                // var_dump($action);
-            }
+    // Découper les paramètres
+    $route = explode('&', $request_uri[1]);
+    // var_dump($route);
+    // Pour chaque paramètre, on récupère la route et on la découpe en paramètres (page, action, id) avec chacun leur valeur
+    foreach ($route as $key) {
+        $tmp_route = explode('=', $key);
+        if ($tmp_route[0] == 'action') {
+            $action = $tmp_route[1];
+            // var_dump($action);
         }
     }
 }
