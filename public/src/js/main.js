@@ -13,3 +13,10 @@ import tippy from 'tippy.js';
 document.addEventListener('DOMContentLoaded', (event) => {
     tippy('[data-tippy-content]');
 });
+
+setTimeout(function() {
+    let element = document.querySelector('.notification');
+    if (element) {
+        element.style.opacity = '0';
+    }
+}, 3000); // 3000 milliseconds = 3 seconds

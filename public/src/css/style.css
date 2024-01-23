@@ -9,4 +9,5 @@
 @import './component/circle.scss'; 
 @import './component/toolbar.scss'; 
 @import './component/aside.scss'; 
+@import './component/notification.scss'; 
 @import './page/404.scss';

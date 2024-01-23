@@ -1,0 +1,4 @@
+.notification {
+    @apply bg-red-600 text-white w-full p-2 absolute top-0 left-0 z-50 text-center; 
+    transition: opacity 0.5s ease-in-out;
+}
