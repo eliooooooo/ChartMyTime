@@ -50,6 +50,8 @@ function getSizes(){
         var heightCalendar = document.querySelector('.containerError').clientHeight + 300;
     } else if (document.querySelector('.containerLogout')) {
         var heightCalendar = document.querySelector('.containerLogout').clientHeight + 300;
+    } else if (document.querySelector('.containerLogin')) {
+        var heightCalendar = document.querySelector('.containerLogin').clientHeight + 300;
     }
     let circleContainer = document.querySelector('.circleContainer');
     circleContainer.style.height = heightCalendar + 'px';

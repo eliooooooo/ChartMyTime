@@ -1,31 +1,16 @@
 {% extends "page.html.twig" %}
 
 {% block main %}
-
-    <div class="flex flex-col absolute w-full h-full z-10">
-        <div class="relative bg-white p-3 w-full h-full sm:w-[80%] xl:w-1/2 sm:h-auto left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 sm:rounded-xl">
-            <h2 class="text-2xl text-center border-b-[1px] border-gray-400 pb-2">Login</h2>
-            <div class="flex flex-col md:flex-row ">
-                <div class="flex flex-col w-full md:w-1/2">
-                    <form action="#" method="post" class="flex flex-col">
-                        <label for="username" class="text-sm">Username</label>
-                        <input type="text" name="username" id="username" class="border-[1px] border-gray-400 rounded-md p-1 mb-2" required>
-                        <label for="password" class="text-sm">Password</label>
-                        <input type="password" name="password" id="password" class="border-[1px] border-gray-400 rounded-md p-1 mb-2" required>
-                        <input type="submit" value="Login" class="bg-blue-500 text-white rounded-md p-1 cursor-pointer hover:bg-blue-600">
-                    </form>
-                </div>
-                <div class="flex flex-col w-full md:w-1/2">
-                    <h3 class="text-center text-xl mb-2">Pas encore inscrit ?</h3>
-                    <a href="#" class="bg-blue-500 text-white rounded-md p-1 cursor-pointer hover:bg-blue-600 text-center">S'inscrire</a>
-                </div>
-            </div>
-        </div>
+    <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
+    <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-door-closed h-20 w-20 m-auto" viewBox="0 0 16 16">
+            <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3zm1 13h8V2H4z"/>
+            <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/>
+        </svg>
+        <h1 class="text-2xl font-bold">You've been disconnected</h1>
+        <p>See you later, come back and manage your time!</p>
     </div>
-
 {% endblock %}
 {% block scripts %}
-    <!-- Gère les infobulles -->
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="dist/circle.js"></script>
 {% endblock %}
