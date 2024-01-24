@@ -2,13 +2,49 @@
 
 {% block main %}
     <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
-    <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-door-closed h-20 w-20 m-auto" viewBox="0 0 16 16">
-            <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3zm1 13h8V2H4z"/>
-            <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/>
-        </svg>
-        <h1 class="text-2xl font-bold">You've been disconnected</h1>
-        <p>See you later, come back and manage your time!</p>
+    <div x-data="{ registerStep : false }">
+        <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="!registerStep">
+            <h1 class="text-4xl font-bold">Login</h1>
+            <form action="#" method="post" class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                    <label for="email" class="text-left"><b>E-mail :</b></label>
+                    <input type="text" name="email" id="email" placeholder="Enter e-mail" class="border-[1px] border-gray-300 rounded-md p-1 w-60" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="password" class="text-left"><b>Password :</b></label>
+                    <input type="password" name="password" id="password" placeholder="Enter password" class="border-[1px] border-gray-300 rounded-md p-1" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-2">
+                    <input type="submit" value="Login" class="rounded-md p-2 bg-black text-white cursor-pointer">
+                </div>
+            </form>
+            <div class="flex flex-col gap-2">
+                <a href="#" class="underline cursor-pointer" @click="registerStep = !registerStep">Register</a>
+            </div>
+        </div>
+        <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="registerStep">
+            <h1 class="text-4xl font-bold">Register</h1>
+            <form action="#" method="post" class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                    <label for="email" class="text-left"><b>E-mail :</b></label>
+                    <input type="text" name="email" id="email" placeholder="Enter e-mail" class="border-[1px] border-gray-300 rounded-md p-1 w-60" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="password" class="text-left"><b>Password :</b></label>
+                    <input type="password" name="password" id="password" placeholder="Enter password" class="border-[1px] border-gray-300 rounded-md p-1" required>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="confirm-password" class="text-left"><b>Confirm password :</b></label>
+                    <input type="password" name="confirm-password" id="confirm-password" placeholder="Enter password" class="border-[1px] border-gray-300 rounded-md p-1" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-2">
+                    <input type="submit" value="Register" class="rounded-md p-2 bg-black text-white cursor-pointer">
+                </div>
+            </form>
+            <div class="flex flex-col gap-2">
+                <a href="#" class="underline cursor-pointer" @click="registerStep = !registerStep">Login</a>
+            </div>
+        </div>
     </div>
 {% endblock %}
 {% block scripts %}
