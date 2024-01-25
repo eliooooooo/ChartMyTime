@@ -40,6 +40,17 @@ class User {
         }
     }
 
+    public function getByEmail($email){
+        $pdo = connexion();
+        $sqlGenerator = new SqlGenerator($pdo);
+
+        $user = $sqlGenerator->select('User', '*', 'email = ' . $pdo->quote($email));
+
+        if($user){
+            return $user;
+        }   
+    }
+
     public static function getById(PDO $db, $id) {
     }
 

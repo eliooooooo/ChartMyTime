@@ -15,11 +15,40 @@ Class UserController extends ControllerBase {
     }
 
     function login(){
-        $this->render('/page/login.html.twig');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupération des données du formulaire
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            // Vérification de l'existence de l'utilisateur
+            $userExist = new User;
+            $user = $userExist->findByEmail($email);
+            if ($user) {
+                $currentUser = $userExist->getByEmail($email);
+                if (password_verify($password, $currentUser[0]['password'])) {
+                    $_SESSION['user'] = $currentUser[0]['username'];
+                    $_SESSION['is_connected'] = true;
+                    $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
+                } else {
+                    echo "<p class='notification'>The password is incorrect</p>";
+                    $this->render('/page/login.html.twig');
+                }
+            } else {
+                echo "<p class='notification'>No account is associated with this email address, try to register.</p>";
+                $this->render('/page/login.html.twig');
+            }
+        } else {
+            $this->render('/page/login.html.twig');
+        }
     }
 
     function logout(){
-        $this->render('/page/logout.html.twig');
+        unset($_SESSION['user']);
+        unset($_SESSION['is_connected']);
+        session_destroy();
+
+        $is_connected = false;
+        $this->render('/page/logout.html.twig', ['is_connected' => $is_connected]);
     }
 
     function register(){
@@ -44,7 +73,9 @@ Class UserController extends ControllerBase {
                     try {
                         $user->create();
                         echo "<p class='notification success'>Your account has been created</p>";
-                        $this->render('/page/user.html.twig');
+                        $_SESSION['user'] = $username;
+                        $_SESSION['is_connected'] = true;
+                        $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
                     } catch (PDOException $e) {
                         echo "<p class='notification'>An error occurred while creating your account: " . $e->getMessage() . "</p>";
                         $this->render('/page/login.html.twig');
