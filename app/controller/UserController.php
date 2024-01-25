@@ -23,6 +23,22 @@ Class UserController extends ControllerBase {
     }
 
     function register(){
-        $this->render('/page/register.html.twig');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Récupération des données du formulaire
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $username = $_POST['username'];
+
+            // Création de l'utilisateur
+            $user = new User(null, $email, $username, $password);
+
+            // Sauvegarde de l'utilisateur dans la base de données
+            $user->create();
+
+            // Redirection vers la page de connexion
+            $this->render('/page/user.html.twig');
+        } else {
+            $this->render('/page/login.html.twig');
+        }
     }
 }
