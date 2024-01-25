@@ -15,6 +15,9 @@ Class ControllerBase {
     }
 
     public function render($view, $params = []) {
+        if (isset($_SESSION['is_connected'])){
+            $params['is_connected'] = $_SESSION['is_connected'];
+        }
         echo $this->twig->render($view, $params);
     }
 }

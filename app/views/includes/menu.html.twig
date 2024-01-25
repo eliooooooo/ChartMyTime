@@ -29,8 +29,8 @@
     </ul>
     <ul class="absolute bottom-0 flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
         <li>
-            <a {% if isconnected %}href="user"{% else %}href="user?action=login"{% endif %}>
-                <div class="w-10 h-10 rounded-full bg-black"></div>
+            <a {% if is_connected %}href="user"{% else %}href="user?action=login"{% endif %}>
+                <div class="w-10 h-10 rounded-full {% if is_connected %}bg-black{% else %}bg-black/50{% endif %}"></div>
             </a>
         </li>
         <li class="flex">
@@ -73,7 +73,7 @@
         <ul class="flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
             <li>
                 <a href="user">
-                    <div class="w-10 h-10 rounded-full bg-black"></div>
+                    <div class="w-10 h-10 rounded-full {% if is_connected %}bg-black{% else %}bg-black/50{% endif %}"></div>
                 </a>
             </li>
             <li>
