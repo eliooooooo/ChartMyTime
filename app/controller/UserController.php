@@ -24,19 +24,33 @@ Class UserController extends ControllerBase {
 
     function register(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Récupération des données du formulaire
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $username = $_POST['username'];
+            if ($_POST['password'] != $_POST['confirm-password']) {
+                echo "<p class='notification'>The passwords do not match</p>";
+                $this->render('/page/login.html.twig');
+            } else {
+                // Récupération des données du formulaire
+                $username = $_POST['username'];
+                $email = $_POST['email'];
+                $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            // Création de l'utilisateur
-            $user = new User(null, $email, $username, $password);
-
-            // Sauvegarde de l'utilisateur dans la base de données
-            $user->create();
-
-            // Redirection vers la page de connexion
-            $this->render('/page/user.html.twig');
+                // Vérification de l'existence de l'utilisateur
+                $userExist = new User;
+                if ($userExist->findByEmail($email)) {
+                    echo "<p class='notification'>An account is already associated with this email address, try to login.</p>";
+                    $this->render('/page/login.html.twig');
+                } else {
+                    $user = new User(null, $username, $email, $password);
+                    
+                    try {
+                        $user->create();
+                        echo "<p class='notification success'>Your account has been created</p>";
+                        $this->render('/page/user.html.twig');
+                    } catch (PDOException $e) {
+                        echo "<p class='notification'>An error occurred while creating your account: " . $e->getMessage() . "</p>";
+                        $this->render('/page/login.html.twig');
+                    }
+                }
+            }
         } else {
             $this->render('/page/login.html.twig');
         }

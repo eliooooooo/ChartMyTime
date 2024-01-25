@@ -3,15 +3,15 @@
 class User {
     // Propriétés
     private $id;
-    private $email;
     private $username;
+    private $email;
     private $password;
 
     // Constructeur
-    public function __construct($id, $email, $password, $username) {
+    public function __construct($id = null, $username = null, $email = null, $password = null) {
         $this->id = $id;
-        $this->email = $email;
         $this->username = $username;
+        $this->email = $email;
         $this->password = $password;
     }
 
@@ -20,11 +20,24 @@ class User {
         $sqlGenerator = new SqlGenerator($pdo);
 
         $sql = $sqlGenerator->insert('User', [
+            'username' => $this->username,
             'email' => $this->email,
             'password' => $this->password,
-            'username' => $this->username,
         ]);
         $this->id = $pdo->lastInsertId();
+    }
+
+    public function findByEmail($email){
+        $pdo = connexion();
+        $sqlGenerator = new SqlGenerator($pdo);
+
+        $user = $sqlGenerator->select('User', '*', 'email = ' . $pdo->quote($email));
+
+        if ($user) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static function getById(PDO $db, $id) {
@@ -34,6 +47,5 @@ class User {
     }
 
     public function delete(PDO $db) {
-
     }
 }

@@ -7,9 +7,9 @@ $pdo = connexion();
 
 // Si l'utilisateur est connecté
 if (isset($_SESSION['user'])){
-    $is_connected = true;
+    $_SESSION['is_connected'] = true;
 } else {
-    $is_connected = false;
+    $_SESSION['is_connected'] = false;
 }
 
 // Appel des différents modèles
