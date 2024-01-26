@@ -3,7 +3,14 @@
 Class UserController extends ControllerBase {
 
     function read(){
-        $this->render('/page/user.html.twig');
+        if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
+            $this->render('/page/login.html.twig');
+        } else {
+            $user = new User;
+            $data = ["user" => $user->read()];
+            // var_dump($data);
+            $this->render('/page/user.html.twig', $data);
+        }
     }
 
     function update(){
@@ -11,6 +18,18 @@ Class UserController extends ControllerBase {
     }
 
     function delete(){
+        if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
+            $this->render('/page/login.html.twig');
+        } else {
+            $user = new User;
+            $user->delete($_SESSION['user']);
+            unset($_SESSION['user']);
+            unset($_SESSION['is_connected']);
+            session_destroy();
+    
+            $is_connected = false;
+            $this->render('/page/logout.html.twig', ['is_connected' => $is_connected]);
+        }
         $this->render('/page/user.html.twig');
     }
 
@@ -30,6 +49,7 @@ Class UserController extends ControllerBase {
                     $currentUser = $userExist->getByEmail($email);
                     if (password_verify($password, $currentUser[0]['password'])) {
                         $_SESSION['user'] = $currentUser[0]['username'];
+                        $_SESSION['user_id'] = $currentUser[0]['id'];
                         $_SESSION['is_connected'] = true;
                         $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
                     } else {
@@ -47,12 +67,16 @@ Class UserController extends ControllerBase {
     }
 
     function logout(){
-        unset($_SESSION['user']);
-        unset($_SESSION['is_connected']);
-        session_destroy();
-
-        $is_connected = false;
-        $this->render('/page/logout.html.twig', ['is_connected' => $is_connected]);
+        if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
+            $this->render('/page/login.html.twig');
+        } else {
+            unset($_SESSION['user']);
+            unset($_SESSION['is_connected']);
+            session_destroy();
+    
+            $is_connected = false;
+            $this->render('/page/logout.html.twig', ['is_connected' => $is_connected]);
+        }
     }
 
     function register(){
@@ -97,6 +121,7 @@ Class UserController extends ControllerBase {
                                 $user->create();
                                 echo "<p class='notification success'>Your account has been created</p>";
                                 $_SESSION['user'] = $username;
+                                $_SESSION['user_id'] = $user->lastInsertId();
                                 $_SESSION['is_connected'] = true;
                                 $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
                             } catch (PDOException $e) {

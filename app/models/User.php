@@ -15,6 +15,14 @@ class User {
         $this->password = $password;
     }
 
+    public function read() {
+        $pdo = connexion();
+        $sqlGenerator = new SqlGenerator($pdo);
+
+        $user = $sqlGenerator->select('User', 'id, username, email', 'id = ' . $_SESSION['user_id']);
+        return $user;
+    }
+
     public function create() {
         $pdo = connexion();
         $sqlGenerator = new SqlGenerator($pdo);
