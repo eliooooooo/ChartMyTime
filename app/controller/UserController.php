@@ -51,7 +51,8 @@ Class UserController extends ControllerBase {
                         $_SESSION['user'] = $currentUser[0]['username'];
                         $_SESSION['user_id'] = $currentUser[0]['id'];
                         $_SESSION['is_connected'] = true;
-                        $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
+                        $data = ["user" => $userExist->read()];
+                        $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected'], 'user' => $data['user']]);
                     } else {
                         echo "<p class='notification'>The password is incorrect</p>";
                         $this->render('/page/login.html.twig');
@@ -123,7 +124,8 @@ Class UserController extends ControllerBase {
                                 $_SESSION['user'] = $username;
                                 $_SESSION['user_id'] = $user->lastInsertId();
                                 $_SESSION['is_connected'] = true;
-                                $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
+                                $data = ["user" => $user->read()];
+                                $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected'], 'user' => $data['user']]);
                             } catch (PDOException $e) {
                                 echo "<p class='notification'>An error occurred while creating your account: " . $e->getMessage() . "</p>";
                                 $this->render('/page/login.html.twig');

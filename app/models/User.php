@@ -19,7 +19,7 @@ class User {
         $pdo = connexion();
         $sqlGenerator = new SqlGenerator($pdo);
 
-        $user = $sqlGenerator->select('User', 'id, username, email', 'id = ' . $_SESSION['user_id']);
+        $user = $sqlGenerator->select('User', 'id, username, email, date', 'id = ' . $_SESSION['user_id']);
         return $user;
     }
 
@@ -31,6 +31,7 @@ class User {
             'username' => $this->username,
             'email' => $this->email,
             'password' => $this->password,
+            'date' => date('Y-m-d')
         ]);
         $this->id = $pdo->lastInsertId();
     }
