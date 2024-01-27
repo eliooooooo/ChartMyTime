@@ -10,5 +10,6 @@
 @import './component/toolbar.scss'; 
 @import './component/aside.scss'; 
 @import './component/notification.scss'; 
+@import './component/input.scss'; 
 @import './page/404.scss';
 @import './page/logout.scss';

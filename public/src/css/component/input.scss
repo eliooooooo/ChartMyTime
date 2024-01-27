@@ -1,0 +1,12 @@
+.required {
+    @apply text-red-500;
+}
+
+.logForm {
+    input {
+        @apply border-[1px] border-gray-300 rounded-md p-1 w-60;
+        &[type="submit"] {
+            @apply rounded-md p-2 bg-black text-white cursor-pointer;
+        }
+    }
+}

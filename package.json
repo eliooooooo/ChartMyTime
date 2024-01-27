@@ -13,6 +13,7 @@
     "chokidar": "^3.5.3",
     "esbuild": "^0.19.11",
     "fs": "^0.0.1-security",
+    "pristinejs": "^1.1.0",
     "tippy.js": "^6.3.7"
   },
   "devDependencies": {
