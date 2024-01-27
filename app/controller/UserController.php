@@ -119,10 +119,10 @@ Class UserController extends ControllerBase {
                             $user = new User(null, $username, $email, $password);
                             
                             try {
-                                $user->create();
+                                $user_id = $user->create();
                                 echo "<p class='notification success'>Your account has been created</p>";
                                 $_SESSION['user'] = $username;
-                                $_SESSION['user_id'] = $user->lastInsertId();
+                                $_SESSION['user_id'] = $user_id;
                                 $_SESSION['is_connected'] = true;
                                 $data = ["user" => $user->read()];
                                 $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected'], 'user' => $data['user']]);

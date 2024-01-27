@@ -27,13 +27,14 @@ class User {
         $pdo = connexion();
         $sqlGenerator = new SqlGenerator($pdo);
 
-        $sql = $sqlGenerator->insert('User', [
+        $sqlGenerator->insert('User', [
             'username' => $this->username,
             'email' => $this->email,
-            'password' => $this->password,
+            'password' => password_hash($this->password, PASSWORD_DEFAULT),
             'date' => date('Y-m-d')
         ]);
-        $this->id = $pdo->lastInsertId();
+
+        return $pdo->lastInsertId(); // Retourne l'ID de l'utilisateur nouvellement créé
     }
 
     public function findByEmail($email){
@@ -58,9 +59,6 @@ class User {
         if($user){
             return $user;
         }   
-    }
-
-    public static function getById(PDO $db, $id) {
     }
 
     public function update(PDO $db) {
