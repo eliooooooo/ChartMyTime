@@ -3,10 +3,22 @@
 }
 
 .logForm {
+    .has-danger {
+        input {
+            @apply border-red-500;
+        }
+    }
+    .text-help {
+        @apply text-red-500 text-left;
+    }
     input {
         @apply border-[1px] border-gray-300 rounded-md p-1 w-60;
         &[type="submit"] {
             @apply rounded-md p-2 bg-black text-white cursor-pointer;
         }
+        &#showPassword {
+            @apply absolute w-6 h-6 self-end mr-1 top-8 cursor-pointer;
+        }
     }
+    
 }

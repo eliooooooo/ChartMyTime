@@ -5,22 +5,21 @@
     <div {% if register %} x-data="{ registerStep : true }" {% else %} x-data="{ registerStep : false }" {% endif %} >
         <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="!registerStep">
             <h1 class="text-4xl font-bold">Login</h1>
-            <form action="#" method="post" class="logForm flex flex-col gap-3">
-                <div class="flex flex-col gap-1">
+            <form action="#" method="post" class="logForm flex flex-col gap-3" id="loginForm" novalidate>
+                <div class="form-group relative flex flex-col gap-1">
                     <label for="email" class="text-left"><b>E-mail <span class="required">*</span></b></label>
                     <input type="text" name="email" id="email" placeholder="Enter e-mail" required autocomplete="email">
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="form-group relative flex flex-col gap-1">
                     <label for="password" class="text-left"><b>Password <span class="required">*</span></b></label>
                     <input type="password" name="password" id="password" placeholder="Enter password" required autocomplete="current-password">
+                    <input type="checkbox" id="showPassword">
                 </div>
-                <div class="flex flex-col gap-2 mt-2">
+                <div class="flex flex-col gap-1 mt-2">
                     <input type="submit" value="Login">
+                    <p class="text-left"><span class="required"><b>*</b></span> Required</p>
                 </div>
             </form>
-            <div>
-                <p class="text-left -mt-4"><span class="required"><b>*</b></span> Required</p>
-            </div>
             <div class="flex flex-col gap-2">
                 <a class="underline cursor-pointer" @click="registerStep = !registerStep">Register</a>
             </div>
@@ -28,29 +27,29 @@
         <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="registerStep">
             <h1 class="text-4xl font-bold">Register </h1>
             <form action="user?action=register" method="POST" class="logForm flex flex-col gap-3">
-                <div class="flex flex-col gap-1">
+                <div class="form-group relative flex flex-col gap-1">
                     <label for="email" class="text-left"><b>E-mail <span class="required">*</span></b></label>
                     <input type="email" name="email" id="email" placeholder="Enter e-mail" required autocomplete="email">
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="form-group relative flex flex-col gap-1">
                     <label for="username" class="text-left"><b>Username <span class="required">*</span></b></label>
                     <input type="text" name="username" id="username" placeholder="Enter username" required autocomplete="username">
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="form-group relative flex flex-col gap-1">
                     <label for="password" class="text-left"><b>Password <span class="required">*</span></b></label>
                     <input type="password" name="password" id="password" placeholder="Enter password" required autocomplete="off">
+                    <input type="checkbox" id="showPassword">
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="form-group relative flex flex-col gap-1">
                     <label for="confirm-password" class="text-left"><b>Confirm password <span class="required">*</span></b></label>
                     <input type="password" name="confirm-password" id="confirm-password" placeholder="Enter password" required autocomplete="off">
+                    <input type="checkbox" id="showPassword">
                 </div>
-                <div class="flex flex-col gap-2 mt-2">
+                <div class="flex flex-col gap-1 mt-2">
                     <input type="submit" value="Register">
+                    <p class="text-left"><span class="required"><b>*</b></span> Required</p>
                 </div>
             </form>
-            <div>
-                <p class="text-left -mt-4"><span class="required"><b>*</b></span> Required</p>
-            </div>
             <div class="flex flex-col gap-2">
                 <a class="underline cursor-pointer" @click="registerStep = !registerStep">Login</a>
             </div>
@@ -59,4 +58,5 @@
 {% endblock %}
 {% block scripts %}
     <script src="dist/circle.js"></script>
+    <script src="dist/pristine.js"></script>
 {% endblock %}
