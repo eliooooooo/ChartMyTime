@@ -3,18 +3,18 @@ import Pristine from 'pristinejs';
 
 window.onload = function () {
 
-    let showPasswordCheckbox = document.getElementsById('showPassword');
-    let passwordInput = document.getElementById('password');
-    let confirmPasswordInput = document.getElementById('confirm-password');
+    let showPasswordCheckbox = document.querySelectorAll('#showPassword');
 
-    showPasswordCheckbox.addEventListener('change', function () {
-        if (showPasswordCheckbox.checked) {
-            passwordInput.type = 'text';
-            confirmPasswordInput.type = 'text';
-        } else {
-            passwordInput.type = 'password';
-            confirmPasswordInput.type = 'password';
-        }
+    showPasswordCheckbox.forEach(element => {
+        element.addEventListener('change', function () {
+            if (element.checked) {
+                let input = element.previousElementSibling;
+                input.type = 'text';
+            } else {
+                let input = element.previousElementSibling;
+                input.type = 'password';
+            }
+        });
     });
 
     let formLogin = document.getElementById("loginForm");
