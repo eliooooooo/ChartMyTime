@@ -7,17 +7,17 @@ window.onload = function () {
 
     showPasswordCheckbox.forEach(element => {
         element.addEventListener('change', function () {
+            let input = element.previousElementSibling.querySelector('input');
             if (element.checked) {
-                let input = element.previousElementSibling;
                 input.type = 'text';
             } else {
-                let input = element.previousElementSibling;
                 input.type = 'password';
             }
         });
     });
 
     let formLogin = document.getElementById("loginForm");
+    let formRegister = document.getElementById("registerForm");
 
     var config = {
         classTo: 'form-group',
@@ -29,6 +29,7 @@ window.onload = function () {
     };
  
     let pristine = new Pristine(formLogin);
+    let pristine2 = new Pristine(formRegister, config);
  
     formLogin.addEventListener('submit', function (e) {
        var valid = pristine.validate();
@@ -36,4 +37,11 @@ window.onload = function () {
            e.preventDefault(); // Empêche la soumission du formulaire si la validation échoue
        }
     });
+
+    formRegister.addEventListener('submit', function (e) {
+        var valid = pristine2.validate();
+        if (!valid) {
+            e.preventDefault(); // Empêche la soumission du formulaire si la validation échoue
+        }
+     });
 };

@@ -9,7 +9,7 @@
         }
     }
     .text-help {
-        @apply text-red-500 text-left;
+        @apply text-red-500 text-left block;
     }
     input {
         @apply border-[1px] border-gray-300 rounded-md p-1 w-60;
