@@ -5,7 +5,7 @@
     <div {% if register %} x-data="{ registerStep : true }" {% else %} x-data="{ registerStep : false }" {% endif %} >
         <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="!registerStep">
             <h1 class="text-4xl font-bold">Login</h1>
-            <form action="#" method="post" class="logForm flex flex-col gap-3" id="loginForm" novalidate>
+            <form action="user?action=login" method="post" class="logForm flex flex-col gap-3" id="loginForm" novalidate>
                 <div class="form-group relative flex flex-col gap-1">
                     <label for="email" class="text-left"><b>E-mail <span class="required">*</span></b></label>
                     <input type="text" name="email" id="email" placeholder="Enter e-mail" required autocomplete="email">

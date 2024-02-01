@@ -47,6 +47,9 @@ Class UserController extends ControllerBase {
                 $user = $userExist->findByEmail($email);
                 if ($user) {
                     $currentUser = $userExist->getByEmail($email);
+                    var_dump($currentUser[0]['password']);
+                    var_dump($password);
+                    echo password_hash($password, PASSWORD_DEFAULT);
                     if (password_verify($password, $currentUser[0]['password'])) {
                         $_SESSION['user'] = $currentUser[0]['username'];
                         $_SESSION['user_id'] = $currentUser[0]['id'];
