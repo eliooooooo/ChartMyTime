@@ -47,9 +47,6 @@ Class UserController extends ControllerBase {
                 $user = $userExist->findByEmail($email);
                 if ($user) {
                     $currentUser = $userExist->getByEmail($email);
-                    var_dump($currentUser[0]['password']);
-                    var_dump($password);
-                    echo password_hash($password, PASSWORD_DEFAULT);
                     if (password_verify($password, $currentUser[0]['password'])) {
                         $_SESSION['user'] = $currentUser[0]['username'];
                         $_SESSION['user_id'] = $currentUser[0]['id'];
@@ -111,8 +108,6 @@ Class UserController extends ControllerBase {
                         echo "<p class='notification'>The password must be at least 8 characters long, must contain at least one uppercase letter, one lowercase letter and at least one number</p>";
                         $this->render('/page/login.html.twig', ['register' => true]);
                     } else {
-                        $password = password_hash($password, PASSWORD_DEFAULT);
-
                         // Vérification de l'existence de l'utilisateur
                         $userExist = new User;
                         if ($userExist->findByEmail($email)) {

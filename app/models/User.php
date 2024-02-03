@@ -60,10 +60,4 @@ class User {
             return $user;
         }   
     }
-
-    public function update(PDO $db) {
-    }
-
-    public function delete(PDO $db) {
-    }
 }
