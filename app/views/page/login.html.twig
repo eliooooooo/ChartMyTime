@@ -3,12 +3,12 @@
 {% block main %}
     <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
     <div {% if register %} x-data="{ registerStep : true }" {% else %} x-data="{ registerStep : false }" {% endif %} >
-        <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="!registerStep">
+        <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="!registerStep" :class="!registerStep ? '' : 'hidden'">
             <h1 class="text-4xl font-bold">Login</h1>
             <form action="user?action=login" method="post" class="logForm flex flex-col gap-3" id="loginForm" novalidate>
                 <div class="form-group relative flex flex-col gap-1">
                     <label for="email" class="text-left"><b>E-mail <span class="required">*</span></b></label>
-                    <input type="text" name="email" id="email" placeholder="Enter e-mail" required autocomplete="email">
+                    <input type="text" name="email" id="email" placeholder="Enter e-mail" required autocomplete="email" data-pristine-email>
                 </div>
                 <div class="relative">
                     <div class="form-group relative flex flex-col gap-1">
@@ -26,7 +26,7 @@
                 <a class="underline cursor-pointer" @click="registerStep = !registerStep">Register</a>
             </div>
         </div>
-        <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="registerStep">
+        <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="registerStep" :class="registerStep ? '' : 'hidden'">
             <h1 class="text-4xl font-bold">Register </h1>
             <form action="user?action=register" method="POST" id="registerForm" class="logForm flex flex-col gap-3" novalidate>
                 <div class="form-group relative flex flex-col gap-1">
