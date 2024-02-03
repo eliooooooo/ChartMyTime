@@ -15,7 +15,7 @@ window.onload = function () {
             }
         });
     });
-
+    
     let formLogin = document.getElementById("loginForm");
     let formRegister = document.getElementById("registerForm");
 
