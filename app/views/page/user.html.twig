@@ -13,19 +13,38 @@
                     <p class="sm:ml-10"><b>E-mail :</b> {{ user.0.email }} </p>
                     <div class="relative flex flex-row">
                         <p class="sm:ml-10"><b>Password :</b> <span x-show="!passwordOpen"> *****</span></p>
-                        <div href="#" class="absolute right-2 sm:right-10 text-gray-400 hover:text-black hover:cursor-pointer underline" @click="passwordOpen = !passwordOpen">
+                        <div href="#" class="absolute right-2 sm:right-10 text-gray-400 hover:text-black hover:cursor-pointer underline toggleStep" @click="passwordOpen = !passwordOpen" tabindex="0">
                             <span x-show="!passwordOpen">Edit</span>
                             <span x-show="passwordOpen">Close</span>
                         </div>
                     </div>
-                    <form class="sm:ml-10 mr-2 pl-3 border-l-[1px] border-gray-400" x-show="passwordOpen" x-transition>
-                        <label><b>Current password :</b></label>
-                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Current password">
-                        <label><b>New password :</b></label>
-                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="New password">
-                        <label><b>Confirm new password :</b></label>
-                        <input type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1" placeholder="Confirm new password">
-                        <button type="submit" class="bg-black text-white rounded-lg p-2 mt-2">Edit</button>
+                    <form method="POST" action="user?action=update" id="updatePassword" class="sm:ml-10 mr-2 pl-3 border-l-[1px] border-gray-400" x-show="passwordOpen" x-transition novalidate>
+                        <div class="relative w-fit">
+                            <div class="form-group relative flex flex-col">
+                                <label><b>Current password <span class="required">*</span></b></label>
+                                <input id="password" type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1 my-1" placeholder="Current password" required autocomplete="current-password">
+                            </div>
+                            <input type="checkbox" class="showPassword" tabindex="-1">
+                        </div>
+                        <div class="relative w-fit">
+                            <div class="form-group formgroupPassword relative flex flex-col">
+                                <label><b>New password <span class="required">*</span></b></label>
+                                <input id="newPassword" type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1 my-1" placeholder="New password" required autocomplete="off" data-pristine-password>
+                                <div id="errorPassword" class="hidden">Password must contain :</div>
+                            </div>
+                            <input type="checkbox" class="showPassword" tabindex="-1">
+                        </div>
+                        <div class="relative w-fit">
+                            <div class="form-group relative flex flex-col">
+                                <label><b>Confirm new password <span class="required">*</span></b></label>
+                                <input id="confirmPassword" type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1 my-1" placeholder="Confirm new password" required autocomplete="off" data-pristine-equals="#updatePassword #newPassword">
+                            </div>
+                            <input type="checkbox" class="showPassword" tabindex="-1">
+                        </div>
+                        <div class="flex flex-col gap-1 mt-2">
+                            <input type="submit" value="Edit">
+                            <p class="text-left"><span class="required"><b>*</b></span> Required</p>
+                        </div>
                     </form>
                     <div class="sm:ml-10">
                         <p><b>Notification preferences :</b></p>
@@ -53,4 +72,5 @@
     <!-- Gère les infobulles -->
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="/dist/pristine.js"></script>
 {% endblock %}
