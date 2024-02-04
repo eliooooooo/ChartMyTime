@@ -88,12 +88,12 @@ class User {
     /**
      * Permet de mettre à jour le mot de passe de l'utilisateur
      */
-    public function updatePassword(){
+    public function updatePassword($psw){
         $pdo = connexion();
         $sqlGenerator = new SqlGenerator($pdo);
 
         $sqlGenerator->update('User',
-        ['password' => password_hash($this->password, PASSWORD_DEFAULT)],
+        ['password' => password_hash($psw, PASSWORD_DEFAULT)],
         "id = ". $_SESSION['user_id']);
     }
 }

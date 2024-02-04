@@ -60,7 +60,6 @@ class SqlGenerator {
         $set = rtrim($set, ', ');
 
         $query = "UPDATE $table SET $set WHERE $where";
-        echo $query;
 
         // Préparation et exécution de la requête
         $statement = $this->pdo->prepare($query);

@@ -37,9 +37,7 @@ Class UserController extends ControllerBase {
                         $this->render('/page/user.html.twig');
                     } else {
                         $user = new User;
-                        $this->password = $newPassword;
-                        echo $this->password;
-                        $user->updatePassword();
+                        $user->updatePassword($newPassword);
                         echo "<p class='notification success'>Your password has been updated</p>";
                         $this->render('/page/user.html.twig');
                     }
