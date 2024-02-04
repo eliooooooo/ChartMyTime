@@ -88,6 +88,7 @@ Class UserController extends ControllerBase {
                         $_SESSION['user_id'] = $currentUser[0]['id'];
                         $_SESSION['is_connected'] = true;
                         $data = ["user" => $userExist->read()];
+                        echo "<p class='notification success'> Login successful! Welcome back. </p>";
                         $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected'], 'user' => $data['user']]);
                     } else {
                         echo "<p class='notification'>The password is incorrect</p>";
