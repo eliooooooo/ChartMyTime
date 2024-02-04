@@ -23,7 +23,7 @@
                 </div>
             </form>
             <div class="flex flex-col gap-2">
-                <a class="underline cursor-pointer" @click="registerStep = !registerStep">Register</a>
+                <a class="underline cursor-pointer toggleStep" @click="registerStep = !registerStep" tabindex="0">Register</a>
             </div>
         </div>
         <div class="containerLogin flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" x-show="registerStep" :class="registerStep ? '' : 'hidden'">
@@ -58,7 +58,7 @@
                 </div>
             </form>
             <div class="flex flex-col gap-2">
-                <a class="underline cursor-pointer" @click="registerStep = !registerStep">Login</a>
+                <a class="underline cursor-pointer toggleStep" @click="registerStep = !registerStep" tabindex="0">Login</a>
             </div>
         </div>
     </div>

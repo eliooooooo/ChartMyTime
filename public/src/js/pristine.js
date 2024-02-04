@@ -19,6 +19,16 @@ window.onload = function () {
     let formLogin = document.getElementById("loginForm");
     let formRegister = document.getElementById("registerForm");
 
+    const link = document.querySelectorAll('.toggleStep');
+
+    link.forEach(element => {
+        element.addEventListener('keydown', function(e){        
+            if (e.key === 'Enter') {
+                element.click();
+            }
+        });
+    });
+
     var config = {
         classTo: 'form-group',
         errorClass: 'has-danger',
