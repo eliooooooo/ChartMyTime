@@ -21,14 +21,14 @@
                     <form method="POST" action="user?action=update" id="updatePassword" class="sm:ml-10 mr-2 pl-3 border-l-[1px] border-gray-400" x-show="passwordOpen" x-transition novalidate>
                         <div class="relative w-fit">
                             <div class="form-group relative flex flex-col">
-                                <label><b>Current password <span class="required">*</span></b></label>
+                                <label for="password"><b>Current password <span class="required">*</span></b></label>
                                 <input id="password" name="password" type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1 my-1" placeholder="Current password" required autocomplete="current-password">
                             </div>
                             <input type="checkbox" class="showPassword" tabindex="-1">
                         </div>
                         <div class="relative w-fit">
                             <div class="form-group formgroupPassword relative flex flex-col">
-                                <label><b>New password <span class="required">*</span></b></label>
+                                <label for="newPassword"><b>New password <span class="required">*</span></b></label>
                                 <input id="newPassword" name="newPassword" type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1 my-1" placeholder="New password" required autocomplete="off" data-pristine-password>
                                 <div id="errorPassword" class="hidden">Password must contain :</div>
                             </div>
@@ -36,7 +36,7 @@
                         </div>
                         <div class="relative w-fit">
                             <div class="form-group relative flex flex-col">
-                                <label><b>Confirm new password <span class="required">*</span></b></label>
+                                <label for="confirmPassword"><b>Confirm new password <span class="required">*</span></b></label>
                                 <input id="confirmPassword" name="confirmPassword" type="password" class="w-full border-[1px] border-gray-400 rounded-lg p-1 my-1" placeholder="Confirm new password" required autocomplete="off" data-pristine-equals="#updatePassword #newPassword">
                             </div>
                             <input type="checkbox" class="showPassword" tabindex="-1">
