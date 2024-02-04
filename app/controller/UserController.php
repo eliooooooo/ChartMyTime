@@ -2,19 +2,54 @@
 
 Class UserController extends ControllerBase {
 
+    /**
+     * Permet de lire les informations de l'utilisateur connecté
+     */
     function read(){
         if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
             $this->render('/page/login.html.twig');
         } else {
             $user = new User;
             $data = ["user" => $user->read()];
-            // var_dump($data);
             $this->render('/page/user.html.twig', $data);
         }
     }
 
+    /**
+     * Permet de mettre à jour les informations de l'utilisateur connecté
+     */
     function update(){
-        $this->render('/page/user.html.twig');
+        if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
+            $this->render('/page/login.html.twig');
+        } else {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $currentPassword = $_POST['password'];
+                $newPassword = $_POST['newPassword'];
+
+                $user = new User;
+                $user = $user->getById($_SESSION['user_id']);
+                if (password_verify($currentPassword, $user[0]['password'])) {
+                    if($newPassword != $_POST['confirmPassword']){
+                        echo "<p class='notification'>The new passwords do not match</p>";
+                        $this->render('/page/user.html.twig');
+                    } elseif ($newPassword === $currentPassword) {
+                        echo "<p class='notification'>The new password must be different from the current password</p>";
+                        $this->render('/page/user.html.twig');
+                    } else {
+                        $user = new User;
+                        $this->password = $newPassword;
+                        echo $this->password;
+                        $user->updatePassword();
+                        echo "<p class='notification success'>Your password has been updated</p>";
+                        $this->render('/page/user.html.twig');
+                    }
+                } else {
+                    echo "<p class='notification'>The current password is incorrect</p>";
+                    $this->render('/page/user.html.twig');
+                }
+            }
+        };
+
     }
 
     function delete(){
@@ -33,6 +68,9 @@ Class UserController extends ControllerBase {
         $this->render('/page/user.html.twig');
     }
 
+    /**
+     * Permet de se connecter
+     */
     function login(){
         if (isset($_SESSION['is_connected']) && $_SESSION['is_connected'] == true) {
             $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
@@ -67,6 +105,9 @@ Class UserController extends ControllerBase {
         }
     }
 
+    /**
+     * Permet de se déconnecter
+     */
     function logout(){
         if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
             $this->render('/page/login.html.twig');
@@ -80,6 +121,9 @@ Class UserController extends ControllerBase {
         }
     }
 
+    /**
+     * Permet de s'inscrire
+     */
     function register(){
         if (isset($_SESSION['is_connected']) && $_SESSION['is_connected'] == true) {
             $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected']]);
