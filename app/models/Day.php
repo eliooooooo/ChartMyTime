@@ -1,7 +1,6 @@
 <?php
 
-class Day
-{
+class Day{
     // liste des attributs
     public $id;
     public $DayOfWeek;
