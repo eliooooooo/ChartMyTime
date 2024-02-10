@@ -137,14 +137,6 @@ Class UserController extends ControllerBase {
                     $email = $_POST['email'];
                     $password = $_POST['password'];
 
-                    $to = $email;
-                    $subject = "Welcome!";
-                    $message = "This is a test email.";
-                    $headers = "From: webmaster@example.com";
-
-                    echo mail($to, $subject, $message, $headers);
-                    mail($to, $subject, $message, $headers);
-
                     // Vérification de la sécurité du mot de passe
                     if (strlen($password) < 8) {
                         echo "<p class='notification'>The password must be at least 8 characters long, must contain at least one uppercase letter, one lowercase letter and at least one number</p>";
