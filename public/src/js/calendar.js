@@ -32,7 +32,8 @@ class Calendar {
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
     let dp_days = document.querySelector('.days div:nth-child(' + (currentDate.currentDayOfWeek) + ')');
-    let dp_number = document.querySelector('.days div:nth-child(' + (currentDate.currentNumber + 7) + ')');
+    let firstDay = new Date(currentDate.currentYear, currentDate.currentMonth, 0).getDay();
+    let dp_number = document.querySelector('.days div:nth-child(' + (currentDate.currentNumber + firstDay + 7) + ')');
     let dp_month = document.querySelector('.month');
     let dp_year = document.querySelector('.year');
 
