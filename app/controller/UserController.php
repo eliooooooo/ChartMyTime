@@ -38,12 +38,14 @@ Class UserController extends ControllerBase {
                     } else {
                         $user = new User;
                         $user->updatePassword($newPassword);
+                        $params = ["user" => $user->read()];
                         echo "<p class='notification success'>Your password has been updated</p>";
-                        $this->render('/page/user.html.twig');
+                        $this->render('/page/user.html.twig', $params);
                     }
                 } else {
+                    $params = ["user" => $user->read()];
                     echo "<p class='notification'>The current password is incorrect</p>";
-                    $this->render('/page/user.html.twig');
+                    $this->render('/page/user.html.twig', $params);
                 }
             }
         };
@@ -58,8 +60,9 @@ Class UserController extends ControllerBase {
 
                 $user = new User;
                 $user->updateColor($color);
+                $params = ["user" => $user->read()];
                 echo "<p class='notification success'>Your color has been updated</p>";
-                $this->render('/page/user.html.twig');
+                $this->render('/page/user.html.twig', $params);
             }
         }
     }
