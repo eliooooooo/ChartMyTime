@@ -174,7 +174,7 @@ Class UserController extends ControllerBase {
                             echo "<p class='notification'>An account is already associated with this email address, try to login.</p>";
                             $this->render('/page/login.html.twig');
                         } else {
-                            $user = new User(null, $username, $email, $password);
+                            $user = new User(null, null, $username, $email, $password);
                             
                             try {
                                 $user_id = $user->create();

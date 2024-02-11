@@ -35,7 +35,7 @@ class User {
 
         $sqlGenerator->insert('User', [
             'username' => $this->username,
-            'color' => '#63CDE9',
+            'color' => '63CDE9',
             'email' => $this->email,
             'password' => password_hash($this->password, PASSWORD_DEFAULT),
             'date' => date('Y-m-d')

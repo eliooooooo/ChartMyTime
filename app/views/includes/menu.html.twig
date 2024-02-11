@@ -41,7 +41,7 @@
     <ul class="absolute bottom-0 flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
         <li>
             <a {% if is_connected %}href="user"{% else %}href="user?action=login"{% endif %}>
-                <div class="w-10 h-10 rounded-full {% if is_connected %}bg-{{ user_color }}{% else %}bg-black/50{% endif %}"></div>
+                <div class="w-10 h-10 rounded-full {% if is_connected %}bg-{{ user_color }}{% else %}bg-gray-400{% endif %}"></div>
             </a>
         </li>
         <li class="flex">
@@ -68,7 +68,7 @@
     </div>
     <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition>
         <ul class="m-auto flex flex-col mt-4 text-center text-2xl gap-4">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             {% if is_connected %}
                 <li @click="dropdownOpen = !dropdownOpen" class="hover:cursor-pointer"><span class="flex flex-row justify-center gap-5" >Worskspaces
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
@@ -95,7 +95,7 @@
         <ul class="flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
             <li>
                 <a href="user">
-                    <div class="w-10 h-10 rounded-full {% if is_connected %}bg-black{% else %}bg-black/50{% endif %}"></div>
+                    <div class="w-10 h-10 rounded-full {% if is_connected %}bg-black{% else %}bg-gray-400{% endif %}"></div>
                 </a>
             </li>
             <li>
