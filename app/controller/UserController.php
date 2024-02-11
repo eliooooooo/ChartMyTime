@@ -47,7 +47,21 @@ Class UserController extends ControllerBase {
                 }
             }
         };
+    }
 
+    function updateColor(){
+        if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
+            $this->render('/page/login.html.twig');
+        } else {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $color = $_POST['color'];
+
+                $user = new User;
+                $user->updateColor($color);
+                echo "<p class='notification success'>Your color has been updated</p>";
+                $this->render('/page/user.html.twig');
+            }
+        }
     }
 
     function delete(){

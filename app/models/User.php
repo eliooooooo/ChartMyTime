@@ -2,12 +2,14 @@
 
 class User {
     private $id;
+    public $color;
     private $username;
     private $email;
     private $password;
 
-    public function __construct($id = null, $username = null, $email = null, $password = null) {
+    public function __construct($id = null, $color = null, $username = null, $email = null, $password = null) {
         $this->id = $id;
+        $this->color = $color;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
@@ -33,6 +35,7 @@ class User {
 
         $sqlGenerator->insert('User', [
             'username' => $this->username,
+            'color' => '#63CDE9',
             'email' => $this->email,
             'password' => password_hash($this->password, PASSWORD_DEFAULT),
             'date' => date('Y-m-d')
@@ -94,6 +97,18 @@ class User {
 
         $sqlGenerator->update('User',
         ['password' => password_hash($psw, PASSWORD_DEFAULT)],
+        "id = ". $_SESSION['user_id']);
+    }
+
+    /**
+     * Permet de mettre à jour la couleur de l'utilisateur
+     */
+    public function updateColor($color){
+        $pdo = connexion();
+        $sqlGenerator = new SqlGenerator($pdo);
+
+        $sqlGenerator->update('User',
+        ['color' => $color],
         "id = ". $_SESSION['user_id']);
     }
 }
