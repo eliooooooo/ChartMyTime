@@ -36,6 +36,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
 //Initialisation des variables
 $action = 'read';
+$id = NULL;
 
 // Si il y a une partie après le ?
 if (isset($request_uri[1])) {
@@ -48,6 +49,9 @@ if (isset($request_uri[1])) {
         if ($tmp_route[0] == 'action') {
             $action = $tmp_route[1];
             // var_dump($action);
+        } elseif ($tmp_route[0] == 'id') {
+            $id = $tmp_route[1];
+            // var_dump($id);
         }
     }
 }
@@ -63,7 +67,7 @@ include_once __DIR__ . '/app/controller/ErrorController.php';
 // Si l'URI est vide (c'est-à-dire que nous sommes à la racine), afficher la page d'accueil
 if (empty($request_uri) || $request_uri == '/') {
     $controller = new ControllerBase();
-    echo $controller->render('components/calendar.html.twig', []);
+    echo $controller->render('page/frontpage.html.twig', []);
 } else {
     $className = ucfirst($request_uri);
     $controllerName = $className . 'Controller';
@@ -75,7 +79,7 @@ if (empty($request_uri) || $request_uri == '/') {
         $controller = new $controllerName();
 
         try {
-            $controller->$action();
+            $controller->$action($id);
         } catch (Exception $e) {
             // Décommenter pour afficher les erreurs
             echo $e->getMessage();

@@ -2,11 +2,20 @@
 
 Class WorkspaceController extends ControllerBase {
 
-    function read(){
+    function read($id){
         if($_SESSION == false){
             echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
+        } else {
+            $workspace = new Workspace();
+            $workspace = $workspace->read($id);
+
+            if (count($workspace) > 0) {
+                echo $this->render('components/calendar.html.twig', ['workspace' => $workspace]);
+            } else {
+                echo "<p class='notification' >This workspace does not exist</p>";
+                echo $this->render('errors/404.html.twig', []);
+            }
         }
-        $this->render('/components/calendar.html.twig');
     }
 
     function create(){

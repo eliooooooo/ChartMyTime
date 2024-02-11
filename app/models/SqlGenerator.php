@@ -20,6 +20,7 @@ class SqlGenerator {
         if (!empty($conditions)) {
             $query .= " WHERE $conditions";
         }
+        // echo "<p>query: ".$query."</p>";
         $statement = $this->pdo->prepare($query);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);

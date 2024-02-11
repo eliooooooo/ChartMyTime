@@ -18,13 +18,8 @@ class Workspace {
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
-        $workspace = $SqlGenerator->select('workspace', '*', 'id = ' . $id);
+        $workspace = $SqlGenerator->select('Workspace', '*', 'id = ' . $id);
 
-        if (count($workspace) > 0) {
-            return $workspace;
-        } else {
-            echo "This workspace does not exist";
-            Locatio('index.php');
-        }
+        return $workspace;
     }
 }
