@@ -26,9 +26,14 @@ Class WorkspaceController extends ControllerBase {
                 $workspace = new Workspace();
                 $workspace->name = $_POST['name'];
                 $workspace->user = $_SESSION['user_id'];
-                $workspace->create();
-                echo "<p class='notification success'>The workspace has been created</p>";
-                echo $this->render('components/calendar.html.twig');
+                if (strlen($workspace->name) > 50 || strlen($workspace->name) === 0){
+                    echo "<p class='notification'>The workspace's name length must be between 0 and 50 character.</p>";
+                    echo $this->render('components/calendar.html.twig');
+                } else {
+                    $workspace->create();
+                    echo "<p class='notification success'>The workspace has been created</p>";
+                    echo $this->render('components/calendar.html.twig');
+                }
             }
         }
     }
@@ -37,7 +42,14 @@ Class WorkspaceController extends ControllerBase {
         $this->render('/components/calendar.html.twig');
     }
 
-    function delete(){
-        $this->render('/components/calendar.html.twig');
+    function delete($id){
+        if($_SESSION == false){
+            echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
+        } else {
+            $workspace = new Workspace();
+            $workspace->delete($id);
+            echo "<p class='notification success'>The workspace has been deleted</p>";
+            echo $this->render('page/frontpage.html.twig');
+        }
     }
 }

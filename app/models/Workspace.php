@@ -31,4 +31,11 @@ class Workspace {
 
         return $pdo->lastInsertId();
     }
+
+    public function delete($id){
+        $pdo = connexion();
+        $SqlGenerator = new SqlGenerator($pdo);
+
+        $SqlGenerator->delete('Workspace', 'id = '.$id);
+    }
 }
