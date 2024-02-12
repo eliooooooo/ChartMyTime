@@ -38,4 +38,12 @@ class Workspace {
 
         $SqlGenerator->delete('Workspace', 'id = '.$id);
     }
+
+    public function getWorkspaceByUser($id){
+        $pdo = connexion();
+        $SqlGenerator = new SqlGenerator($pdo);
+        
+        $results = $SqlGenerator->select('Workspace', '*', 'user ='.$id);
+        return count($results);
+    }
 }
