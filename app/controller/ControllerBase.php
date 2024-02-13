@@ -41,6 +41,7 @@ Class ControllerBase {
             $params['workspaces'] = $this->getWorkspaces($_SESSION['user_id']);
             $params['user_color'] = $this->getUserColor($_SESSION['user_id']);
         }
+        
         echo $this->twig->render($view, $params);
     }
 }

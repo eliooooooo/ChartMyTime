@@ -179,6 +179,7 @@ Class UserController extends ControllerBase {
                             try {
                                 $user_id = $user->create();
                                 echo "<p class='notification success'>Your account has been created</p>";
+                                mail($email, "Welcome to the Task Manager", "Welcome to the Task Manager, " . $username . "!\n\nYou can now create and manage your tasks on our platform.\n\nBest regards,\nTask Manager Team", "From: eliott.burkle@gmail.com");
                                 $_SESSION['user'] = $username;
                                 $_SESSION['user_id'] = $user_id;
                                 $_SESSION['is_connected'] = true;
