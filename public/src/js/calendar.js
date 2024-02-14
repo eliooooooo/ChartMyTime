@@ -82,10 +82,24 @@ class Calendar {
   */
   nextMonth() {
     const constants = this.setConstants();
+    const currentDate = this.getCurrentDate();
 
-    let currentMonth = constants.dp_month.dataset.month;
-    let currentYear = constants.dp_year.dataset.year;
+    let currentMonth = Number(constants.dp_month.dataset.month);
+    let currentYear = Number(constants.dp_year.dataset.year);
 
+    let btn_nextMonth = document.querySelector('.nextMonth');
+    let btn_previousMonth = document.querySelector('.previousMonth');
+    btn_previousMonth.style.display = 'block';
+
+    // Vérifie si le mois suivant est dans le futur
+    if (currentYear > currentDate.currentYear || (currentYear === currentDate.currentYear && currentMonth >= currentDate.currentMonth)) {
+      return;
+    }
+
+    if (currentYear > currentDate.currentYear || (currentYear === currentDate.currentYear && currentMonth + 1 >= currentDate.currentMonth)) {
+      btn_nextMonth.style.display = 'none';
+    }
+    
     currentMonth == 11 ? currentYear++ : currentYear;
     currentMonth++ == 11 ? currentMonth = 0 : currentMonth;
 
@@ -98,9 +112,23 @@ class Calendar {
   */
   previousMonth() {
     const constants = this.setConstants();
+    const currentDate = this.getCurrentDate();
 
-    let currentMonth = constants.dp_month.dataset.month;
-    let currentYear = constants.dp_year.dataset.year;
+    let currentMonth = Number(constants.dp_month.dataset.month);
+    let currentYear = Number(constants.dp_year.dataset.year);
+
+    let btn_previousMonth = document.querySelector('.previousMonth');
+    let btn_nextMonth = document.querySelector('.nextMonth');
+    btn_nextMonth.style.display = 'block';
+
+    // Vérifie si le mois précédent est plus d'un an en arrière
+    if (currentYear < currentDate.currentYear - 1 || (currentYear === currentDate.currentYear - 1 && currentMonth <= currentDate.currentMonth)) {
+      return;
+    }
+
+    if (currentYear < currentDate.currentYear - 1 || (currentYear === currentDate.currentYear - 1 && currentMonth - 1 <= currentDate.currentMonth)) {
+      btn_previousMonth.style.display = 'none';
+    }
 
     currentMonth == 0 ? currentYear-- : currentYear;
     currentMonth-- == 0 ? currentMonth = 11 : currentMonth;
