@@ -142,8 +142,39 @@ class Calendar {
   */
   setCurrentMonth() {
     const currentDate = this.getCurrentDate();
+    let btn_previousMonth = document.querySelector('.previousMonth');
+    btn_previousMonth.style.display = 'block';
 
     displayCalendar(currentDate.currentMonth, currentDate.currentYear);
+  }
+
+  /*
+
+  */
+  setFormDate() {
+    const constants = this.setConstants();  
+    const currentDate = this.getCurrentDate();
+
+    let month = document.querySelector('#month').value;
+    let year = document.querySelector('#year').value;
+    if (month && year && year >= currentDate.currentYear - 1 && year <= currentDate.currentYear + 1 && month >= 0 && month <= 11) {
+      if (year < currentDate.currentYear || (year == currentDate.currentYear && month <= currentDate.currentMonth)) {
+        displayCalendar(month, year);
+        console.log('ok');
+        console.log(month);
+        if (year >= currentDate.currentYear && month >= currentDate.currentMonth) {
+          btn_nextMonth.style.display = 'none';
+        } else {
+          btn_nextMonth.style.display = 'block';
+        }
+
+        if (year <= currentDate.currentYear - 1 && month < currentDate.currentMonth) {
+          btn_previousMonth.style.display = 'none';
+        } else {
+          btn_previousMonth.style.display = 'block';
+        }
+      }
+    }
   }
 
   /*
@@ -251,6 +282,7 @@ const setMonthYear = calendar.setMonthYear.bind(calendar);
 const nextMonth = calendar.nextMonth.bind(calendar);
 const previousMonth = calendar.previousMonth.bind(calendar);
 const setCurrentMonth = calendar.setCurrentMonth.bind(calendar);
+const setFormDate = calendar.setFormDate.bind(calendar);
 const deleteOldDays = calendar.deleteOldDays.bind(calendar);
 const displayDays = calendar.displayDays.bind(calendar);
 const displayCalendar = calendar.displayCalendar.bind(calendar);
@@ -281,11 +313,20 @@ btn_previousMonth.addEventListener('click', previousMonth);
 let btn_currentMonth = document.querySelector('.backToCurrentMonth');
 btn_currentMonth.addEventListener('click', setCurrentMonth);
 
-// Gérer le formulaire de saisie de la date
-document.querySelector('.formNewDate').addEventListener('submit', function(event) {
+// Gérer le formulaire de saisie de la date 
+let formNewDate = document.querySelector('.formNewDate');
+formNewDate.addEventListener('submit', function(event) {
   event.preventDefault();
-  let month = document.querySelector('#month').value;
-  let year = document.querySelector('#year').value;
-
-  displayCalendar(month, year);
+  setFormDate();
 });
+
+// Gérer le formulaire de saisie de la date
+// document.querySelector('.formNewDate').addEventListener('submit', function(event) {
+//   event.preventDefault();
+//   let month = document.querySelector('#month').value;
+//   let year = document.querySelector('#year').value;
+
+//   displayCalendar(month, year);
+//   btn_previousMonth.style.display = 'none';
+//   btn_nextMonth.style.display = 'none';
+// });
