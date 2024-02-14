@@ -5,9 +5,7 @@ class Day{
     public $id;
     public $DayOfWeek;
     public $DayNumber;
-    public $Month;
-    public $Year;
-    public $Time;
+    public $Date;
     public $Workspace;
 
 

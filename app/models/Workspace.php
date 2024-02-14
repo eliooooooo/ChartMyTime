@@ -16,6 +16,9 @@ class Workspace {
         $SqlGenerator = new SqlGenerator($pdo);
 
         $workspace = $SqlGenerator->select('Workspace', '*', 'id = ' . $id);
+        // Changer la mèthode d'affichage des jours ??
+        // $days = $SqlGenerator->select('Day', '*', 'workspace = ' . $id);
+        // var_dump($days);
 
         return $workspace;
     }
