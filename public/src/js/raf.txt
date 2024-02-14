@@ -2,3 +2,5 @@ gérer les flèches à l'affichage du set current month
 limiter l'envergure de formNewDate à 1 an
 
 ou alors retirer le bouton ?
+
+couleurs des heurs au changement de mois
