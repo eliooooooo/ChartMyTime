@@ -195,7 +195,7 @@ class Calendar {
     Fonction pour afficher les jours du mois
     Ne renvoie rien
   */
-  displayDays(nbDays, firstDay) {
+  displayDays(nbDays, firstDay, month, year) {
     for (let j = 0; j < firstDay; j++) {
       let dayCard = document.createElement('div');
       dayCard.classList.add('dayCard');
@@ -208,7 +208,7 @@ class Calendar {
       dayNumber.innerHTML = i;
       let dayCard = document.createElement('div');
       dayCard.classList.add('dayCard');
-      dayCard.dataset.day = i; 
+      dayCard.dataset.day = String(year)+'-'+String(month+1).padStart(2, '0')+'-'+String(i).padStart(2, '0'); 
       dayCard.setAttribute('x-on:click', 'dayModalOpen = true');
       dayCard.appendChild(dayNumber);
       document.querySelector('.mainCalendar > div').appendChild(dayCard);
@@ -265,7 +265,7 @@ class Calendar {
     let nbDays = new Date(year, month + 1, 0).getDate();
     let firstDay = new Date(year, month, 0).getDay();
 
-    this.displayDays(nbDays, firstDay);
+    this.displayDays(nbDays, firstDay, month, year);
     this.setCurrentDay(month, year);
     this.displayModal();
   }

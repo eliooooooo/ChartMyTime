@@ -9,8 +9,11 @@ Class WorkspaceController extends ControllerBase {
             $workspace = new Workspace();
             $workspace = $workspace->read($id);
 
+            $days = new Workspace();
+            $days = $days->readDay($id);
+
             if (count($workspace) > 0) {
-                echo $this->render('components/calendar.html.twig', ['workspace' => $workspace]);
+                echo $this->render('components/calendar.html.twig', ['workspace' => $workspace, 'days' => $days]);
             } else {
                 echo "<p class='notification' >This workspace does not exist</p>";
                 echo $this->render('errors/404.html.twig', []);

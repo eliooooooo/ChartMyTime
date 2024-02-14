@@ -30,23 +30,10 @@ class Day{
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
-        if ($id === null) {
-            // Requête pour récupérer tous les jours
-            $days = $SqlGenerator->select('day');
+        $days = $SqlGenerator->select('Day', '*', 'workspace = ' . $id);
+        echo json_encode($days);
 
-            // Retourner les jours
-            return $days;
-        } else {
-            // Requête pour récupérer le jour spécifique
-            $day = $SqlGenerator->select('day', '*', 'id = ' . $id);
-
-            // Vérifier si le jours existe
-            if (count($day) > 0) {
-                return $day;
-            } else {
-                return "Ce jour n'existe pas";
-            }
-        }
+        return json_encode($days);
     }
 
     /**

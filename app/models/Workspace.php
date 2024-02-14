@@ -16,11 +16,20 @@ class Workspace {
         $SqlGenerator = new SqlGenerator($pdo);
 
         $workspace = $SqlGenerator->select('Workspace', '*', 'id = ' . $id);
-        // Changer la mèthode d'affichage des jours ??
-        // $days = $SqlGenerator->select('Day', '*', 'workspace = ' . $id);
-        // var_dump($days);
 
         return $workspace;
+    }
+
+    public function readDay($id)
+    {
+        $pdo = connexion();
+        $SqlGenerator = new SqlGenerator($pdo);
+
+        $days = $SqlGenerator->select('Day', '*', 'workspace = ' . $id);
+        // echo trim(json_encode($days));
+        header('X-Json-Data: ' . trim(json_encode($days)));
+
+        return trim(json_encode($days));
     }
 
     public function create(){
