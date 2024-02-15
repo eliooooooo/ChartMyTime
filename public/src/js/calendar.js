@@ -216,6 +216,40 @@ class Calendar {
   }
 
   /*
+  */
+  daysColor() {
+    let params = new URLSearchParams(window.location.search);
+    let id = params.get('id');
+
+    fetch('/workspace?id=' + id)
+      .then(response => {
+        // Récupérez les données JSON de l'en-tête de la réponse
+        let jsonData = JSON.parse(response.headers.get('X-Json-Data'));
+
+        // Parcourez le tableau 'days'
+        for (let item of jsonData) {
+          let date = item.date;
+          let time = item.time;
+
+          // Trouvez l'élément du calendrier correspondant à cette date
+          let calendarItem = document.querySelectorAll(`.dayCard`);
+          calendarItem.forEach(element => {
+            if (element.dataset.day === date){
+              element.style.backgroundColor = 'rgba(125, 125, 125, 0.'+time+')';
+              return;
+            }
+          });
+
+          // Ajoutez l'événement à l'élément du calendrier
+          if (calendarItem) {
+            calendarItem.textContent = time;
+          }
+        }
+      })
+      .catch(error => console.error(error));
+  }
+
+  /*
     Fonction pour définir les constantes pour le modal
     Renvoie un objet avec les propriétés suivantes:
       dayCards: les jours du mois
@@ -244,6 +278,8 @@ class Calendar {
     modalDisplays.dayCards.forEach(function(dayCard) {
         dayCard.addEventListener('click' , function() {
             let dayNumber = dayCard.dataset.day;
+            let split = dayNumber.split('-');
+            dayNumber = split[1];
             modalDisplays.dayModal.classList.remove('hidden');
             let activeMonth = constants.months[constants.dp_month.dataset.month];
             let activeYear = constants.dp_year.dataset.year;
@@ -266,6 +302,7 @@ class Calendar {
     let firstDay = new Date(year, month, 0).getDay();
 
     this.displayDays(nbDays, firstDay, month, year);
+    this.daysColor();
     this.setCurrentDay(month, year);
     this.displayModal();
   }
@@ -285,6 +322,7 @@ const setCurrentMonth = calendar.setCurrentMonth.bind(calendar);
 const setFormDate = calendar.setFormDate.bind(calendar);
 const deleteOldDays = calendar.deleteOldDays.bind(calendar);
 const displayDays = calendar.displayDays.bind(calendar);
+const daysColor = calendar.daysColor.bind(calendar);
 const displayCalendar = calendar.displayCalendar.bind(calendar);
 const setModalDisplays = calendar.setModalDisplays.bind(calendar);
 const displayModal = calendar.displayModal.bind(calendar);
@@ -304,6 +342,13 @@ constants.days.forEach(element => {
 });
 displayCalendar(currentDate.currentMonth, currentDate.currentYear);
 
+let dayCard = document.querySelectorAll('.dayCard');
+dayCard.forEach(element => {
+  element.addEventListener('click', function() {
+    displayModal();
+  });
+});
+
 let btn_nextMonth = document.querySelector('.nextMonth');
 btn_nextMonth.addEventListener('click', nextMonth);
 let btn_previousMonth = document.querySelector('.previousMonth');
@@ -319,14 +364,3 @@ formNewDate.addEventListener('submit', function(event) {
   event.preventDefault();
   setFormDate();
 });
-
-// Gérer le formulaire de saisie de la date
-// document.querySelector('.formNewDate').addEventListener('submit', function(event) {
-//   event.preventDefault();
-//   let month = document.querySelector('#month').value;
-//   let year = document.querySelector('#year').value;
-
-//   displayCalendar(month, year);
-//   btn_previousMonth.style.display = 'none';
-//   btn_nextMonth.style.display = 'none';
-// });
