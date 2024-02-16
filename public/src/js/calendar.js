@@ -258,13 +258,16 @@ class Calendar {
       modalMonth: le mois du modal
   */
   setModalDisplays() {
-    let dayCards = document.querySelectorAll('.dayCard:not(.empty)');
-    let dayModal = document.querySelector('.dayModal');
-    let modalDate = document.querySelector('.modalDate');
-    let dayModalClose = document.querySelector('.dayModalClose');
-    let DetailsTimeTime = document.querySelector('.DetailsTimeTime');
+    const dayCards = document.querySelectorAll('.dayCard:not(.empty)');
+    const dayModal = document.querySelector('.dayModal');
+    const modalDate = document.querySelector('.modalDate');
+    const dayModalClose = document.querySelector('.dayModalClose');
+    const DetailsTimeTime = document.querySelector('.DetailsTimeTime');
+    const detailOnOpen = document.querySelector('.detailOnOpen');
+    const detailTimeDay = document.querySelector('.detailsTimeDay');
+    const detailError = document.querySelector('.detailError');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError};
   }
 
   /*
@@ -281,8 +284,14 @@ class Calendar {
             let dayNumber = dayCard.dataset.day;
             if (dayCard.dataset.time) {
               modalDisplays.DetailsTimeTime.innerHTML = dayCard.dataset.time;
+              modalDisplays.detailTimeDay.innerHTML = dayCard.getAttribute('data-edit-date');
+              console.log(dayCard.getAttribute('data-edit-date'));
+              modalDisplays.detailOnOpen.classList.remove('hidden');
+              modalDisplays.detailError.classList.add('hidden');
             } else {
               modalDisplays.DetailsTimeTime.innerHTML = '';
+              modalDisplays.detailOnOpen.classList.add('hidden');
+              modalDisplays.detailError.classList.remove('hidden');
             }
             let split = dayNumber.split('-');
             dayNumber = split[2];
