@@ -223,24 +223,24 @@ class Calendar {
 
     fetch('/workspace?id=' + id)
       .then(response => {
-        // Récupérez les données JSON de l'en-tête de la réponse
         let jsonData = JSON.parse(response.headers.get('X-Json-Data'));
 
-        // Parcourez le tableau 'days'
         for (let item of jsonData) {
           let date = item.date;
           let time = item.time;
+          let editDate = item.editDate;
 
-          // Trouvez l'élément du calendrier correspondant à cette date
           let calendarItem = document.querySelectorAll(`.dayCard`);
           calendarItem.forEach(element => {
             if (element.dataset.day === date){
+              let tmpDate = editDate.replace(":", "h").split(":");
+              element.dataset.editDate = tmpDate[0];
+              element.dataset.time = time;
               element.style.backgroundColor = 'rgba(125, 125, 125, 0.'+time+')';
               return;
             }
           });
 
-          // Ajoutez l'événement à l'élément du calendrier
           if (calendarItem) {
             calendarItem.textContent = time;
           }
@@ -262,8 +262,9 @@ class Calendar {
     let dayModal = document.querySelector('.dayModal');
     let modalDate = document.querySelector('.modalDate');
     let dayModalClose = document.querySelector('.dayModalClose');
+    let DetailsTimeTime = document.querySelector('.DetailsTimeTime');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose };
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime};
   }
 
   /*
@@ -278,8 +279,13 @@ class Calendar {
     modalDisplays.dayCards.forEach(function(dayCard) {
         dayCard.addEventListener('click' , function() {
             let dayNumber = dayCard.dataset.day;
+            if (dayCard.dataset.time) {
+              modalDisplays.DetailsTimeTime.innerHTML = dayCard.dataset.time;
+            } else {
+              modalDisplays.DetailsTimeTime.innerHTML = '';
+            }
             let split = dayNumber.split('-');
-            dayNumber = split[1];
+            dayNumber = split[2];
             modalDisplays.dayModal.classList.remove('hidden');
             let activeMonth = constants.months[constants.dp_month.dataset.month];
             let activeYear = constants.dp_year.dataset.year;
