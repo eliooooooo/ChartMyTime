@@ -266,8 +266,9 @@ class Calendar {
     const detailOnOpen = document.querySelector('.detailOnOpen');
     const detailTimeDay = document.querySelector('.detailsTimeDay');
     const detailError = document.querySelector('.detailError');
+    const colordetailTime = document.querySelector('.colorDetailTime');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime};
   }
 
   /*
@@ -283,15 +284,16 @@ class Calendar {
         dayCard.addEventListener('click' , function() {
             let dayNumber = dayCard.dataset.day;
             if (dayCard.dataset.time) {
-              modalDisplays.DetailsTimeTime.innerHTML = dayCard.dataset.time;
+              modalDisplays.DetailsTimeTime.innerHTML = dayCard.dataset.time+'h';
               modalDisplays.detailTimeDay.innerHTML = dayCard.getAttribute('data-edit-date');
-              console.log(dayCard.getAttribute('data-edit-date'));
               modalDisplays.detailOnOpen.classList.remove('hidden');
               modalDisplays.detailError.classList.add('hidden');
+              modalDisplays.colordetailTime.style.backgroundColor = 'rgba(125, 125, 125, 0.'+dayCard.dataset.time+')';
             } else {
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
               modalDisplays.detailError.classList.remove('hidden');
+              modalDisplays.colordetailTime.style.backgroundColor = '#fff';
             }
             let split = dayNumber.split('-');
             dayNumber = split[2];

@@ -5,3 +5,5 @@ ou alors retirer le bouton ?
 
 couleurs des heurs au changement de mois
 erreur à la création de workspace
+
+afficher la couleur en fonction de couleur.
