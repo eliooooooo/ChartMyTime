@@ -160,8 +160,6 @@ class Calendar {
     if (month && year && year >= currentDate.currentYear - 1 && year <= currentDate.currentYear + 1 && month >= 0 && month <= 11) {
       if (year < currentDate.currentYear || (year == currentDate.currentYear && month <= currentDate.currentMonth)) {
         displayCalendar(month, year);
-        console.log('ok');
-        console.log(month);
         if (year >= currentDate.currentYear && month >= currentDate.currentMonth) {
           btn_nextMonth.style.display = 'none';
         } else {
@@ -220,6 +218,7 @@ class Calendar {
   daysColor() {
     let params = new URLSearchParams(window.location.search);
     let id = params.get('id');
+    let maxTime = 0;
 
     fetch('/workspace?id=' + id)
       .then(response => {
@@ -230,13 +229,18 @@ class Calendar {
           let time = item.time;
           let editDate = item.editDate;
 
+          if (time > maxTime) {
+            maxTime = time;
+          }
+
           let calendarItem = document.querySelectorAll(`.dayCard`);
           calendarItem.forEach(element => {
             if (element.dataset.day === date){
               let tmpDate = editDate.replace(":", "h").split(":");
               element.dataset.editDate = tmpDate[0];
               element.dataset.time = time;
-              element.style.backgroundColor = 'rgba(125, 125, 125, 0.'+time+')';
+              let opacity = time / maxTime;
+              element.style.backgroundColor = 'rgba(125, 125, 125, '+opacity+')';
               return;
             }
           });
@@ -244,7 +248,7 @@ class Calendar {
           if (calendarItem) {
             calendarItem.textContent = time;
           }
-        }
+        }        
       })
       .catch(error => console.error(error));
   }
