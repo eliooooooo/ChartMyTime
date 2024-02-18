@@ -213,12 +213,28 @@ class Calendar {
     }
   }
 
+  /**
+   * 
+   */
+  getColor() {
+    let color = document.querySelector('#calendar').dataset.color;
+    const colorsRgb = {
+      "63CDE9": 'rgba(99, 205, 233,',
+      "D988B3": 'rgba(217, 136, 179,',
+      "46A457": 'rgba(70, 164, 87,'
+    }
+    let currentColor = colorsRgb[color];
+
+    return currentColor;
+  }
+
   /*
   */
   daysColor() {
     let params = new URLSearchParams(window.location.search);
     let id = params.get('id');
     let maxTime = 0;
+    let currentColor = this.getColor();
 
     fetch('/workspace?id=' + id)
       .then(response => {
@@ -240,7 +256,7 @@ class Calendar {
               element.dataset.editDate = tmpDate[0];
               element.dataset.time = time;
               let opacity = time / maxTime;
-              element.style.backgroundColor = 'rgba(125, 125, 125, '+opacity+')';
+              element.style.backgroundColor = currentColor+opacity+')';
               return;
             }
           });
@@ -281,7 +297,7 @@ class Calendar {
   */
   displayModal() {
     const constants = this.setConstants();
-
+    const currentColor = this.getColor();
     const modalDisplays = this.setModalDisplays();
     
     modalDisplays.dayCards.forEach(function(dayCard) {
@@ -292,7 +308,7 @@ class Calendar {
               modalDisplays.detailTimeDay.innerHTML = dayCard.getAttribute('data-edit-date');
               modalDisplays.detailOnOpen.classList.remove('hidden');
               modalDisplays.detailError.classList.add('hidden');
-              modalDisplays.colordetailTime.style.backgroundColor = 'rgba(125, 125, 125, 0.'+dayCard.dataset.time+')';
+              modalDisplays.colordetailTime.style.backgroundColor = currentColor+dayCard.dataset.time+')';
             } else {
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
