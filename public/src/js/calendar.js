@@ -256,6 +256,7 @@ class Calendar {
               element.dataset.editDate = tmpDate[0];
               element.dataset.time = time;
               let opacity = time / maxTime;
+              element.dataset.opacity = opacity;
               element.style.backgroundColor = currentColor+opacity+')';
               return;
             }
@@ -308,7 +309,8 @@ class Calendar {
               modalDisplays.detailTimeDay.innerHTML = dayCard.getAttribute('data-edit-date');
               modalDisplays.detailOnOpen.classList.remove('hidden');
               modalDisplays.detailError.classList.add('hidden');
-              modalDisplays.colordetailTime.style.backgroundColor = currentColor+dayCard.dataset.time+')';
+              const opacity = dayCard.dataset.opacity;
+              modalDisplays.colordetailTime.style.backgroundColor = currentColor+opacity+')';
             } else {
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
