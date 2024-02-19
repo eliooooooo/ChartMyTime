@@ -25,8 +25,7 @@ class Workspace {
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
-        $days = $SqlGenerator->select('Day', '*', 'workspace = ' . $id);
-        // echo trim(json_encode($days));
+        $days = $SqlGenerator->select('Day', 'date, time, editDate, comments', 'workspace = ' . $id);
         header('X-Json-Data: ' . trim(json_encode($days)));
 
         return trim(json_encode($days));

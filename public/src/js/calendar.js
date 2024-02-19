@@ -228,6 +228,23 @@ class Calendar {
     return currentColor;
   }
 
+  /**
+   * 
+   */
+  getComment($date, $commentElement) {
+    let params = new URLSearchParams(window.location.search);
+    let id = params.get('id');
+
+    fetch('/workspace?id=' + id)
+      .then(response => {
+        let jsonData = JSON.parse(response.headers.get('X-Json-Data'));
+
+        let item = jsonData.find(item => item.date === $date && item.comments);
+        $commentElement.innerHTML = item ? item.comments : 'No comments.';
+      })
+      .catch(error => console.error(error));
+  }
+
   /*
   */
   daysColor() {
@@ -288,8 +305,9 @@ class Calendar {
     const detailTimeDay = document.querySelector('.detailsTimeDay');
     const detailError = document.querySelector('.detailError');
     const colordetailTime = document.querySelector('.colorDetailTime');
+    const detailComment = document.querySelector('.detailComment');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment};
   }
 
   /*
@@ -300,6 +318,9 @@ class Calendar {
     const constants = this.setConstants();
     const currentColor = this.getColor();
     const modalDisplays = this.setModalDisplays();
+    const self = this;
+    // const Comments = this.getComment();
+    // console.log(Comments);
     
     modalDisplays.dayCards.forEach(function(dayCard) {
         dayCard.addEventListener('click' , function() {
@@ -311,6 +332,7 @@ class Calendar {
               modalDisplays.detailError.classList.add('hidden');
               const opacity = dayCard.dataset.opacity;
               modalDisplays.colordetailTime.style.backgroundColor = currentColor+opacity+')';
+              self.getComment(dayNumber, modalDisplays.detailComment);
             } else {
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
