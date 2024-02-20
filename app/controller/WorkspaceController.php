@@ -33,11 +33,11 @@ Class WorkspaceController extends ControllerBase {
                 $workspace->user = $_SESSION['user_id'];
                 $workspaceNumber = $workspace->getWorkspaceByUser($_SESSION['user_id']);
                 if (strlen($workspace->name) > 50 || strlen($workspace->name) === 0){
-                    echo "<p class='notification'>The workspace's name length must be between 0 and 50 character.</p>";
-                    echo $this->render('components/calendar.html.twig');
+                    $_SESSION['notification'] = "<p class='notification'>The workspace's name length must be between 0 and 50 character.</p>";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                 } elseif($workspaceNumber >= 8) {
-                    echo "<p class='notification'>You have reached the maximum number of workspaces for a user (8).</p>";
-                    echo $this->render('components/calendar.html.twig');
+                    $_SESSION['notification'] = "<p class='notification'>You have reached the maximum number of workspaces for a user (8).</p>";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                 } else {
                     $id = $workspace->create();
                     echo "<p class='notification success'>The workspace has been created</p>";
