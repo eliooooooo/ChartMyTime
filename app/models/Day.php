@@ -3,8 +3,9 @@
 class Day{
     // liste des attributs
     public $id;
-    public $DayOfWeek;
-    public $DayNumber;
+    public $Time;
+    public $Comments;
+    public $editDate;
     public $Date;
     public $Workspace;
 
@@ -46,16 +47,13 @@ class Day{
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
-        // Construction du tableau de données
-        $data = [];
-        foreach ($this->getAttributes() as $key => $value) {
-            if (!empty($value)) {
-                $data[$key] = $value;
-            }
-        }
-
-        // Appel de la méthode insert de SqlGenerator
-        $SqlGenerator->insert('day', $data);
+        $SqlGenerator->insert('Day', [
+            'date' => $this->Date,
+            'workspace' => $this->Workspace,
+            'time' => $this->Time,
+            'comments' => $this->Comments,
+            'editDate' => date('Y-m-d H:i:s')
+        ]);
 
         // Récupération de l'id
         $this->id = $pdo->lastInsertId();

@@ -300,8 +300,10 @@ class Calendar {
     const colordetailTime = document.querySelector('.colorDetailTime');
     const detailComment = document.querySelector('.detailComment');
     const deleteDetailTime = document.querySelector('.deleteDetailTime');
+    const inputDate = document.querySelector('#inputDate');
+    const inputWorkspace = document.querySelector('#inputWorkspace');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace};
   }
 
   /**
@@ -336,6 +338,8 @@ class Calendar {
               modalDisplays.detailError.classList.remove('hidden');
               modalDisplays.colordetailTime.style.backgroundColor = '#fff';
             }
+            modalDisplays.inputDate.value = dayNumber;
+            modalDisplays.inputWorkspace.value = document.querySelector('#calendar').dataset.id;
             let split = dayNumber.split('-');
             dayNumber = split[2];
             modalDisplays.dayModal.classList.remove('hidden');

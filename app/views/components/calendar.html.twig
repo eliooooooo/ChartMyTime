@@ -4,7 +4,7 @@
 <!-- From calendar.html.twig -->
     {# <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div> #}
     {% include "includes/modal.html.twig" %}
-    <div id="calendar" data-color="{{ user_color }}">
+    <div id="calendar" data-color="{{ user_color }}" data-id="{{ workspace.0.id }}" >
         <div class="headerCalendar">
         <h1><span class="month"> </span> <span  class="year"> </span></h1>
         <div class="controls">

@@ -2,40 +2,33 @@
 
 Class DayController extends ControllerBase {
 
-    /**
-     * Permet de mettre à jour les informations de l'utilisateur connecté
-     */
-    function update(){
-        if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
-            $this->render('/page/login.html.twig');
+    function create() {
+        if($_SESSION == false){
+            echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
+            $this->render('page/login.html.twig');
         } else {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $currentPassword = $_POST['password'];
-                $newPassword = $_POST['newPassword'];
-
-                $user = new User;
-                $user = $user->getById($_SESSION['user_id']);
-                if (password_verify($currentPassword, $user[0]['password'])) {
-                    if($newPassword != $_POST['confirmPassword']){
-                        echo "<p class='notification'>The new passwords do not match</p>";
-                        $this->render('/page/user.html.twig');
-                    } elseif ($newPassword === $currentPassword) {
-                        echo "<p class='notification'>The new password must be different from the current password</p>";
-                        $this->render('/page/user.html.twig');
+                if (isset($_POST['date']) && isset($_POST['workspace']) && isset($_POST['time']) && $_POST['time'] =! "" && $_POST['time'] != NULL){
+                    if ($_POST['time'] > 0 && $_POST['time'] <= 24) {
+                        $_SESSION['notification'] = "<p class='notification'>Daily time must be between 0 and 24 hours.</p>";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
                     } else {
-                        $user = new User;
-                        $user->updatePassword($newPassword);
-                        $params = ["user" => $user->read()];
-                        echo "<p class='notification success'>Your password has been updated</p>";
-                        $this->render('/page/user.html.twig', $params);
+                        $day = new Day();
+                        $day->Date = $_POST['date'];
+                        $day->Workspace = $_POST['workspace'];
+                        $day->Time = $_POST['time'];
+                        $day->Comments = $_POST['comments'];
+    
+                        $day->create();
+                        $_SESSION['notification'] = "<p class='notification success'>The day has been updated</p>";
+                        header('Location: ' . $_SERVER['HTTP_REFERER']);
                     }
                 } else {
-                    $params = ["user" => $user->read()];
-                    echo "<p class='notification'>The current password is incorrect</p>";
-                    $this->render('/page/user.html.twig', $params);
+                    $_SESSION['notification'] = "<p class='notification'>You must fill the form fields</p>";
+                    header('Location: ' . $_SERVER['HTTP_REFERER']);
                 }
             }
-        };
+        }
     }
 
     function delete($id){
