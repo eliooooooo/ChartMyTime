@@ -251,6 +251,7 @@ class Calendar {
           let time = item.time;
           let editDate = item.editDate;
           let comment = item.comments;
+          let idDay = item.id;
 
           if (time > maxTime) {
             maxTime = time;
@@ -263,6 +264,7 @@ class Calendar {
               element.dataset.editDate = tmpDate[0];
               element.dataset.time = time;
               element.dataset.comment = comment;
+              element.dataset.id = idDay;
               let opacity = time / maxTime;
               element.dataset.opacity = opacity;
               element.style.backgroundColor = currentColor+opacity+')';
@@ -297,8 +299,9 @@ class Calendar {
     const detailError = document.querySelector('.detailError');
     const colordetailTime = document.querySelector('.colorDetailTime');
     const detailComment = document.querySelector('.detailComment');
+    const deleteDetailTime = document.querySelector('.deleteDetailTime');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime};
   }
 
   /**
@@ -310,8 +313,6 @@ class Calendar {
     const currentColor = this.getColor();
     const modalDisplays = this.setModalDisplays();
     const self = this;
-    // const Comments = this.getComment();
-    // console.log(Comments);
     
     modalDisplays.dayCards.forEach(function(dayCard) {
         dayCard.addEventListener('click' , function() {
@@ -323,7 +324,8 @@ class Calendar {
               modalDisplays.detailError.classList.add('hidden');
               const opacity = dayCard.dataset.opacity;
               modalDisplays.colordetailTime.style.backgroundColor = currentColor+opacity+')';
-              if (dayCard.dataset.comment) {
+              modalDisplays.deleteDetailTime.href = '/day?action=delete&id=' + dayCard.dataset.id;
+              if (dayCard.dataset.comment && dayCard.dataset.comment != 'null' && dayCard.dataset.comment != 'undefined' && dayCard.dataset.comment != '') {
                 modalDisplays.detailComment.innerHTML = dayCard.dataset.comment;
               } else {
                 modalDisplays.detailComment.innerHTML = 'No comments.';

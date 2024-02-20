@@ -5,6 +5,7 @@ Class WorkspaceController extends ControllerBase {
     function read($id){
         if($_SESSION == false){
             echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
+            $this->render('page/login.html.twig');
         } else {
             $workspace = new Workspace();
             $workspace = $workspace->read($id);
@@ -24,6 +25,7 @@ Class WorkspaceController extends ControllerBase {
     function create(){
         if($_SESSION == false){
             echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
+            $this->render('page/login.html.twig');
         } else {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $workspace = new Workspace();
@@ -52,6 +54,7 @@ Class WorkspaceController extends ControllerBase {
     function delete($id){
         if($_SESSION == false){
             echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
+            $this->render('page/login.html.twig');
         } else {
             $workspace = new Workspace();
             $workspace->delete($id);

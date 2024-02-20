@@ -90,7 +90,6 @@ class Day{
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
-        // Appel de la méthode delete de SqlGenerator
-        $SqlGenerator->delete('day', 'id = ' . $id);
+        $SqlGenerator->delete('Day', 'id = ' . $id);
     }
 }

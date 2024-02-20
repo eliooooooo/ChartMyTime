@@ -78,7 +78,7 @@ class SqlGenerator {
         if (!empty($conditions)) {
             $query .= " WHERE $conditions";
         }
-
+        
         // Préparation et exécution de la requête
         $statement = $this->pdo->prepare($query);
         $statement->execute();    

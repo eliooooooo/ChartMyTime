@@ -18,6 +18,12 @@ if (isset($_SESSION['user'])){
     $_SESSION['is_connected'] = false;
 }
 
+// Affichager des notifications
+if (isset($_SESSION['notification'])) {
+    echo $_SESSION['notification'];
+    unset($_SESSION['notification']);
+}
+
 // Appel des différents modèles
 foreach (glob('app/models/*.php') as $filename) {
     include_once $filename;
