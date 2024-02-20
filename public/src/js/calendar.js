@@ -3,29 +3,29 @@
 
 class Calendar {
 
-  /*
-    Fonction pour récupérer la date actuelle
-    Renvoie un objet avec les propriétés suivantes:
-      currentNumber: le numéro du jour actuel
-      currentMonth: le numéro du mois actuel
-      currentYear: l'année actuelle
-      currentDayOfWeek: le numéro du jour de la semaine actuel
-  */
+  /**
+   * Fonction pour récupérer la date actuelle
+   * Renvoie un objet avec les propriétés suivantes:
+   *  currentNumber: le numéro du jour actuel
+   *  currentMonth: le numéro du mois actuel
+   *  currentYear: l'année actuelle
+   *  currentDayOfWeek: le numéro du jour de la semaine actuel
+   */
   getCurrentDate() {
     let currentDate = new Date();
     return currentDate = { currentNumber: currentDate.getDate(), currentMonth: currentDate.getMonth(), currentYear: currentDate.getFullYear(), currentDayOfWeek: currentDate.getDay() == 0 ? 7 : currentDate.getDay() };
   }
 
-  /*
-    Fonction pour définir les constantes
-    Renvoie un objet avec les propriétés suivantes:
-      months: les mois de l'année
-      days: les jours de la semaine
-      dp_days: display du jour de la semaine actuel
-      dp_number: display du numéro du jour actuel
-      dp_month: display du mois actuel
-      dp_year: display de l'année actuelle
-  */
+  /**
+   * Fonction pour définir les constantes
+   * Renvoie un objet avec les propriétés suivantes:
+   * months: les mois de l'année
+   *  days: les jours de la semaine
+   *  dp_days: display du jour de la semaine actuel
+   *  dp_number: display du numéro du jour actuel
+   *  dp_month: display du mois actuel
+   *  dp_year: display de l'année actuelle
+   */
   setConstants() {
     const currentDate = this.getCurrentDate();
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Septembre', 'October', 'November', 'December'];
@@ -41,10 +41,10 @@ class Calendar {
   }
 
 
-  /*
-    Fonction pour définir le jour actuel et lui applique son style
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour définir le jour actuel et lui appliquer son style
+   * Ne renvoie rien
+   */
   setCurrentDay(month, year) {
     const constants = this.setConstants();
     const currentDate = this.getCurrentDate();
@@ -63,10 +63,10 @@ class Calendar {
     }
   }
 
-  /*
-    Fonction pour afficher le mois et l'année
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour afficher le mois de l'année
+   * Ne renvoie rien
+   */
   setMonthYear(month, year) {
     const constants = this.setConstants();
 
@@ -76,10 +76,10 @@ class Calendar {
     constants.dp_year.dataset.year = year;
   }
 
-  /*
-    Fonction pour afficher le mois suivant
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour afficher le mois suivant
+   * Ne renvoie rien
+   */
   nextMonth() {
     const constants = this.setConstants();
     const currentDate = this.getCurrentDate();
@@ -106,10 +106,10 @@ class Calendar {
     this.displayCalendar(currentMonth, currentYear);
   }
 
-  /*
-    Fonction pour afficher le mois précédent
-    Ne renvoie rien
-  */
+  /**
+   * fonction pour afficher le mois précédent
+   * Ne renvoie rien
+   */
   previousMonth() {
     const constants = this.setConstants();
     const currentDate = this.getCurrentDate();
@@ -136,10 +136,10 @@ class Calendar {
     this.displayCalendar(currentMonth, currentYear);
   }
 
-  /*
-    Fonction pour afficher le mois actuel
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour définir le mois actuel
+   * Ne renvoie rien
+   */
   setCurrentMonth() {
     const currentDate = this.getCurrentDate();
     let btn_previousMonth = document.querySelector('.previousMonth');
@@ -148,17 +148,20 @@ class Calendar {
     displayCalendar(currentDate.currentMonth, currentDate.currentYear);
   }
 
-  /*
-
-  */
+  /**
+   * Fonction pour définir la date du workspace via le formulaire
+   * Ne renvoie rien
+   */
   setFormDate() {
     const constants = this.setConstants();  
     const currentDate = this.getCurrentDate();
 
     let month = document.querySelector('#month').value;
     let year = document.querySelector('#year').value;
-    if (month && year && year >= currentDate.currentYear - 1 && year <= currentDate.currentYear + 1 && month >= 0 && month <= 11) {
-      if (year < currentDate.currentYear || (year == currentDate.currentYear && month <= currentDate.currentMonth)) {
+    if (month && year && year >= currentDate.currentYear - 1 && year <= currentDate.currentYear && month >= 0 && month <= 11) {
+      let oneYearAgo = new Date();
+      oneYearAgo.setFullYear(currentDate.currentYear - 1);
+      if ((year == currentDate.currentYear && month <= currentDate.currentMonth) || (year == oneYearAgo.getFullYear() && month >= oneYearAgo.getMonth())) {
         displayCalendar(month, year);
         if (year >= currentDate.currentYear && month >= currentDate.currentMonth) {
           btn_nextMonth.style.display = 'none';
@@ -166,7 +169,7 @@ class Calendar {
           btn_nextMonth.style.display = 'block';
         }
 
-        if (year <= currentDate.currentYear - 1 && month < currentDate.currentMonth) {
+        if (year <= currentDate.currentYear - 1 && month <= currentDate.currentMonth) {
           btn_previousMonth.style.display = 'none';
         } else {
           btn_previousMonth.style.display = 'block';
@@ -175,10 +178,10 @@ class Calendar {
     }
   }
 
-  /*
-    Fonction pour supprimer les anciens jours
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour supprimer les anciens jours 
+   * Ne renvoie rien
+   */
   deleteOldDays() {
     let oldDays = document.querySelectorAll('.dayCard');
 
@@ -189,10 +192,10 @@ class Calendar {
     }
   }
 
-  /*
-    Fonction pour afficher les jours du mois
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour afficher les jours du mois
+   * Ne renvoie rien
+   */
   displayDays(nbDays, firstDay, month, year) {
     for (let j = 0; j < firstDay; j++) {
       let dayCard = document.createElement('div');
@@ -214,7 +217,8 @@ class Calendar {
   }
 
   /**
-   * 
+   * Fonction pour récupérer la couleur de l'utilisateur sur le workspace
+   * Renvoie la couleur de l'utilisateur
    */
   getColor() {
     let color = document.querySelector('#calendar').dataset.color;
@@ -229,24 +233,9 @@ class Calendar {
   }
 
   /**
-   * 
+   * Fonction pour définir les data des jours
+   * Ne renvoie rien
    */
-  getComment($date, $commentElement) {
-    let params = new URLSearchParams(window.location.search);
-    let id = params.get('id');
-
-    fetch('/workspace?id=' + id)
-      .then(response => {
-        let jsonData = JSON.parse(response.headers.get('X-Json-Data'));
-
-        let item = jsonData.find(item => item.date === $date && item.comments);
-        $commentElement.innerHTML = item ? item.comments : 'No comments.';
-      })
-      .catch(error => console.error(error));
-  }
-
-  /*
-  */
   daysColor() {
     let params = new URLSearchParams(window.location.search);
     let id = params.get('id');
@@ -261,6 +250,7 @@ class Calendar {
           let date = item.date;
           let time = item.time;
           let editDate = item.editDate;
+          let comment = item.comments;
 
           if (time > maxTime) {
             maxTime = time;
@@ -272,6 +262,7 @@ class Calendar {
               let tmpDate = editDate.replace(":", "h").split(":");
               element.dataset.editDate = tmpDate[0];
               element.dataset.time = time;
+              element.dataset.comment = comment;
               let opacity = time / maxTime;
               element.dataset.opacity = opacity;
               element.style.backgroundColor = currentColor+opacity+')';
@@ -287,14 +278,14 @@ class Calendar {
       .catch(error => console.error(error));
   }
 
-  /*
-    Fonction pour définir les constantes pour le modal
-    Renvoie un objet avec les propriétés suivantes:
-      dayCards: les jours du mois
-      dayModal: le modal
-      modalDate: la date du modal
-      modalMonth: le mois du modal
-  */
+  /**
+   * Fonction pour définir les constantes pour le modal
+   * Renvoie un objet avec les propriétés suivantes:
+   *  dayCards: les jours du mois
+   *  dayModal: le modal
+   *  modalDate: la date du modal 
+   *  modalMonth: le mois du modal
+   */
   setModalDisplays() {
     const dayCards = document.querySelectorAll('.dayCard:not(.empty)');
     const dayModal = document.querySelector('.dayModal');
@@ -310,10 +301,10 @@ class Calendar {
     return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment};
   }
 
-  /*
-    Fonction pour afficher le modal
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour afficher le modal
+   * Ne renvoie rien
+   */
   displayModal() {
     const constants = this.setConstants();
     const currentColor = this.getColor();
@@ -332,7 +323,11 @@ class Calendar {
               modalDisplays.detailError.classList.add('hidden');
               const opacity = dayCard.dataset.opacity;
               modalDisplays.colordetailTime.style.backgroundColor = currentColor+opacity+')';
-              self.getComment(dayNumber, modalDisplays.detailComment);
+              if (dayCard.dataset.comment) {
+                modalDisplays.detailComment.innerHTML = dayCard.dataset.comment;
+              } else {
+                modalDisplays.detailComment.innerHTML = 'No comments.';
+              }
             } else {
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
@@ -349,10 +344,10 @@ class Calendar {
     });
   }
 
-  /*
-    Fonction pour afficher le calendrier
-    Ne renvoie rien
-  */
+  /**
+   * Fonction pour afficher le calendrier
+   * Ne renvoie rien
+   */
   displayCalendar(month, year) {
 
     this.setMonthYear(month, year);
