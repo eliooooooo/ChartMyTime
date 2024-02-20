@@ -247,15 +247,18 @@ class Calendar {
         let jsonData = JSON.parse(response.headers.get('X-Json-Data'));
 
         for (let item of jsonData) {
+          let time = parseFloat(item.time);
+          if (time > maxTime) {
+            maxTime = time;
+          }
+        }
+
+        for (let item of jsonData) {
           let date = item.date;
           let time = item.time;
           let editDate = item.editDate;
           let comment = item.comments;
           let idDay = item.id;
-
-          if (time > maxTime) {
-            maxTime = time;
-          }
 
           let calendarItem = document.querySelectorAll(`.dayCard`);
           calendarItem.forEach(element => {
