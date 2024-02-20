@@ -31,7 +31,6 @@ Class WorkspaceController extends ControllerBase {
                 $workspace = new Workspace();
                 $workspace->name = $_POST['name'];
                 $workspace->user = $_SESSION['user_id'];
-                $id = $workspace->create();
                 $workspaceNumber = $workspace->getWorkspaceByUser($_SESSION['user_id']);
                 if (strlen($workspace->name) > 50 || strlen($workspace->name) === 0){
                     echo "<p class='notification'>The workspace's name length must be between 0 and 50 character.</p>";
@@ -40,6 +39,7 @@ Class WorkspaceController extends ControllerBase {
                     echo "<p class='notification'>You have reached the maximum number of workspaces for a user (8).</p>";
                     echo $this->render('components/calendar.html.twig');
                 } else {
+                    $id = $workspace->create();
                     echo "<p class='notification success'>The workspace has been created</p>";
                     $data = $this->read($id);
                 }
