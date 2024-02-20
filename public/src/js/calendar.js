@@ -305,8 +305,9 @@ class Calendar {
     const deleteDetailTime = document.querySelector('.deleteDetailTime');
     const inputDate = document.querySelector('#inputDate');
     const inputWorkspace = document.querySelector('#inputWorkspace');
+    const formAddTime = document.querySelector('#formAddTime');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace, formAddTime: formAddTime};
   }
 
   /**
@@ -330,6 +331,7 @@ class Calendar {
               const opacity = dayCard.dataset.opacity;
               modalDisplays.colordetailTime.style.backgroundColor = currentColor+opacity+')';
               modalDisplays.deleteDetailTime.href = '/day?action=delete&id=' + dayCard.dataset.id;
+              modalDisplays.formAddTime.action = '/day?action=update&id=' + dayCard.dataset.id;
               if (dayCard.dataset.comment && dayCard.dataset.comment != 'null' && dayCard.dataset.comment != 'undefined' && dayCard.dataset.comment != '') {
                 modalDisplays.detailComment.innerHTML = dayCard.dataset.comment;
               } else {

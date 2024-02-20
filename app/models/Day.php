@@ -78,6 +78,18 @@ class Day{
     }
 
     /**
+     * Permet de mettre à jour un jour
+     *
+     * @return void
+     */
+    function update($id){
+        $pdo = connexion();
+        $SqlGenerator = new SqlGenerator($pdo);
+
+        $SqlGenerator->update('Day', $this->getAttributes(), 'id = ' . $this->id);
+    }
+
+    /**
      * Permet de supprimer un jour
      *
      * @param $id
