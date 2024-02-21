@@ -51,15 +51,22 @@ Class DayController extends ControllerBase {
                         $_SESSION['notification'] = "<p class='notification'>The minutes must be between 0 and 60.</p>";
                         header('Location: ' . $_SERVER['HTTP_REFERER']);
                     } else {
-                        $day = new Day();
-                        $day->Date = $_POST['date'];
-                        $day->Workspace = $_POST['workspace'];
-                        $day->Time = $time;
-                        $day->Comments = $_POST['comments'];
-    
-                        $day->update($id);
-                        $_SESSION['notification'] = "<p class='notification success'>The day has been updated</p>";
-                        header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        $existingDay = new Day();
+                        $existingDay = $existingDay->read($id);
+
+                        if (($time += $existingDay[0]['time']) > 24){
+                            $_SESSION['notification'] = "<p class='notification'>The daily time must be between 0 and 24 hours.</p>";
+                            header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        } else {
+                            $day = new Day();
+                            $day->Date = $_POST['date'];
+                            $day->Workspace = $_POST['workspace'];
+                            $day->Time = $time;
+                            $day->Comments = $_POST['comments'];
+                            $day->update($id);
+                            $_SESSION['notification'] = "<p class='notification success'>The day has been updated</p>";
+                            header('Location: ' . $_SERVER['HTTP_REFERER']);
+                        }
                     }
                 } else {
                     $_SESSION['notification'] = "<p class='notification'>Invalid time format. Use the format 'h:m', e.g. '1h30' or '1h'.</p>";

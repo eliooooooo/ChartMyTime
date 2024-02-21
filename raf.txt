@@ -1,4 +1,6 @@
 Update feature on workspace
-update feature on day
+update feature on day ? gestion des erreurs ?
 
 gestion des erreurs toolbar
+
+responsive mobile menu, workspace tab
