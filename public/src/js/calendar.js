@@ -338,6 +338,7 @@ class Calendar {
                 modalDisplays.detailComment.innerHTML = 'No comments.';
               }
             } else {
+              modalDisplays.formAddTime.action = '/day?action=create';
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
               modalDisplays.detailError.classList.remove('hidden');
