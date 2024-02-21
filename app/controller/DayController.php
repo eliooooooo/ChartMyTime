@@ -8,15 +8,16 @@ Class DayController extends ControllerBase {
             $this->render('page/login.html.twig');
         } else {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['date']) && isset($_POST['workspace']) && isset($_POST['time']) && $_POST['time'] =! "" && $_POST['time'] != NULL){
-                    if ($_POST['time'] > 0 && $_POST['time'] <= 24) {
+                var_dump(intval($_POST['time']));
+                if (isset($_POST['date']) && isset($_POST['workspace']) && isset($_POST['time']) && $_POST['time'] != "" && $_POST['time'] != NULL){
+                    if (intval($_POST['time']) < 0 && intval($_POST['time'] > 24)) {
                         $_SESSION['notification'] = "<p class='notification'>Daily time must be between 0 and 24 hours.</p>";
                         header('Location: ' . $_SERVER['HTTP_REFERER']);
                     } else {
                         $day = new Day();
                         $day->Date = $_POST['date'];
                         $day->Workspace = $_POST['workspace'];
-                        $day->Time = $_POST['time'];
+                        $day->Time = intval($_POST['time']);
                         $day->Comments = $_POST['comments'];
     
                         $day->create();
