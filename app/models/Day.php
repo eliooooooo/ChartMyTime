@@ -86,6 +86,19 @@ class Day{
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
+        // Récupérer l'enregistrement existant
+        $existingDay = $SqlGenerator->select('Day', '*', 'id = ' . $id);
+
+        // Ajouter le nouveau temps à l'ancien
+        $this->Time += $existingDay[0]['time'];
+        $this->id = $id;
+        $this->editDate = date('Y-m-d H:i:s');
+        if ($this->Comments === '' || $this->Comments === NULL){
+            $this->Comments = $existingDay[0]['comments'];
+        }
+        var_dump($existingDay);
+
+        // Mettre à jour l'enregistrement avec le nouveau total
         $SqlGenerator->update('Day', $this->getAttributes(), 'id = ' . $this->id);
     }
 

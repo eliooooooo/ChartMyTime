@@ -305,8 +305,10 @@ class Calendar {
     const inputDate = document.querySelector('#inputDate');
     const inputWorkspace = document.querySelector('#inputWorkspace');
     const formAddTime = document.querySelector('#formAddTime');
+    const modalComment = document.querySelector('#modalComment');
+    const modalTime = document.querySelector('#modalTime');
 
-    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace, formAddTime: formAddTime};
+    return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace, formAddTime: formAddTime, modalComment: modalComment, modalTime: modalTime};
   }
 
   formatTime(time) {
@@ -349,6 +351,8 @@ class Calendar {
               modalDisplays.detailError.classList.remove('hidden');
               modalDisplays.colordetailTime.style.backgroundColor = '#fff';
             }
+            modalDisplays.modalComment.value = '';
+            modalDisplays.modalTime.value = '';
             modalDisplays.inputDate.value = dayNumber;
             modalDisplays.inputWorkspace.value = document.querySelector('#calendar').dataset.id;
             let split = dayNumber.split('-');
