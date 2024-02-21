@@ -310,6 +310,12 @@ class Calendar {
     return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace, formAddTime: formAddTime};
   }
 
+  formatTime(time) {
+    let hours = Math.floor(time);
+    let minutes = Math.round((time - hours) * 60);
+    return hours + 'h' + String(minutes).padStart(2, '0');
+  }
+
   /**
    * Fonction pour afficher le modal
    * Ne renvoie rien
@@ -324,7 +330,7 @@ class Calendar {
         dayCard.addEventListener('click' , function() {
             let dayNumber = dayCard.dataset.day;
             if (dayCard.dataset.time) {
-              modalDisplays.DetailsTimeTime.innerHTML = dayCard.dataset.time+'h';
+              modalDisplays.DetailsTimeTime.innerHTML = self.formatTime(dayCard.dataset.time);
               modalDisplays.detailTimeDay.innerHTML = dayCard.getAttribute('data-edit-date');
               modalDisplays.detailOnOpen.classList.remove('hidden');
               modalDisplays.detailError.classList.add('hidden');
