@@ -87,17 +87,9 @@ class Calendar {
     let currentMonth = Number(constants.dp_month.dataset.month);
     let currentYear = Number(constants.dp_year.dataset.year);
 
-    let btn_nextMonth = document.querySelector('.nextMonth');
-    let btn_previousMonth = document.querySelector('.previousMonth');
-    btn_previousMonth.style.display = 'block';
-
     // Vérifie si le mois suivant est dans le futur
     if (currentYear > currentDate.currentYear || (currentYear === currentDate.currentYear && currentMonth >= currentDate.currentMonth)) {
       return;
-    }
-
-    if (currentYear > currentDate.currentYear || (currentYear === currentDate.currentYear && currentMonth + 1 >= currentDate.currentMonth)) {
-      btn_nextMonth.style.display = 'none';
     }
     
     currentMonth == 11 ? currentYear++ : currentYear;
@@ -117,17 +109,9 @@ class Calendar {
     let currentMonth = Number(constants.dp_month.dataset.month);
     let currentYear = Number(constants.dp_year.dataset.year);
 
-    let btn_previousMonth = document.querySelector('.previousMonth');
-    let btn_nextMonth = document.querySelector('.nextMonth');
-    btn_nextMonth.style.display = 'block';
-
     // Vérifie si le mois précédent est plus d'un an en arrière
     if (currentYear < currentDate.currentYear - 1 || (currentYear === currentDate.currentYear - 1 && currentMonth <= currentDate.currentMonth)) {
       return;
-    }
-
-    if (currentYear < currentDate.currentYear - 1 || (currentYear === currentDate.currentYear - 1 && currentMonth - 1 <= currentDate.currentMonth)) {
-      btn_previousMonth.style.display = 'none';
     }
 
     currentMonth == 0 ? currentYear-- : currentYear;
@@ -142,8 +126,6 @@ class Calendar {
    */
   setCurrentMonth() {
     const currentDate = this.getCurrentDate();
-    let btn_previousMonth = document.querySelector('.previousMonth');
-    btn_previousMonth.style.display = 'block';
 
     displayCalendar(currentDate.currentMonth, currentDate.currentYear);
   }
@@ -283,6 +265,23 @@ class Calendar {
       .catch(error => console.error(error));
   }
 
+  displayNav(month, year) {
+    const constants = this.setConstants();
+    const currentDate = this.getCurrentDate();
+    let btn_nextMonth = document.querySelector('.nextMonth');
+    let btn_previousMonth = document.querySelector('.previousMonth');
+    btn_previousMonth.style.display = 'block';
+    btn_nextMonth.style.display = 'block';
+
+    if (year > currentDate.currentYear || (year === currentDate.currentYear && month >= currentDate.currentMonth)) {
+      btn_nextMonth.style.display = 'none';
+    }
+
+    if (year < currentDate.currentYear - 1 || (year === currentDate.currentYear - 1 && month <= currentDate.currentMonth)) {
+      btn_previousMonth.style.display = 'none';
+    }
+  }
+
   /**
    * Fonction pour définir les constantes pour le modal
    * Renvoie un objet avec les propriétés suivantes:
@@ -379,6 +378,7 @@ class Calendar {
     this.daysColor();
     this.setCurrentDay(month, year);
     this.displayModal();
+    this.displayNav(month, year);
   }
 }
 
