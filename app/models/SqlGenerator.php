@@ -37,7 +37,6 @@ class SqlGenerator {
         $columns = implode(", ", array_keys($data));
         $values = implode(", ", array_map(function($value) { return $this->pdo->quote($value); }, array_values($data)));
         $query = "INSERT INTO $table ($columns) VALUES ($values)";
-        echo $query;
 
         // Préparation et exécution de la requête
         $statement = $this->pdo->prepare($query);

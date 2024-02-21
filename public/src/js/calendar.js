@@ -144,7 +144,7 @@ class Calendar {
       let oneYearAgo = new Date();
       oneYearAgo.setFullYear(currentDate.currentYear - 1);
       if ((year == currentDate.currentYear && month <= currentDate.currentMonth) || (year == oneYearAgo.getFullYear() && month >= oneYearAgo.getMonth())) {
-        displayCalendar(month, year);
+        this.displayCalendar(month, year);
         if (year >= currentDate.currentYear && month >= currentDate.currentMonth) {
           btn_nextMonth.style.display = 'none';
         } else {
