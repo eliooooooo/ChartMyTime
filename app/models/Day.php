@@ -85,10 +85,7 @@ class Day{
         $pdo = connexion();
         $SqlGenerator = new SqlGenerator($pdo);
 
-        // Récupérer l'enregistrement existant
-        $existingDay = $SqlGenerator->select('Day', '*', 'id = ' . $id);
-
-        $this->Time += $existingDay[0]['time'];
+        $this->Time;
         $this->id = $id;
         $this->editDate = date('Y-m-d H:i:s');
         if ($this->Comments === '' || $this->Comments === NULL){

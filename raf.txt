@@ -3,4 +3,6 @@ update feature on day ? gestion des erreurs ?
 
 gestion des erreurs toolbar
 
-responsive mobile menu, workspace tab
+active state on menu
+
+optIN on register

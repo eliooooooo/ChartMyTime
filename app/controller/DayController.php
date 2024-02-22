@@ -54,6 +54,8 @@ Class DayController extends ControllerBase {
                         $existingDay = new Day();
                         $existingDay = $existingDay->read($id);
 
+                        echo "existingDay:".$existingDay[0]['time'];
+
                         if (($time += $existingDay[0]['time']) > 24){
                             $_SESSION['notification'] = "<p class='notification'>The daily time must be between 0 and 24 hours.</p>";
                             header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -62,6 +64,8 @@ Class DayController extends ControllerBase {
                             $day->Date = $_POST['date'];
                             $day->Workspace = $_POST['workspace'];
                             $day->Time = $time;
+                            echo "day->Time:";
+                            var_dump($day->Time);
                             $day->Comments = $_POST['comments'];
                             $day->update($id);
                             $_SESSION['notification'] = "<p class='notification success'>The day has been updated</p>";
