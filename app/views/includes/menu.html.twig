@@ -85,7 +85,7 @@
         </svg>
     </div>
     <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition style="display: none;">
-        <ul class="m-auto flex flex-col mt-4 text-left text-xl gap-4 w-80">
+        <ul class="m-auto flex flex-col mt-4 text-left text-xl gap-4 w-64 sm:w-80 ">
             <li><a href="/">Home</a></li>
             {% if is_connected %}
                 <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between gap-5" >Worskspaces

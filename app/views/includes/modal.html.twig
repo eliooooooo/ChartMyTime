@@ -1,12 +1,12 @@
 <!-- Start Modal.html.twig  -->
-<div class="dayModal absolute w-full h-full z-[80]" x-show="dayModalOpen" style="display: none;"
+<div class="dayModal absolute w-full h-full z-[80] bg-[rgba(0, 0, 0, 0.5)]" x-show="dayModalOpen"
     x-transition:enter="transition ease-out duration-300" 
     x-transition:enter-start="opacity-0" 
     x-transition:enter-end="opacity-100" 
     x-transition:leave="transition ease-in duration-300" 
     x-transition:leave-start="opacity-100" 
     x-transition:leave-end="opacity-0"
-    style="background: rgba(0, 0, 0, 0.5);">
+    style="background: rgba(0, 0, 0, 0.5); display: none;">
     <div class="p-3 xl:p-5 md:rounded-xl w-full h-auto md:w-2/3 lg:w-1/2 absolute bg-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30" @click.away="dayModalOpen = false">
         <div class="dayModalClose absolute top-3 xl:top-5 right-3 xl:right-5 z-20 hover:cursor-pointer" @click="dayModalOpen = !dayModalOpen">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
@@ -18,7 +18,7 @@
             <div class="modalCardTime relative w-full xl:w-[30%] h-24 xl:h-36 rounded-xl">
                 <div class="colorDetailTime bg-white border-[1px] border-gray-400 w-full h-full rounded-xl"></div>
                 <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-info-circle-fill absolute top-0 ml-3 mt-3 hover:cursor-pointer" viewBox="0 0 16 16" data-tippy-placement="bottom" data-tippy-content="Color intensity is calculated on the basis of the highest daily activity of the year (maxTime / time)">
+                    <svg xmlns="http://www.w3.org/2000/svg" tabindex="-1" width="16" height="16" fill="black" class="bi bi-info-circle-fill absolute top-0 ml-3 mt-3 hover:cursor-pointer" viewBox="0 0 16 16" data-tippy-placement="bottom" data-tippy-content="Color intensity is calculated on the basis of the highest daily activity of the year (maxTime / time)">
                         <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
                     </svg>
                 </div>
