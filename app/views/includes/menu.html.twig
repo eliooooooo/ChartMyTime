@@ -1,7 +1,7 @@
 <!-- From menu.html.twig -->
 <!-- Desktop menu -->
 <aside class="mainMenu xl:flex flex-col hidden z-50">
-    <ul class="mx-8 flex flex-col gap-4 mt-20 select-none" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} >
+    <ul class="menuList mx-8 flex flex-col gap-4 mt-20 select-none" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} >
         <li><a href="/">Home</a></li>
         {% if is_connected %}
             <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between">Worskspaces
@@ -85,7 +85,7 @@
         </svg>
     </div>
     <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition style="display: none;">
-        <ul class="m-auto flex flex-col mt-4 text-left text-xl gap-4 w-64 sm:w-80 ">
+        <ul class="menuList m-auto flex flex-col mt-4 text-left text-xl gap-4 w-64 sm:w-80 ">
             <li><a href="/">Home</a></li>
             {% if is_connected %}
                 <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between gap-5" >Worskspaces
