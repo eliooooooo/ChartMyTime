@@ -8,17 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (element.childNodes[0].tagName == "A") {
                     linkList.push(element.childNodes[0]);
                 }
-                // if (element.tagName == "UL") {
-                //     let grandChild = element.childNodes;
-                //     console.log(grandChild);
-                //     grandChild.forEach(element => {
-                //         if (element.tagName == "LI") {
-                //             if (element.childNodes[0].tagName == "A") {
-                //                 linkList.push(element.childNodes[0]);
-                //             }
-                //         }
-                //     });
-                // }
+                if (element.tagName == "UL") {
+                    let grandChild = element.childNodes;
+                    console.log(grandChild);
+                    grandChild.forEach(element => {
+                        if (element.tagName == "LI") {
+                            if (element.childNodes[0].tagName == "A") {
+                                linkList.push(element.childNodes[0]);
+                            }
+                        }
+                    });
+                }
             }
         });
     });
