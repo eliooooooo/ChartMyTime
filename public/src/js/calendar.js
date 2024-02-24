@@ -126,6 +126,16 @@ class Calendar {
    */
   setCurrentMonth() {
     const currentDate = this.getCurrentDate();
+    let body = document.querySelector('body');
+    let notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.classList.add('success');
+    notification.innerHTML = 'Back to current month.';
+    body.appendChild(notification);
+
+    setTimeout(function() {
+      notification.style.opacity = '0';
+    }, 3000);
 
     displayCalendar(currentDate.currentMonth, currentDate.currentYear);
   }
