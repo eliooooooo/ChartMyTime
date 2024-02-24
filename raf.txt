@@ -4,6 +4,6 @@ gestion des erreurs toolbar
 
 active state on menu
 
-back to register when fail to
-
 icone back to current month
+
+delete user account

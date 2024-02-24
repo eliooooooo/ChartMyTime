@@ -67,6 +67,10 @@ Class UserController extends ControllerBase {
         }
     }
 
+    /**
+     * Permet de supprimer le compte de l'utilisateur connecté
+     * Ne renvoie rien
+     */
     function delete(){
         if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
             $this->render('/page/login.html.twig');
@@ -85,6 +89,7 @@ Class UserController extends ControllerBase {
 
     /**
      * Permet de se connecter
+     * Ne renvoie rien
      */
     function login(){
         if (isset($_SESSION['is_connected']) && $_SESSION['is_connected'] == true) {
@@ -123,6 +128,7 @@ Class UserController extends ControllerBase {
 
     /**
      * Permet de se déconnecter
+     * Ne renvoie rien 
      */
     function logout(){
         if (!isset($_SESSION['is_connected']) || $_SESSION['is_connected'] == false) {
@@ -139,6 +145,7 @@ Class UserController extends ControllerBase {
 
     /**
      * Permet de s'inscrire
+     * Ne renvoie rien
      */
     function register(){
         if (isset($_SESSION['is_connected']) && $_SESSION['is_connected'] == true) {
@@ -187,7 +194,7 @@ Class UserController extends ControllerBase {
                                 $this->render('/page/user.html.twig', ['is_connected' => $_SESSION['is_connected'], 'user' => $data['user']]);
                             } catch (PDOException $e) {
                                 echo "<p class='notification'>An error occurred while creating your account: " . $e->getMessage() . "</p>";
-                                $this->render('/page/login.html.twig');
+                                $this->render('/page/login.html.twig', ['register' => true]);
                             }
                         }
                     }
