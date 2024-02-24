@@ -4,4 +4,6 @@ gestion des erreurs toolbar
 
 active state on menu
 
-optIN on register
+back to register when fail to
+
+icone back to current month

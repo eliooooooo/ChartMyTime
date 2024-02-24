@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 if (element.tagName == "UL") {
                     let grandChild = element.childNodes;
-                    console.log(grandChild);
                     grandChild.forEach(element => {
+                        console.log(element);
                         if (element.tagName == "LI") {
                             if (element.childNodes[0].tagName == "A") {
                                 linkList.push(element.childNodes[0]);
