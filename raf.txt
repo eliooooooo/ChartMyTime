@@ -2,7 +2,7 @@ Update feature on workspace
 
 gestion des erreurs toolbar
 
-active state on menu
+active state on menu when create/delete
 
 icone back to current month ?
 

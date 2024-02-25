@@ -1,38 +1,10 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const menus = document.querySelectorAll('.menuList');
-    let linkList = [];
-    menus.forEach(element => {
-        let child = element.childNodes;
-        child.forEach(element => {
-            if (element.tagName == "LI") {
-                if (element.childNodes[0].tagName == "A") {
-                    linkList.push(element.childNodes[0]);
-                }
-                if (element.tagName == "UL") {
-                    let grandChild = element.childNodes;
-                    grandChild.forEach(element => {
-                        console.log(element);
-                        if (element.tagName == "LI") {
-                            if (element.childNodes[0].tagName == "A") {
-                                linkList.push(element.childNodes[0]);
-                            }
-                        }
-                    });
-                }
-            }
-        });
+document.addEventListener('DOMContentLoaded', (event) => {
+    let navLinks = document.querySelectorAll('a');
+    let currentUrl = window.location.href;
+
+    navLinks.forEach((link) => {
+        if (link.href === currentUrl) {
+            link.classList.add('active');
+        }
     });
-    console.log(linkList);
-
-    let params = new URLSearchParams(window.location.search);
-    let url = window.location.href;
-    let lastSegment = url.split('/').pop();
-    let page = lastSegment.split('?')[0];
-    // console.log(page);
-    let id = params.get('id');
-
-
-
-
-    
 });

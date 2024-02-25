@@ -133,9 +133,7 @@ class Calendar {
     notification.innerHTML = 'Back to current month.';
     body.appendChild(notification);
 
-    setTimeout(function() {
-      notification.style.opacity = '0';
-    }, 3000);
+    setTimeout(function() { notification.style.opacity = '0'; }, 3000);
 
     displayCalendar(currentDate.currentMonth, currentDate.currentYear);
   }
