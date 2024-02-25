@@ -44,6 +44,13 @@ class User {
         return $pdo->lastInsertId(); // Retourne l'ID de l'utilisateur nouvellement créé
     }
 
+    public function delete($id) {
+        $pdo = connexion();
+        $sqlGenerator = new SqlGenerator($pdo);
+
+        $sqlGenerator->delete('User', 'id = ' . $id);
+    }
+
     /**
      * Permet de vérifier si un utilisateur existe déjà
      */

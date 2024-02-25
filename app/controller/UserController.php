@@ -76,15 +76,16 @@ Class UserController extends ControllerBase {
             $this->render('/page/login.html.twig');
         } else {
             $user = new User;
-            $user->delete($_SESSION['user']);
+            $user->delete($_SESSION['user_id']);
             unset($_SESSION['user']);
+            unset($_SESSION['user_id']);
             unset($_SESSION['is_connected']);
             session_destroy();
     
             $is_connected = false;
+            echo "<p class='notification success'>Your account has been deleted :(</p>";
             $this->render('/page/logout.html.twig', ['is_connected' => $is_connected]);
         }
-        $this->render('/page/user.html.twig');
     }
 
     /**
