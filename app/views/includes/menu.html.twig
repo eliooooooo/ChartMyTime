@@ -2,7 +2,7 @@
 <!-- Desktop menu -->
 <aside class="mainMenu xl:flex flex-col hidden z-50">
     <ul class="menuList mx-8 flex flex-col gap-4 mt-20 select-none" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} >
-        <li><a href="/">Home</a></li>
+        <li><a href="/" id="home" >Home</a></li>
         {% if is_connected %}
             <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between">Worskspaces
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
@@ -12,7 +12,7 @@
                     <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
                 </svg>
             </span>
-                <ul x-show="dropdownOpen" x-data="{ deleteOpen : false }" class="flex flex-col gap-4 mt-4 relative">
+                <ul x-show="dropdownOpen" x-data="{ deleteOpen : false }" class="flex flex-col gap-4 mt-4 relative" id="workspaceList">
                     <div class="workspaceMenu border-t-2 w-full -top-3 absolute"></div>
                         {% for workspace in workspaces %}
                             <li class="flex flex-row">
@@ -86,7 +86,7 @@
     </div>
     <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition style="display: none;">
         <ul class="menuList m-auto flex flex-col mt-4 text-left text-xl gap-4 w-64 sm:w-80 ">
-            <li><a href="/">Home</a></li>
+            <li><a href="/" id="home">Home</a></li>
             {% if is_connected %}
                 <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between gap-5" >Worskspaces
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
@@ -95,7 +95,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-up relative top-[6px]" viewBox="0 0 16 16" x-show="dropdownOpen">
                         <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
                     </svg></span>
-                    <ul x-show="dropdownOpen" class="workspaceMenu flex flex-col gap-4 mt-4">
+                    <ul x-show="dropdownOpen" class="workspaceMenu flex flex-col gap-4 mt-4" id="workspaceList">
                         <div class="workspaceMenu border-t-2 w-full -mt-2 absolute"></div>
                         {% for workspace in workspaces %}
                             <li class="flex flex-row relative">
