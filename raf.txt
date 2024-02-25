@@ -1,5 +1,7 @@
 Update feature on workspace
 
+Update feature on username
+
 gestion des erreurs toolbar
 
 active state on menu when create/delete

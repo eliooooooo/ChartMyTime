@@ -9,4 +9,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
             document.getElementById('colorPicker').submit();
         });
     });
+
+    const gearUser1 = document.getElementById("gearUser1");
+    const gearUser2 = document.getElementById("gearUser2");
+    const gearUserSelect = document.getElementsByClassName("gearUserSelect");
+
+    Array.from(gearUserSelect).forEach(function(element) {
+        element.addEventListener("click", function() {
+            let selectedGear = this.getAttribute('data-value');
+            if (selectedGear == "1") {
+                document.getElementById('gearUser1').submit();
+            } else if (selectedGear == "2") {
+                document.getElementById('gearUser2').submit();
+            }
+        });
+    });
 });
