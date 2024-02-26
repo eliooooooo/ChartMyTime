@@ -81,7 +81,7 @@ if (empty($request_uri) || $request_uri == '/') {
     echo $controller->render('page/frontpage.html.twig', []);
 } else if ($request_uri == "terms") {
     $controller = new ControllerBase();
-    echo $controller->render('page/terms.html.twig', []);
+    echo $controller->render('page/terms.html.twig', ['page' => 'terms']);
 } else {
     $className = ucfirst($request_uri);
     $controllerName = $className . 'Controller';

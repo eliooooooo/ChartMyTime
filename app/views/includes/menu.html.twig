@@ -1,6 +1,6 @@
 <!-- From menu.html.twig -->
 <!-- Desktop menu -->
-<aside class="mainMenu xl:flex flex-col hidden z-50 fixed">
+<aside class="mainMenu xl:flex flex-col hidden z-50 fixed {{ page is defined and page == 'terms' ? 'shadow-xl border border-gray-200' : '' }}">    
     <ul class="menuList mx-8 flex flex-col gap-4 mt-20 select-none" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} >
         <li><a href="/" id="home" >Home</a></li>
         {% if is_connected %}
