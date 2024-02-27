@@ -7,3 +7,7 @@ gestion des erreurs toolbar
 icone back to current month ?
 
 validation on user delete account
+
+CGU 
+
+Mentions légales
