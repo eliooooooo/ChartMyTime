@@ -10,6 +10,4 @@ validation on user delete account
 
 CGU 
 
-Mentions légales
-
-privacy policy
+cookies ?
