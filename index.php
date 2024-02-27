@@ -82,6 +82,9 @@ if (empty($request_uri) || $request_uri == '/') {
 } else if ($request_uri == "terms") {
     $controller = new ControllerBase();
     echo $controller->render('page/terms.html.twig', ['page' => 'terms']);
+} else if ($request_uri == "legalInfos") {
+    $controller = new ControllerBase();
+    echo $controller->render('page/legal_notices.html.twig', ['page' => 'terms']);
 } else {
     $className = ucfirst($request_uri);
     $controllerName = $className . 'Controller';
