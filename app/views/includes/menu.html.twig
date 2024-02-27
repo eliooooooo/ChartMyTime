@@ -56,6 +56,11 @@
         {% endif %}
         <li><a href="#">Stats</a></li>
     </ul>
+    <ul class="absolute bottom-24 flex mx-8" >
+        <li class="hover:cursor-pointer text-gray-400">
+            <a href="legalInfos">Legal notices</a>
+        </li>
+    </ul>
     <ul class="absolute bottom-0 flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
         <li>
             <a {% if is_connected %}href="user"{% else %}href="user?action=login"{% endif %}>
@@ -84,7 +89,7 @@
         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
         </svg>
     </div>
-    <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" x-data="{ dropdownOpen: false }" x-show="isOpen" x-transition style="display: none;">
+    <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] transition-all duration-500 z-10 pt-20 px-4" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} x-show="isOpen" x-transition style="display: none;">
         <ul class="menuList m-auto flex flex-col mt-4 text-left text-xl gap-4 w-64 sm:w-80 ">
             <li><a href="/" id="home">Home</a></li>
             {% if is_connected %}
@@ -136,6 +141,7 @@
                 </li>
             {% endif %}
             <li><a href="#">Stats</a></li>
+            <li><a href="legalInfos" class="text-gray-400" >Legal notices</a></li>
         </ul>
         <ul class="flex flex-row w-full justify-between px-8 border-t-[1px] border-gray-400 pt-4 pb-4">
             <li>
