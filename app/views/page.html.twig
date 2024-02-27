@@ -2,8 +2,7 @@
 
 {% block page %}
 <!-- From page.html.twig -->
-<body class="h-[100vh] w-[100vw] flex items-center justify-center" x-data="{isOpen: false, dayModalOpen: false}">
-  {% include "./includes/menu.html.twig" %}
+<body class="h-[100vh] w-[100vw] flex items-center justify-center" x-data="{isOpen: false, dayModalOpen: false}" :class="{ 'overflow-hidden': isOpen }">  {% include "./includes/menu.html.twig" %}
   <main class="h-[100vh] w-[100vw]">
   {% block main %}
   {% endblock %}
