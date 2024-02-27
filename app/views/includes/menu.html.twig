@@ -75,7 +75,7 @@
     </ul>
 </aside>
 <!-- Mobile menu -->
-<div class="mainMenu mobileMenu flex xl:hidden w-full bg-white h-20 absolute top-0">
+<div class="mainMenu mobileMenu flex xl:hidden w-full bg-white h-20 absolute top-0 {{ page is defined and page == 'terms' ? 'shadow-md border border-gray-200' : '' }}">
     <div class="toggleMenu flex items-center absolute h-full right-5 z-20" x-on:click="isOpen = !isOpen">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16" x-show="!isOpen">
         <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
