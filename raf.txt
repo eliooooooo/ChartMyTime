@@ -11,3 +11,5 @@ validation on user delete account
 CGU 
 
 cookies ?
+
+switch env in index.php (.env ?) (prod/dev)
