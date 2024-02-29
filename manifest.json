@@ -1,10 +1,10 @@
 {
-    "name": "Time manager",
-    "short_name": "Time manager",
+    "name": "Chart My Time",
+    "short_name": "Chart My Time",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#FFFFFF",
-    "description": "Decouvrez où passe votre temps !.",
+    "description": "Decouvrez où passe votre temps !",
     "icons": [
       {
         "src": "icon/lowres.webp",
