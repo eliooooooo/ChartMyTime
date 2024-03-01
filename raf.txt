@@ -11,3 +11,5 @@ validation on user delete account
 CGU 
 
 cookies ?
+
+logo, nom

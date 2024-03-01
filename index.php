@@ -2,9 +2,16 @@
 session_set_cookie_params(0);
 session_start();
 
+// Appel des variables d'environnement
+require_once __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv->load();
+$displayErrors = getenv('DISPLAY_ERRORS');
+$devenv = getenv('ENV');
+
 // Affichage des erreurs
-ini_set('display_errors', 0);
-ini_set('display_startup_errors', 0);
+ini_set('display_errors', $displayErrors);
+ini_set('display_startup_errors', $displayErrors);
 error_reporting(E_ALL);
 
 // Connexion à la base de données
