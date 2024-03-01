@@ -15,3 +15,5 @@ cookies ?
 switch env in index.php (.env ?) (prod/dev)
 
 Problèmes de profondeur dans les liens sur la prod
+
+change htaccess sur la prod
