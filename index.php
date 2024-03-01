@@ -6,7 +6,7 @@ session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(__DIR__);
 $dotenv->load();
-$displayErrors = getenv('DISPLAY_ERRORS');
+$displayErrors = intval(getenv('DISPLAY_ERRORS'));
 $devenv = getenv('ENV');
 
 // Affichage des erreurs

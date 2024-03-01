@@ -1,6 +1,9 @@
 // import les feuilles de stle
 import './../css/style.css';
 
+// Masquer les warning sur la production
+// console.warn = function() {};
+
 // import de Alpine
 import Alpine from 'alpinejs'
 window.Alpine = Alpine

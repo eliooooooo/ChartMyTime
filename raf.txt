@@ -8,14 +8,14 @@ icone back to current month ?
 
 validation on user delete account
 
-CGU 
-
 cookies ?
-
-logo, nom
 
 switch env in index.php (.env ?) (prod/dev)
 
 Problèmes de profondeur dans les liens sur la prod
 
 change htaccess sur la prod
+
+test controleur avec un sous-domaine en local
+
+récupération des .env en js
