@@ -232,7 +232,7 @@ class Calendar {
     let maxTime = 0;
     let currentColor = this.getColor();
 
-    fetch('/workspace?id=' + id)
+    fetch('/chart-my-time/workspace?id=' + id)
       .then(response => {
         let jsonData = JSON.parse(response.headers.get('X-Json-Data'));
 
@@ -345,15 +345,15 @@ class Calendar {
               modalDisplays.detailError.classList.add('hidden');
               const opacity = dayCard.dataset.opacity;
               modalDisplays.colordetailTime.style.backgroundColor = currentColor+opacity+')';
-              modalDisplays.deleteDetailTime.href = '/day?action=delete&id=' + dayCard.dataset.id;
-              modalDisplays.formAddTime.action = '/day?action=update&id=' + dayCard.dataset.id;
+              modalDisplays.deleteDetailTime.href = '/chart-my-time/day?action=delete&id=' + dayCard.dataset.id;
+              modalDisplays.formAddTime.action = '/chart-my-time/day?action=update&id=' + dayCard.dataset.id;
               if (dayCard.dataset.comment && dayCard.dataset.comment != 'null' && dayCard.dataset.comment != 'undefined' && dayCard.dataset.comment != '') {
                 modalDisplays.detailComment.innerHTML = dayCard.dataset.comment;
               } else {
                 modalDisplays.detailComment.innerHTML = 'No comments.';
               }
             } else {
-              modalDisplays.formAddTime.action = '/day?action=create';
+              modalDisplays.formAddTime.action = '/chart-my-time/day?action=create';
               modalDisplays.DetailsTimeTime.innerHTML = '';
               modalDisplays.detailOnOpen.classList.add('hidden');
               modalDisplays.detailError.classList.remove('hidden');

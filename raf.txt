@@ -4,18 +4,10 @@ Update feature on username
 
 gestion des erreurs toolbar
 
-icone back to current month ?
-
 validation on user delete account
 
 cookies ?
 
-switch env in index.php (.env ?) (prod/dev)
+create workspace on create user
 
-Problèmes de profondeur dans les liens sur la prod
-
-change htaccess sur la prod
-
-test controleur avec un sous-domaine en local
-
-récupération des .env en js
+error on create workspace on null
