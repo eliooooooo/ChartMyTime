@@ -42,7 +42,7 @@ Class ControllerBase {
             $params['user_color'] = $this->getUserColor($_SESSION['user_id']);
         }
         
-        $params['subdomain'] = 'test/';
+        $params['subdomain'] = 'chart-my-time/';
         
         echo $this->twig->render($view, $params);
     }

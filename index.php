@@ -32,8 +32,10 @@ if (isset($_SESSION['notification'])) {
 }
 
 // Appel des différents modèles
-foreach (glob('app/models/*.php') as $filename) {
+$rte = __DIR__ . '/app/models/*.php';
+foreach (glob($rte) as $filename) {
     include_once $filename;
+    // var_dump($filename);
 }
 
 // Initialisation de Twig
@@ -109,8 +111,7 @@ if (empty($request_uri) || $request_uri == '/') {
 } else {
     $className = ucfirst($request_uri);
     $controllerName = $className . 'Controller';
-    $controllerPath = './app/controller/' . $controllerName . '.php';
-    // var_dump($controllerPath);
+    $controllerPath = __DIR__ . '/app/controller/' . $controllerName . '.php';
 
     if (file_exists($controllerPath)) {
         require $controllerPath;
