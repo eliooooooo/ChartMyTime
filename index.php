@@ -55,6 +55,7 @@ $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 //Initialisation des variables
 $action = 'read';
 $id = NULL;
+$subdomain = NULL;
 
 // Si il y a une partie après le ?
 if (isset($request_uri[1])) {
@@ -75,6 +76,16 @@ if (isset($request_uri[1])) {
 }
 $request_uri = ltrim($request_uri[0], '/');
 // var_dump($request_uri);
+
+$uri_parts = preg_split('/[\/.]/', $request_uri);
+
+// Si l'URI contient un sous-domaine
+if (count($uri_parts) > 1) {
+    $subdomain = $uri_parts[0];
+    $request_uri = $uri_parts[1];
+} else {
+    $request_uri = $uri_parts[0];
+}
 
 // test du controleur
 // $request_uri = "user";

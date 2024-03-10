@@ -42,6 +42,8 @@ Class ControllerBase {
             $params['user_color'] = $this->getUserColor($_SESSION['user_id']);
         }
         
+        $params['subdomain'] = 'test/';
+        
         echo $this->twig->render($view, $params);
     }
 }
