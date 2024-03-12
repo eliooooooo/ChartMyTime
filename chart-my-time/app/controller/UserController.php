@@ -186,6 +186,8 @@ Class UserController extends ControllerBase {
                             
                             try {
                                 $user_id = $user->create();
+                                $workspace = new Workspace();
+                                $workspace->createDefault($user_id);
                                 echo "<p class='notification success'>Your account has been created</p>";
                                 mail($email, "Welcome to the Task Manager", "Welcome to the Task Manager, " . $username . "!\n\nYou can now create and manage your tasks on our platform.\n\nBest regards,\nTask Manager Team", "From: eliott.burkle@gmail.com");
                                 $_SESSION['user'] = $username;
