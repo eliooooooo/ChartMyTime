@@ -16,7 +16,7 @@
                     <div class="workspaceMenu border-t-2 w-full -top-3 absolute"></div>
                         {% for workspace in workspaces %}
                             <li class="flex flex-row">
-                                <a href="workspace?id={{ workspace.id }}" class="block overflow-hidden menuItem w-full">{{ workspace.name|length > 20 ? workspace.name|slice(0, 20) ~ '...' : workspace.name }}</a>
+                                <a href="workspace?id={{ workspace.id }}" {% if workspace.name|length > 20 %} data-tippy-delay="[700, 0]" data-tippy-placement="right" data-tippy-content="{{ workspace.name }}" {% endif %} class="block overflow-hidden menuItem w-full">{{ workspace.name|length > 20 ? workspace.name|slice(0, 20) ~ '...' : workspace.name }}</a>
                                 <div class="h-6 absolute right-0 rounded-md color-white" x-data="{ deleteOpen: false }">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-trash ml-1 mt-1 border bg-white p-[2px] rounded-sm text-red-700" viewBox="0 0 16 16" x-show="!deleteOpen" @click="deleteOpen = true">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
