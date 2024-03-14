@@ -7,6 +7,7 @@ Class WorkspaceController extends ControllerBase {
             echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
             $this->render('page/login.html.twig');
         } else {
+            $_SESSION['last_workspace'] = $id;
             $workspace = new Workspace();
             $workspace = $workspace->read($id);
 
@@ -34,14 +35,29 @@ Class WorkspaceController extends ControllerBase {
                 $workspaceNumber = $workspace->getWorkspaceByUser($_SESSION['user_id']);
                 if (strlen($workspace->name) > 50 || strlen($workspace->name) === 0){
                     $_SESSION['notification'] = "<p class='notification'>The workspace's name length must be between 0 and 50 character.</p>";
-                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    if ($_SESSION['last_workspace'] != NULL){
+                        header('Location: /chart-my-time/workspace?id=' . $_SESSION['last_workspace']);
+                    } else {
+                        header('Location: /chart-my-time/');
+                    }
                 } elseif($workspaceNumber >= 8) {
                     $_SESSION['notification'] = "<p class='notification'>You have reached the maximum number of workspaces for a user (8).</p>";
-                    header('Location: ' . $_SERVER['HTTP_REFERER']);
+                    $_SESSION['notification'] = "<p class='notification'>The workspace's name length must be between 0 and 50 character.</p>";
+                    if ($_SESSION['last_workspace'] != NULL){
+                        header('Location: /chart-my-time/workspace?id=' . $_SESSION['last_workspace']);
+                    } else {
+                        header('Location: /chart-my-time/');
+                    }
                 } else {
                     $id = $workspace->create();
                     echo "<p class='notification success'>The workspace has been created</p>";
                     $data = $this->read($id);
+                }
+            } else {
+                if ($_SESSION['last_workspace'] != NULL){
+                    header('Location: /chart-my-time/workspace?id=' . $_SESSION['last_workspace']);
+                } else {
+                    header('Location: /chart-my-time/');
                 }
             }
         }

@@ -30,6 +30,12 @@ Class DayController extends ControllerBase {
                 $_SESSION['notification'] = "<p class='notification'>Invalid time format. Use the format 'h:m', e.g. '1h30' or '1h'.</p>";
                 header('Location: ' . $_SERVER['HTTP_REFERER']);
             }
+        } else {
+            if ($_SESSION['last_workspace'] != NULL){
+                header('Location: /chart-my-time/workspace?id=' . $_SESSION['last_workspace']);
+            } else {
+                header('Location: /chart-my-time/');
+            }
         }
     }
 
