@@ -5,7 +5,11 @@ module.exports = {
         "./app/views/**/**/*.{html.twig,js}",
     ],
     theme: {
-        extend: {},
+        extend: {
+            screens: {
+                'xs': '470px',
+            }
+        },
     },
     plugins: [],
 } 

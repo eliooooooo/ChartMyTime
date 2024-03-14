@@ -13,5 +13,3 @@ click form monthYear
 style form hour
 
 form submit on enter
-
-scroll on mobile menu
