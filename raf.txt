@@ -15,3 +15,5 @@ style form hour
 form submit on enter
 
 scroll on mobile menu
+
+render page on non post server method
