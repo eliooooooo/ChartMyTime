@@ -72,10 +72,19 @@ Class WorkspaceController extends ControllerBase {
             echo "<p class='notification'>You must be logged in to access your own workspaces.</p>";
             $this->render('page/login.html.twig');
         } else {
-            $workspace = new Workspace();
-            $workspace->delete($id);
-            echo "<p class='notification success'>The workspace has been deleted</p>";
-            echo $this->render('page/frontpage.html.twig');
+            if ($id != NULL){
+                $workspace = new Workspace();
+                $workspace->delete($id);
+                echo "<p class='notification success'>The workspace has been deleted</p>";
+                echo $this->render('page/frontpage.html.twig');
+            } else {
+                echo "<p class='notification'>This workspace does not exist</p>";
+                if ($_SESSION['last_workspace'] != NULL){
+                    header('Location: /chart-my-time/workspace?id=' . $_SESSION['last_workspace']);
+                } else {
+                    header('Location: /chart-my-time/');
+                }
+            }
         }
     }
 }
