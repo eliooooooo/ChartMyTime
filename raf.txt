@@ -9,7 +9,3 @@ validation on user delete account
 cookies ?
 
 click form monthYear
-
-style form hour
-
-form submit on enter
