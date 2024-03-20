@@ -12,6 +12,9 @@
             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
         </svg>
         <form class="formNewDate flex flex-row" x-show="inputMYOpen">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" class="bi bi-info-circle-fill ml-3 mt-1 top-0 hover:cursor-pointer" style="mix-blend-mode: exclusion;" viewBox="0 0 16 16" data-tippy-content="You can only go back one year.">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+            </svg>
             <select name="month" id="month">
                 <option value="0">January</option>
                 <option value="1">February</option>
@@ -29,6 +32,7 @@
             <input type="number" name="year" id="year" placeholder="Year">
             <input type="submit" value="Go">
         </form>
+
         <div class="closeFormMonthYear" x-show="inputMYOpen" @click="inputMYOpen = !inputMYOpen">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg ml-4" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
