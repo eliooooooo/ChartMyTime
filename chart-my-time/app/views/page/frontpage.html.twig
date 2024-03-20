@@ -1,13 +1,14 @@
 {% extends "page.html.twig" %}
 
 {% block main %}
-    {# <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div> #}
-    <div class="bg-white flex absolute flex-col gap-5 p-5 align-center justify-center text-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <h1 class="text-2xl font-bold">Bienvenue sur Chart My Time</h1>
-        <p>Elle sera construite plus tard, le site est encore en construction, des problèmes peuvent encore survenir !</p>
+    <div class="circleContainer w-[100vw] sm:w-[600px] absolute top-1/2 -translate-y-1/2 m-auto left-1/2 -translate-x-1/2"></div>
+    <div class="containerError w-full md:w-2/3 lg:w-1/2 max-w-[900px] bg-white flex absolute flex-col gap-5 p-5 align-center justify-center text-left top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <h1 class="text-2xl font-bold text-center">Welcome to Chart My Time</h1>
+        <p>Chart My Time is a powerful tool designed to help you track and visualize your time. Whether you're a freelancer tracking hours for clients, a student monitoring study time, or just someone interested in understanding how your time is spent, Chart My Time is the perfect solution for you.</p>
+        <span class="text-center block border-2 border-black p-5 w-fit mx-auto rounded-md"><span class="text-xl font-bold">Start now !</span> <br> <a href="user?action=login" class="underline font-normal">Create an account</a> </span>
+        <p>With our intuitive interface, you can easily create workspaces, add the time you have spend on each workspace and then you can see time usage in each workspaces. Start taking control of your time today with Chart My Time.</p>
     </div>
-
 {% endblock %}
 {% block scripts %}
-    {# <script src="dist/circle.js"></script> #}
+    <script src="dist/circle.js"></script>
 {% endblock %}
