@@ -1,1 +1,0 @@
-gestion des erreurs toolbar
