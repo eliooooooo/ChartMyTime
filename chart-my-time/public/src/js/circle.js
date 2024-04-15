@@ -1,5 +1,3 @@
-// console.log("circle.js");
-
 class Circle {
     constructor(width, left, top) {
         this.width = width;
@@ -8,19 +6,23 @@ class Circle {
         this.colorCircle = this.getColor();
     }
 
-    /*
-        Fonction pour avoir les fiddérentes couleurs des cercles
-        Renvoie un tableau de couleurs        
-    */
+    /**
+     * Fonction pour avoir les fiddérentes couleurs des cercles
+     * 
+     * @returns {Array} colorCircle
+     */
     getColor() {
         let colorCircle = ['radial-gradient(circle, rgba(232,178,202,1) 0%, rgba(208,110,166,1) 100%)', 'radial-gradient(circle, rgba(178,232,230,1) 0%, rgba(55,190,236,1) 86%, rgba(110,181,208,1) 100%)', 'radial-gradient(circle, rgba(137,233,119,1) 0%, rgba(28,120,66,1) 100%)'];
         return colorCircle;
     }
 
-    /*
-        Fonction pour créer les cercles
-        Ne renvoie rien
-    */
+    /**
+     * Fonction pour créer un cercle
+     * 
+     * @param {number} i
+     * 
+     * @returns {void}
+     */
     createCircle(i) {
         let colorCircle = this.getColor();
         let circle = document.createElement('div');
@@ -39,10 +41,11 @@ class Circle {
     }
 }
 
-/*
-    Fonction pour avoir la taille du calendrier
-    Renvoie un objet avec la largeur et la hauteur du calendrier
-*/
+/**
+ * Fonction pour avoir les tailles de la fenêtre
+ * 
+ * @returns {Object} { maxWidth, clientWidth, clientHeight }
+ */
 function getSizes(){
     if (document.querySelector('#calendar')) {
         var heightCalendar = document.querySelector('#calendar').clientHeight;

@@ -5,7 +5,7 @@ class Calendar {
 
   /**
    * Fonction pour récupérer la date actuelle
-   * Renvoie un objet avec les propriétés suivantes:
+   * @returns {Object} avec les propriétés suivantes:
    *  currentNumber: le numéro du jour actuel
    *  currentMonth: le numéro du mois actuel
    *  currentYear: l'année actuelle
@@ -18,13 +18,14 @@ class Calendar {
 
   /**
    * Fonction pour définir les constantes
-   * Renvoie un objet avec les propriétés suivantes:
-   * months: les mois de l'année
+   * 
+   * @returns {Object} Les constantes suivantes:
+   *  months: les mois de l'année 
    *  days: les jours de la semaine
-   *  dp_days: display du jour de la semaine actuel
-   *  dp_number: display du numéro du jour actuel
-   *  dp_month: display du mois actuel
-   *  dp_year: display de l'année actuelle
+   *  dp_days: le jour actuel
+   *  dp_number: le numéro du jour actuel
+   *  dp_month: le mois actuel
+   *  dp_year: l'année actuelle
    */
   setConstants() {
     const currentDate = this.getCurrentDate();
@@ -43,7 +44,11 @@ class Calendar {
 
   /**
    * Fonction pour définir le jour actuel et lui appliquer son style
-   * Ne renvoie rien
+   * 
+   * @param {Number} month le mois actuel
+   * @param {Number} year l'année actuelle
+   * 
+   * @returns {void}
    */
   setCurrentDay(month, year) {
     const constants = this.setConstants();
@@ -65,7 +70,11 @@ class Calendar {
 
   /**
    * Fonction pour afficher le mois de l'année
-   * Ne renvoie rien
+   * 
+   * @param {Number} month le mois de l'année
+   * @param {Number} year l'année
+   * 
+   * @returns {void}
    */
   setMonthYear(month, year) {
     const constants = this.setConstants();
@@ -78,7 +87,8 @@ class Calendar {
 
   /**
    * Fonction pour afficher le mois suivant
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   nextMonth() {
     const constants = this.setConstants();
@@ -100,7 +110,8 @@ class Calendar {
 
   /**
    * fonction pour afficher le mois précédent
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   previousMonth() {
     const constants = this.setConstants();
@@ -122,7 +133,8 @@ class Calendar {
 
   /**
    * Fonction pour définir le mois actuel
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   setCurrentMonth() {
     const currentDate = this.getCurrentDate();
@@ -140,7 +152,8 @@ class Calendar {
 
   /**
    * Fonction pour définir la date du workspace via le formulaire
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   setFormDate() {
     const constants = this.setConstants();  
@@ -170,7 +183,8 @@ class Calendar {
 
   /**
    * Fonction pour supprimer les anciens jours 
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   deleteOldDays() {
     let oldDays = document.querySelectorAll('.dayCard');
@@ -184,7 +198,13 @@ class Calendar {
 
   /**
    * Fonction pour afficher les jours du mois
-   * Ne renvoie rien
+   * 
+   * @param {Number} nbDays le nombre de jours du mois
+   * @param {Number} firstDay le premier jour du mois
+   * @param {Number} month le mois
+   * @param {Number} year l'année
+   * 
+   * @returns {void}
    */
   displayDays(nbDays, firstDay, month, year) {
     for (let j = 0; j < firstDay; j++) {
@@ -208,7 +228,8 @@ class Calendar {
 
   /**
    * Fonction pour récupérer la couleur de l'utilisateur sur le workspace
-   * Renvoie la couleur de l'utilisateur
+   * 
+   * @returns {String} la couleur de l'utilisateur
    */
   getColor() {
     let color = document.querySelector('#calendar').dataset.color;
@@ -224,7 +245,8 @@ class Calendar {
 
   /**
    * Fonction pour définir les data des jours
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   daysColor() {
     let params = new URLSearchParams(window.location.search);
@@ -273,6 +295,14 @@ class Calendar {
       .catch(error => console.error(error));
   }
 
+  /**
+   * Fonction pour afficher la navigation
+   * 
+   * @param {Number} month le mois
+   * @param {Number} year l'année
+   * 
+   * @returns {void}
+   */
   displayNav(month, year) {
     const constants = this.setConstants();
     const currentDate = this.getCurrentDate();
@@ -292,7 +322,8 @@ class Calendar {
 
   /**
    * Fonction pour définir les constantes pour le modal
-   * Renvoie un objet avec les propriétés suivantes:
+   * 
+   * @returns {Object} avec les propriétés suivantes:
    *  dayCards: les jours du mois
    *  dayModal: le modal
    *  modalDate: la date du modal 
@@ -319,6 +350,13 @@ class Calendar {
     return { dayCards: dayCards, dayModal: dayModal, modalDate: modalDate, dayModalClose: dayModalClose, DetailsTimeTime: DetailsTimeTime, detailOnOpen: detailOnOpen, detailTimeDay: detailTimeDay, detailError: detailError, colordetailTime: colordetailTime, detailComment: detailComment, deleteDetailTime: deleteDetailTime, inputDate: inputDate, inputWorkspace: inputWorkspace, formAddTime: formAddTime, modalComment: modalComment, modalTime: modalTime};
   }
 
+  /**
+   * Fonction pour formater le temps
+   * 
+   * @param {Number} time le temps
+   * 
+   * @returns {String} le temps formaté
+   */
   formatTime(time) {
     let hours = Math.floor(time);
     let minutes = Math.round((time - hours) * 60);
@@ -327,7 +365,8 @@ class Calendar {
 
   /**
    * Fonction pour afficher le modal
-   * Ne renvoie rien
+   * 
+   * @returns {void}
    */
   displayModal() {
     const constants = this.setConstants();
@@ -375,7 +414,11 @@ class Calendar {
 
   /**
    * Fonction pour afficher le calendrier
-   * Ne renvoie rien
+   * 
+   * @param {Number} month le mois
+   * @param {Number} year l'année
+   * 
+   * @returns {void}
    */
   displayCalendar(month, year) {
 
