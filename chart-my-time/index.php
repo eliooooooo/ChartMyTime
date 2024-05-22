@@ -108,6 +108,9 @@ if (empty($request_uri) || $request_uri == '/') {
 } else if ($request_uri == "privacy") {
     $controller = new ControllerBase();
     echo $controller->render('page/privacy.html.twig', ['page' => 'terms']);
+} else if ($request_uri == "stats") {
+    $controller = new ControllerBase();
+    echo $controller->render('page/stats.html.twig', []);
 } else {
     $className = ucfirst($request_uri);
     $controllerName = $className . 'Controller';
