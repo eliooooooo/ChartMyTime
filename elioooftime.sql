@@ -79,7 +79,7 @@ CREATE TABLE `User` (
 --
 
 INSERT INTO `User` (`id`, `username`, `email`, `password`, `date`, `color`) VALUES
-(4, 'Eliott', 'eliott.burkle@gmail.com', '$2y$10$o4XO5ib35pSD5ssbL60VI.D6tXaT7Ajw.R7QgGf.mCsuNC0u.a2Bq', '2024-02-12', 'D988B3');
+(4, 'Eliott', 'eliott.burkle@gmail.com', 'hash', '2024-02-12', 'D988B3');
 
 -- --------------------------------------------------------
 
