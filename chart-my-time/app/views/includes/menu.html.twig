@@ -2,7 +2,7 @@
 <!-- Desktop menu -->
 <aside class="mainMenu xl:flex flex-col hidden z-50 fixed {{ page is defined and page == 'terms' ? 'shadow-xl border border-gray-200' : '' }}">    
     <ul class="menuList mx-8 flex flex-col gap-4 mt-20 select-none" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} >
-        <li><a href="/{% if subdomain %}{{ subdomain }}{% endif %}" id="home" >Home</a></li>
+        <li><a href="/" id="home" >Home</a></li>
         {% if is_connected %}
             <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between">Worskspaces
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
@@ -91,7 +91,7 @@
     </div>
     <div class="flex flex-col justify-between bg-white h-[100vh] w-[100vw] overflow-auto transition-all duration-500 z-10 pt-20 px-4" {% if is_connected %}x-data="{ dropdownOpen: true  }"{% else %}x-data="{ dropdownOpen: false  }"{% endif %} x-show="isOpen" x-transition style="display: none;">
         <ul class="menuList m-auto flex flex-col mt-4 text-left text-xl gap-4 w-64 sm:w-80 ">
-            <li><a href="/{% if subdomain %}{{ subdomain }}{% endif %}" id="home">Home</a></li>
+            <li><a href="/" id="home">Home</a></li>
             {% if is_connected %}
                 <li class="hover:cursor-pointer relative"><div class="absolute -left-4 block bg-{{ user_color }} w-1 rounded-md h-full"></div><span @click="dropdownOpen = !dropdownOpen" class="flex flex-row justify-between gap-5" >Worskspaces
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-down relative top-[6px]" viewBox="0 0 16 16" x-show="!dropdownOpen">
